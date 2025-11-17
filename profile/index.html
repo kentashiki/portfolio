@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Kenta Shiki</title>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="icon" href="../assets/images/favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="../">
+          <img src="../assets/images/favicon.png" alt="Kenta Shiki Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="./">Profile</a></li>
+          <li><a href="../projects/">Projects</a></li>
+          <li><a href="../works/">Works</a></li>
+          <li><a href="../updates/">Updates</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="profile-hero">
+      <canvas id="network-canvas"></canvas>
+      <div class="profile-hero-content">
+        <h1>Profile</h1>
+        <p>Who I am, and what I strive for.</p>
+      </div>
+    </div>
+
+    <!-- 基本プロフィール -->
+    <section class="profile-detail-section">
+      <div class="profile-detail-container">
+        <div class="profile-detail-image">
+          <img src="../assets/images/kentashiki.jpg" alt="Kenta Shiki's picture" />
+        </div>
+        <div class="profile-detail-text">
+          <h2>志貴 健太 / Kenta Shiki</h2>
+          <div class="profile-basic-info">
+            <div class="info-row">
+              <span class="info-label">所属</span>
+              <span class="info-value"
+                >東京大学大学院 総合文化研究科 広域科学専攻</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">研究室</span>
+              <span class="info-value">雨宮研究室</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">学年</span>
+              <span class="info-value">修士1年</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">研究分野</span>
+              <span class="info-value"
+                >Virtual Reality, Human-Computer Interaction, Applied
+                Neuroscience</span
+              >
+            </div>
+          </div>
+          <p class="profile-intro">
+            Virtual Reality (VR)やHuman-Computer Interaction
+            (HCI)の研究をしています。
+          </p>
+          <p class="profile-intro">
+            ヒトの感覚・知覚や高次の認知機能に関心を持ち、それを応用したインタフェースを開発することで、「現実とは何か」「人間とは何か」といった問いに挑みたいと考えています。
+          </p>
+          <p class="profile-intro">
+            また研究成果の社会実装にも関心を持っており、研究のあらゆるフェーズを経験するため、基礎から応用まで幅広く取り組んでいます。
+          </p>
+          <div class="cv-download-section">
+            <a href="../documents/resume_ja.pdf" class="cv-download-button" download>
+              <span class="cv-icon">📄</span>
+              <span class="cv-text">日本語履歴書をダウンロード</span>
+            </a>
+            <a href="../documents/cv_en.pdf" class="cv-download-button" download>
+              <span class="cv-icon">📄</span>
+              <span class="cv-text">Download CV (English)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ミッション -->
+    <section class="mission-section">
+      <h2>Mission</h2>
+      <p>
+        <strong>研究</strong
+        >で知見を積み重ね、<strong>技術開発</strong>で具現化し、<strong>ビジネス</strong>で価値を届けるまでのプロセスを加速させ、<strong>新しい体験の可能性</strong>を次々と社会へ開いていく。
+      </p>
+    </section>
+
+    <!-- ビジョン -->
+    <section class="vision-section">
+      <h2>Vision</h2>
+      <p>
+        <strong>探究する視点</strong
+        >と、<strong>つくる技術</strong>と、<strong>届ける行動力</strong>をあわせ持つ人であること。<br />領域の境界にとらわれず、<strong>「まだない体験」</strong>を自ら<strong>企画</strong>し、<strong>実装</strong>し、<strong>世界に提案</strong>できる存在へ。
+      </p>
+    </section>
+
+    <!-- フィロソフィー -->
+    <section class="philosophy-section">
+      <h2>Philosophy</h2>
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-number">01</div>
+          <h3>礼儀・マナーを尊重</h3>
+          <p>
+            大きな成果を生み出すためには、組織内外の人々との協働が不可欠であり、それは互いの信頼関係の上で成り立つものです。そのため、報連相や時間厳守といった基本的なマナーを心得ていることは、実績や能力以上に重要な素養であると考えており、それを常に心に留めて行動しています。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">02</div>
+          <h3>多様な経験を重視</h3>
+          <p>
+            真に社会に資するテクノロジーは、それを実現する技術への専門性を軸に、関連領域の知見が組み合わさることによって実現されます。さらに、研究の基礎から応用、社会実装の一連の経験も必要になります。私はこの点を念頭に置いて、様々な分野、フェーズの経験を重視しています。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">03</div>
+          <h3>思考より試行</h3>
+          <p>
+            プロジェクトの初期では、先行事例の調査や要件定義などを通して取り組む課題を明確に定義しますが、私はこれが完了してからではなく、大まかな方向性が決まった段階で手を動かしてシステムやプロトタイプを実装し、使用する中での発見から軌道修正するアプローチをとることが多いです。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">04</div>
+          <h3>フットワークは軽く</h3>
+          <p>
+            私の大学生活はCOVID-19のコロナ禍とほぼ同時期に始まり、学業や日常で大幅な制限を強いられました。ただ待っているだけでは都合よく機会が舞い込んでこない当時の経験から、現在もアンテナを広く張って面白そうな機会を主体的に探し、挑戦する姿勢を大切にしています。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">05</div>
+          <h3>グローバル志向</h3>
+          <p>
+            研究開発の成果は、ゆくゆくは世界中の人々の生活を豊かにすることを目指します。そのために、多様なバックグラウンドを持つ人々とのコラボレーションに積極的な姿勢を持っており、これまで海外インターンやオンライン留学といった経験を通して、その素地を築いてきました。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">06</div>
+          <h3>すべてを形に</h3>
+          <p>
+            どれだけ優れたアイディアも頭の中にあるだけでは社会に影響を及ぼさず、その価値を認めてもらえません。私は研究や開発におけるすべての試みを、最後には論文やアプリリリース、SNS発信などを通して形にしていきます。そこでは、AIの力を借りることで一連のプロセスを高速化します。
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">07</div>
+          <h3>自分から始める</h3>
+          <p>
+            
+          </p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-number">08</div>
+          <h3>責任感をもって～～</h3>
+          <p>
+            負託には責任をもって応えるよう尽力します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 興味・関心 -->
+    <section class="interest-section">
+      <h2>Interests</h2>
+      <p>
+        以下の3領域が特に関心のある分野で、下の図が進行中のプロジェクト概要から作成したワードクラウドです。これらに含まれない未知の領域でも、食わず嫌いせずに広く知を吸収する姿勢を大切にしています。<br />※随時更新します
+      </p>
+      <div class="interest-grid">
+        <div class="interest-card">
+          <h3>人工現実感（VR）</h3>
+          <p>触覚提示デバイスをはじめとした感覚提示技術による現実感の再現</p>
+        </div>
+        <div class="interest-card">
+          <h3>（計算論的）神経科学</h3>
+          <p>
+            脳活動の計測・解析を通じた人間の知覚・感覚と認知メカニズムの解明
+          </p>
+        </div>
+        <div class="interest-card">
+          <h3>HCI</h3>
+          <p>人間が人間らしく生きるためのコンピュータの在り方の設計と実装</p>
+        </div>
+      </div>
+      <img src="../assets/images/research-wordcloud.png" alt="research wordcloud" />
+    </section>
+
+    <!-- 学歴・経歴 -->
+    <section class="eduexpqual-section">
+      <h2>Education & Experience</h2>
+      <div class="eduexpqual-container">
+        <div class="eduexpqual-column">
+          <h3>Education</h3>
+          <div class="eduexpqual-list">
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2025年4月 – 現在</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">
+                  東京大学大学院 総合文化研究科 広域科学専攻 広域システム科学系
+                </div>
+                <div class="eduexpqual-detail">
+                  修士課程 在学中<br />指導教官：雨宮智浩教授
+                </div>
+              </div>
+            </div>
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2023年4月 – 2025年3月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">
+                  電気通信大学 情報理工学域 Ⅰ類（情報系）
+                  メディア情報学プログラム
+                </div>
+                <div class="eduexpqual-detail">
+                  卒業　学士（工学）<br />指導教官：宮脇陽一教授
+                </div>
+              </div>
+            </div>
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2020年4月 – 2023年3月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">
+                  東北大学 工学部 電気情報物理工学科 応用物理学コース
+                </div>
+                <div class="eduexpqual-detail">3年次修了時に中途退学</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="eduexpqual-column">
+          <h3>Experience</h3>
+          <div class="eduexpqual-list">
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2025年8月 – 2025年9月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">NTT株式会社 人間情報研究所</div>
+                <div class="eduexpqual-detail">夏期実習生</div>
+              </div>
+            </div>
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2023年8月 – 2023年9月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">
+                  ニューヨーク州立大学ビンガムトン校<br />Graphics and Image
+                  Computing Laboratory
+                </div>
+                <div class="eduexpqual-detail">Student Intern</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 資格 -->
+    <section class="eduexpqual-section">
+      <h2>Qualifications</h2>
+      <div class="eduexpqual-container" style="grid-template-columns: 1fr;">
+        <div class="eduexpqual-column">
+          <div class="eduexpqual-list">
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2022年5月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">TOEIC L&R Test 940点 取得</div>
+                <div class="eduexpqual-detail">Listening: 490点, Reading: 450点</div>
+              </div>
+            </div>
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-year">2020年12月</div>
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">普通自動車第一種免許 取得</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 研究開発ツール -->
+    <section class="tools-section">
+      <h2>R&D Expertise & Tools</h2>
+
+      <div class="tools-container">
+        <!-- AI Integration -->
+        <div class="tools-category">
+          <div class="category-header">
+            <h3>AI Integration</h3>
+          </div>
+          <div class="category-grid">
+            <div class="tech-item">
+              <div class="tech-name">ChatGPT</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">Claude</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">Perplexity</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">NotebookLM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experiment -->
+        <div class="tools-category">
+          <div class="category-header">
+            <h3>Experimentation</h3>
+          </div>
+          <div class="category-grid">
+            <div class="tech-item">
+              <div class="tech-name">EEG</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">Psychophysics</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">PsychoPy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analysis -->
+        <div class="tools-category">
+          <div class="category-header">
+            <h3>Implementation & Analysis</h3>
+          </div>
+          <div class="category-grid">
+            <div class="tech-item">
+              <div class="tech-name">Python</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">C</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">MATLAB</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">HTML</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">CSS</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">JavaScript</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documentation & Communication -->
+        <div class="tools-category">
+          <div class="category-header">
+            <h3>Documentation & Communication</h3>
+          </div>
+          <div class="category-grid">
+            <div class="tech-item">
+              <div class="tech-name">LaTeX</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">Powerpoint</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-name">Adobe Illustrator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-left">
+        <div>© 2025 Kenta Shiki. All rights reserved.</div>
+        <div class="footer-credit">
+          Website created with the assistance of Claude (Anthropic AI) and
+          ChatGPT (OpenAI)
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="./">Profile</a>
+        <a href="../projects/">Projects</a>
+        <a href="../works/">Works</a>
+        <a href="../updates/">Updates</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </footer>
+    <script src="../assets/js/network-animation-light.js"></script>
+    <script>
+      // スクロールアニメーション
+      const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+
+            // Philosophy カードの場合、個別にアニメーション
+            if (entry.target.classList.contains("philosophy-section")) {
+              const cards = entry.target.querySelectorAll(".philosophy-card");
+              cards.forEach((card) => {
+                card.classList.add("fade-in");
+              });
+            }
+
+            // 一度アニメーションしたら監視を解除
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // 監視対象の要素を登録
+      document
+        .querySelectorAll(
+          ".mission-section, .vision-section, .philosophy-section"
+        )
+        .forEach((section) => {
+          observer.observe(section);
+        });
+    </script>
+  </body>
+</html>

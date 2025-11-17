@@ -1,0 +1,691 @@
+/* プロフィールヒーローセクション */
+.profile-hero {
+  min-height: 400px;
+  padding: 150px 7.5% 80px;
+  background: linear-gradient(90deg, #011121, #131121);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-hero h1 {
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.profile-hero p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* プロフィール詳細セクション */
+.profile-detail-section {
+  padding: 100px 7.5%;
+  background: #ffffff;
+}
+
+.profile-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.profile-detail-image {
+  flex-shrink: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.profile-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-detail-text {
+  flex: 1;
+}
+
+.profile-detail-text h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #011121;
+}
+
+.profile-basic-info {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.info-row {
+  display: flex;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 600;
+  width: 120px;
+  color: #011121;
+  flex-shrink: 0;
+}
+
+.info-value {
+  color: #555;
+  flex: 1;
+}
+
+.profile-intro {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.cv-download-section {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+.cv-download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.35);
+  background: linear-gradient(135deg, #0052a3 0%, #003d7a 100%);
+}
+
+.cv-icon {
+  font-size: 1.2rem;
+}
+
+.cv-text {
+  color: white;
+}
+
+/* ミッションセクション */
+.mission-section {
+  padding: 100px 7.5%;
+  background: #f8f9fa;
+}
+
+.mission-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.mission-section p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 2.2;
+  color: #333;
+  text-align: center;
+}
+
+.mission-section p strong {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #0066cc;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+/* ビジョンセクション */
+.vision-section {
+  padding: 100px 7.5%;
+  background: #f8f9fa;
+}
+
+.vision-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.vision-section p {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 2.2;
+  color: #333;
+  text-align: center;
+}
+
+.vision-section p strong {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #6a11cb;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+/* フィロソフィーセクション */
+.philosophy-section {
+  padding: 100px 7.5%;
+  background: #f8f9fa;
+}
+
+.philosophy-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.philosophy-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.philosophy-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0066cc 0%, #0052a3 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.philosophy-card:hover::before {
+  transform: scaleX(1);
+}
+
+.philosophy-card:hover {
+  border-color: #0066cc;
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
+}
+
+.philosophy-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e9ecef;
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+  background: linear-gradient(135deg, #0066cc 0%, #6a11cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.3;
+}
+
+.philosophy-card:hover .philosophy-number {
+  opacity: 1;
+  background: linear-gradient(135deg, #0066cc 0%, #2575fc 50%, #6a11cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.philosophy-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #011121;
+}
+
+.philosophy-card p {
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* 興味・関心セクション */
+.interest-section {
+  padding: 100px 7.5%;
+  background: #ffffff;
+}
+
+.interest-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.interest-section > p {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #555;
+  text-align: center;
+}
+
+.interest-grid {
+  max-width: 1000px;
+  margin: 0 auto 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.interest-card {
+  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.interest-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 102, 204, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.interest-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.interest-card p {
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.interest-section img {
+  display: block;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* 学歴・経歴セクション */
+.eduexpqual-section {
+  padding: 100px 7.5%;
+  background: #f8f9fa;
+}
+
+.eduexpqual-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.eduexpqual-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.eduexpqual-column h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #011121;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #0066cc;
+}
+
+.eduexpqual-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.eduexpqual-item {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.eduexpqual-year {
+  flex-shrink: 0;
+  width: 140px;
+  font-weight: 600;
+  color: #666;
+  font-size: 0.95rem;
+  padding-top: 2px;
+}
+
+.eduexpqual-content {
+  flex: 1;
+}
+
+.eduexpqual-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #011121;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.eduexpqual-detail {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ツールセクション */
+.tools-section {
+  padding: 100px 7.5%;
+  background: #ffffff;
+}
+
+.tools-section > h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #011121;
+}
+
+.tools-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tools-category {
+  margin-bottom: 3rem;
+}
+
+.tools-category:last-child {
+  margin-bottom: 0;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #e9ecef;
+}
+
+.category-header h3 {
+  color: #011121;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+/* Tech Item (共通) */
+.tech-item {
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  display: inline-block;
+  transition: all 0.2s ease;
+  cursor: default;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.tech-item:hover {
+  transform: none;
+  color: #0066cc;
+}
+
+.tech-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .profile-hero {
+    padding: 120px 5% 60px;
+    min-height: 350px;
+  }
+
+  .profile-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .profile-hero p {
+    font-size: 1.1rem;
+  }
+
+  .profile-detail-section {
+    padding: 60px 5%;
+  }
+
+  .profile-detail-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .profile-detail-image {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .profile-detail-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cv-download-section {
+    flex-direction: column;
+  }
+  
+  .cv-download-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mission-section,
+  .vision-section,
+  .philosophy-section,
+  .interest-section,
+  .eduexpqual-section,
+  .tools-section {
+    padding: 60px 5%;
+  }
+
+  .mission-section h2,
+  .vision-section h2,
+  .philosophy-section h2,
+  .interest-section h2,
+  .eduexpqual-section h2,
+  .tools-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .mission-section p,
+  .vision-section p {
+    font-size: 1.05rem;
+    line-height: 2;
+  }
+  
+  .mission-section p strong,
+  .vision-section p strong {
+    font-size: 1.2rem;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-section > p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .interest-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+
+  .interest-card {
+    padding: 2rem;
+  }
+
+  .interest-section img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .eduexpqual-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .eduexpqual-column h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .eduexpqual-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .eduexpqual-year {
+    width: 100%;
+  }
+
+  .tools-category {
+    margin-bottom: 2rem;
+  }
+
+  .category-header {
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .tech-item {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .tech-icon {
+    font-size: 2rem;
+  }
+
+  .tech-name {
+    font-size: 0.85rem;
+  }
+}
+
+/* フェードインアニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mission-section h2,
+.mission-section p,
+.vision-section h2,
+.vision-section p,
+.philosophy-section h2 {
+  opacity: 0;
+}
+
+.mission-section.fade-in h2,
+.mission-section.fade-in p,
+.vision-section.fade-in h2,
+.vision-section.fade-in p,
+.philosophy-section.fade-in h2 {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.mission-section.fade-in p {
+  animation-delay: 0.2s;
+}
+
+.vision-section.fade-in p {
+  animation-delay: 0.2s;
+}
+
+.philosophy-card {
+  opacity: 0;
+}
+
+.philosophy-card.fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.philosophy-card.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.philosophy-card.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.philosophy-card.fade-in:nth-child(3) { animation-delay: 0.3s; }
+.philosophy-card.fade-in:nth-child(4) { animation-delay: 0.4s; }
+.philosophy-card.fade-in:nth-child(5) { animation-delay: 0.5s; }
+.philosophy-card.fade-in:nth-child(6) { animation-delay: 0.6s; }

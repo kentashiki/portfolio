@@ -1,0 +1,328 @@
+/* News / Updates セクション */
+.news-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* スクロールバーのスタイル */
+.news-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.news-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.news-container::-webkit-scrollbar-thumb {
+  background: #0066cc;
+  border-radius: 10px;
+}
+
+.news-container::-webkit-scrollbar-thumb:hover {
+  background: #0052a3;
+}
+
+.news-item {
+  display: flex;
+  gap: 30px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.news-item:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.news-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #777;
+  gap: 0.2rem;
+  min-width: 80px;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.date-separator {
+  font-weight: 600;
+}
+
+.news-content {
+  flex: 1;
+}
+
+.news-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.news-badge.award {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #8b6914;
+}
+
+.news-badge.presentation {
+  background: #0066cc;
+  color: white;
+}
+
+.news-badge.milestone {
+  background: #28a745;
+  color: white;
+}
+
+.news-badge.internship {
+  background: #667eea;
+  color: white;
+}
+
+.news-content h3 {
+  font-size: 1.1rem;
+  color: #011121;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.news-content p {
+  color: #666;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.news-content a {
+  color: #0066cc;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.news-content a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #0066cc;
+  transition: width 0.3s ease;
+  opacity: 0.6;
+}
+
+.news-content a:hover {
+  color: #004c99;
+}
+
+.news-content a:hover::after {
+  width: 100%;
+}
+
+/* Featured Projects セクション */
+#featured-projects {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 80px;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-card {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: block;
+  text-decoration: none;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.carousel-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .carousel-caption {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.carousel-caption h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  margin: 0;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+/* カルーセルボタン */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 2px solid #e9ecef;
+  color: #0066cc;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn:hover {
+  background: #0066cc;
+  color: white;
+  border-color: #0066cc;
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+/* カルーセルドット */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #0066cc;
+  opacity: 0.7;
+}
+
+.dot.active {
+  background: #0066cc;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .news-item {
+    flex-direction: column;
+    gap: 15px;
+    padding: 1.5rem;
+  }
+
+  .news-date {
+    min-width: auto;
+  }
+
+  .carousel-container {
+    padding: 0 60px;
+  }
+
+  .carousel-image {
+    height: 250px;
+  }
+
+  .carousel-caption {
+    padding: 1.5rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.3rem;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-btn.prev {
+    left: 10px;
+  }
+
+  .carousel-btn.next {
+    right: 10px;
+  }
+}

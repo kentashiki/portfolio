@@ -1,0 +1,235 @@
+/* Projectsヒーローセクション */
+.projects-hero {
+  min-height: 400px;
+  padding: 150px 7.5% 80px;
+  background: linear-gradient(90deg, #011121, #131121);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.projects-hero h1 {
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.projects-hero p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* プロジェクトセクション */
+.projects-section {
+  padding: 80px 7.5%;
+  background: #f8f9fa;
+}
+
+.projects-section.engineering-section {
+  background: #ffffff;
+}
+
+.projects-section.side-section {
+  background: #f8f9fa;
+}
+
+.projects-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.projects-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  color: #011121;
+  text-align: center;
+}
+
+.project-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.project-status {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-status.ongoing {
+  background: #10b981;
+  color: white;
+}
+
+.project-status.archived {
+  background: #6b7280;
+  color: white;
+}
+
+.project-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.project-content {
+  display: flex;
+  position: relative;
+}
+
+.project-image {
+  width: 45%;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-details {
+  flex: 1;
+  padding: 3rem;
+}
+
+.project-details h3 {
+  font-size: 1.5rem;
+  color: #011121;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.project-description {
+  color: #555;
+  line-height: 1.8;
+  margin: 0 0 2rem 0;
+  font-size: 1.05rem;
+}
+
+.project-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-:hover {
+  color: link#5568d3;
+  transform: translateX(5px);
+}
+
+.project-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #e9ecef;
+  color: #555;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.project-tag.primary {
+  background: #667eea;
+  color: white;
+}
+
+.project-tag:hover {
+  transform: scale(1.05);
+}
+
+.section-placeholder {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 3rem 0;
+  font-size: 1.1rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1200px) {
+  .methodology-grid {
+    flex-direction: column;
+  }
+
+  .methodology-arrow {
+    transform: rotate(90deg);
+  }
+
+  .methodology-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-hero {
+    padding: 120px 5% 60px;
+    min-height: 350px;
+  }
+
+  .projects-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .projects-hero p {
+    font-size: 1.1rem;
+  }
+
+  .projects-section {
+    padding: 60px 5%;
+  }
+
+  .project-content {
+    flex-direction: column;
+  }
+
+  .project-image {
+    width: 100%;
+    min-height: 250px;
+  }
+
+  .project-details {
+    padding: 2rem;
+  }
+
+  .project-details h3 {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,628 @@
+/* Worksヒーローセクション */
+.works-hero {
+  min-height: 400px;
+  padding: 150px 7.5% 80px;
+  background: linear-gradient(90deg, #011121, #131121);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.works-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.works-hero h1 {
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.works-hero p {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* セクション共通スタイル */
+.works-section {
+  padding: 80px 7.5%;
+  background: white;
+}
+
+.works-section:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.works-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #011121;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+/* 統計情報 */
+/* Research Worksの統計情報 */
+.metrics-container.research-metrics {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.metrics-container.research-metrics .metric-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  position: relative;
+}
+
+.metrics-container.research-metrics .metric-card.main {
+  width: 220px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.metrics-container.research-metrics .metric-card.main:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+}
+
+.metrics-container.research-metrics .metric-detail-group {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 220px;
+}
+
+.metrics-container.research-metrics .metric-group:hover .metric-detail-group {
+  display: flex;
+}
+
+.metrics-container.research-metrics .metric-detail-group .metric-card {
+  width: 100%;
+}
+
+/* Development WorksとAwards & Recognitionsセクションの統計情報 */
+.metrics-container.simple-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 4rem;
+}
+
+.metrics-container.simple-metrics .metric-card {
+  width: auto;
+}
+
+/* ホバーヒント */
+.metrics-container.research-metrics .metric-card.main .hover-hint {
+  margin-top: 0.8rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.metrics-container.research-metrics .metric-card.main:hover .hover-hint {
+  opacity: 1;
+  transform: translateY(2px);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* メインカードにアニメーション追加 */
+.metrics-container.research-metrics .metric-card.main {
+  width: 220px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.metrics-container.research-metrics .metric-card.main::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: width 0.3s ease;
+}
+
+.metrics-container.research-metrics .metric-card.main:hover::after {
+  width: 80%;
+}
+
+.metric-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.metric-card.main {
+  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+  color: white;
+  width: 200px;
+}
+
+.metric-card.main .metric-number {
+  color: white;
+}
+
+.metric-card.main .metric-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.metric-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0066cc;
+  margin-bottom: 0.5rem;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Research Works */
+.research-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.research-item {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.research-item::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  font-size: 0.8rem;
+  color: #0066cc;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.research-item.open::before {
+  transform: rotate(90deg);
+}
+
+.research-header {
+  user-select: none;
+  cursor: pointer;
+}
+
+.research-citation {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.7;
+}
+
+.research-citation:hover {
+  color: #0066cc;
+}
+
+.citation-authors {
+  font-weight: 500;
+}
+
+.citation-authors .highlight-name {
+  color: #0066cc;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.citation-title {
+  font-weight: 600;
+}
+
+.citation-venue {
+  color: #555;
+}
+
+.date-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  color: #333;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.citation-award {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #8b6914;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.presentation-formats {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 8px;
+  align-items: center;
+}
+
+.format-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  color: #1565c0;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.research-content {
+  display: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.research-item.open .research-content {
+  display: block;
+}
+
+.research-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.meta-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e9ecef;
+  color: #555;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.research-abstract {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.research-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.research-link:hover {
+  background: #0052a3;
+}
+
+/* Research Works のサブセクション用 */
+.research-subsection {
+  margin-bottom: 3rem;
+}
+
+.research-subsection-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0066cc;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #0066cc;
+}
+
+.research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 0; /* 既存のスタイルを上書き */
+}
+
+.research-abstract {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Development Works */
+.dev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.dev-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dev-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dev-thumbnail {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: white;
+}
+
+.dev-content {
+  padding: 1.5rem;
+}
+
+.dev-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #011121;
+  margin-bottom: 0.5rem;
+}
+
+.dev-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.dev-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dev-tag {
+  padding: 4px 10px;
+  background: #e9ecef;
+  color: #555;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.dev-status {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #d1ecf1;
+  color: #0c5460;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Awards & Recognitions */
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.award-item {
+  padding-left: 2rem;
+  position: relative;
+  background: transparent;
+  padding: 0 0 0 2rem;
+  border-radius: 0;
+  border-left: none;
+  transition: none;
+}
+
+.award-item:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.award-item::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  font-size: 0.8rem;
+  color: #ffd700;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.award-item.open::before {
+  transform: rotate(90deg);
+}
+
+.award-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 0;
+}
+
+.award-header:hover .award-title {
+  color: #8b6914;
+}
+
+.award-title-wrapper {
+  flex: 1;
+}
+
+.award-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #011121;
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.award-organization {
+  color: #8b6914;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: inline-block;
+  background: linear-gradient(135deg, #fff9e6 0%, #ffefc2 100%);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.award-event {
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.award-content {
+  display: none;
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.award-item.open .award-content {
+  display: block;
+}
+
+.award-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.award-description {
+  padding: 1rem;
+  background: #fffef7;
+  border-radius: 6px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  border-left: 3px solid #ffd700;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .works-hero {
+    padding: 120px 5% 60px;
+    min-height: 350px;
+  }
+
+  .works-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .works-hero p {
+    font-size: 1.1rem;
+  }
+
+  .works-section {
+    padding: 60px 5%;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .metrics-container.research-metrics {
+    gap: 30px;
+  }
+  
+  .metrics-container.research-metrics .metric-card.main,
+  .metrics-container.research-metrics .metric-detail-group {
+    width: 180px;
+  }
+  
+  .metrics-container.simple-metrics {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .dev-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-header,
+  .award-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .award-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+}

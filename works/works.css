@@ -45,18 +45,11 @@
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 600;
   color: #011121;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.section-subtitle {
-  text-align: center;
-  color: #666;
-  font-size: 1.1rem;
   margin-bottom: 3rem;
+  text-align: center;
 }
 
 /* 統計情報 */
@@ -75,6 +68,7 @@
   gap: 0;
   align-items: center;
   position: relative;
+  z-index: 1;
 }
 
 .metrics-container.research-metrics .metric-card.main {
@@ -89,19 +83,37 @@
 }
 
 .metrics-container.research-metrics .metric-detail-group {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 15px;
   width: 220px;
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 12px);
+  transform: translate(-50%, -8px);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 14px 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .metrics-container.research-metrics .metric-group:hover .metric-detail-group {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
 }
 
 .metrics-container.research-metrics .metric-detail-group .metric-card {
   width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
+.metrics-container.research-metrics .metric-detail-group .metric-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Development WorksとAwards & Recognitionsセクションの統計情報 */
@@ -241,6 +253,12 @@
 }
 
 .research-citation:hover {
+  color: #0066cc;
+}
+
+.research-citation:hover .citation-authors,
+.research-citation:hover .citation-title,
+.research-citation:hover .citation-venue {
   color: #0066cc;
 }
 
@@ -593,7 +611,8 @@
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
   .metrics-container.research-metrics {

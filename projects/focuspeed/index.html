@@ -11,7 +11,7 @@
   <body>
     <header>
       <div class="logo">
-        <a href="../">
+        <a href="../../index.html">
           <img src="../../assets/images/favicon.png" alt="Kenta Shiki Logo" />
         </a>
       </div>
@@ -49,48 +49,66 @@
     </div>
 
     <main>
-      <section class="detail-section">
-        <div class="detail-container">
-          <div class="detail-grid">
-            <div class="detail-card">
-              <h2>Purpose</h2>
-              <p>
-                Build an adaptive audio playback system that estimates a listener’s focus level from EEG signals in real time and dynamically tunes playback speed to reduce missed information and sustain engagement.
-              </p>
-            </div>
-            <div class="detail-card">
-              <h2>Significance</h2>
-              <p>
-                By linking cognitive state estimation to content delivery, the system aims to improve learning efficacy and create more human-aware media experiences for education and productivity.
-              </p>
-            </div>
-          </div>
+      <!-- Project image -->
+      <section class="detail-section image-section">
+        <div class="detail-container detail-narrow">
+          <img src="../../assets/images/project_focuspeed.png" alt="FocuSpeed image" class="project-main-image">
         </div>
       </section>
 
+      <!-- Overview -->
+      <section class="detail-section">
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Overview</h2>
+          <p>
+            FocuSpeed は、EEG 信号からリスナーの集中度をリアルタイムに推定し、
+            オーディオコンテンツの再生速度を自動調整するシステムです。
+          </p>
+          <p>
+            学習や情報収集の場面で、速く聞きたいときと、内容をじっくり理解したいときが
+            自然に切り替わるように設計されており、「聞き逃し」を減らしながらも
+            高い効率を保つことを目指しています。
+          </p>
+        </div>
+      </section>
+
+      <!-- Purpose & Significance -->
       <section class="detail-section alt">
-        <div class="detail-container">
-          <div class="detail-flex">
-            <div class="detail-block">
-              <h2>Publications & Awards</h2>
-              <ul class="detail-list">
-                <li>
-                  Poster & Demo: Human Interface Symposium 2025 Student Contest (SICHI2025)
-                </li>
-                <li>
-                  Encouragement Award for “FocuSpeed: EEG-driven adaptive audio playback”
-                </li>
-              </ul>
-            </div>
-            <div class="detail-block">
-              <h2>My Role</h2>
-              <ul class="detail-list">
-                <li>Led EEG signal processing pipeline and focus estimation logic.</li>
-                <li>Implemented adaptive playback controller and UX flow.</li>
-                <li>Prepared demo assets and on-site presentation materials.</li>
-              </ul>
-            </div>
-          </div>
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Purpose</h2>
+          <p>
+            EEG から推定した集中度に基づいて再生速度を動的に変えることで、
+            学習効率を高めつつ、長時間のリスニングでも集中を維持しやすい環境を作ることを目的としています。
+          </p>
+
+          <h2 class="section-title secondary">Significance</h2>
+          <p>
+            脳活動という内的状態とコンテンツ提示を結びつけることで、
+            教育コンテンツや音声メディアが、より「人に寄り添う」形で提供される可能性を示します。
+            将来的には、教育・トレーニング・ウェルビーイングなど、多様な領域への応用が期待されます。
+          </p>
+        </div>
+      </section>
+
+      <!-- Publications & Role -->
+      <section class="detail-section">
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Publications &amp; Awards</h2>
+          <ul class="detail-list">
+            <li>
+              Poster &amp; Demo: Human Interface Symposium 2025 Student Contest (SICHI2025)
+            </li>
+            <li>
+              Encouragement Award for “FocuSpeed: EEG-driven adaptive audio playback”
+            </li>
+          </ul>
+
+          <h2 class="section-title secondary">My Role</h2>
+          <ul class="detail-list">
+            <li>EEG 信号処理パイプラインおよび集中度推定ロジックの設計・実装。</li>
+            <li>再生速度を制御するアダプティブ再生コントローラと UX フローの設計。</li>
+            <li>デモ用 UI・資料の作成、および会場でのプレゼンテーション。</li>
+          </ul>
         </div>
       </section>
     </main>

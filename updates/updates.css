@@ -70,25 +70,39 @@
 /* Date Badge */
 .update-date {
   flex-shrink: 0;
-  width: 120px;
-  text-align: right;
+  width: 150px;
   padding-top: 6px;
-  color: #0066cc;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: #0f172a;
+}
+
+.date-year {
   font-weight: 700;
+  color: #0f172a;
 }
 
+.date-month,
 .date-day {
-  font-size: 1.6rem;
-  line-height: 1;
-  margin-bottom: 2px;
+  font-weight: 500;
+  color: #475569;
 }
 
-.date-month {
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #475569;
-  text-transform: uppercase;
+.date-separator {
+  opacity: 0.6;
 }
 
 /* Update Content */
@@ -193,18 +207,15 @@
 
   .update-date {
     width: 100%;
-    text-align: left;
+    justify-content: flex-start;
     padding-top: 0;
   }
 
-  .date-day {
-    font-size: 1.4rem;
+  .date-pill {
+    font-size: 0.78rem;
+    padding: 4px 10px;
   }
-
-  .date-month {
-    font-size: 0.85rem;
-  }
-
+  
   .update-content {
     padding: 0;
   }

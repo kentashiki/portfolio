@@ -323,11 +323,16 @@
   }
 
   .carousel-caption {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .carousel-caption h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.85rem;
+    line-height: 1.4;
   }
 
   .carousel-btn {

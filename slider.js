@@ -19,9 +19,10 @@ function slideCarousel(direction) {
     currentSlideIndex = 0;
   }
   
-  // スライドを移動
-  const offset = -currentSlideIndex * 100;
-  track.style.transform = `translateX(${offset}%)`;
+  // スライドを移動(カード1枚分の幅を使ってpxで移動)
+  const cardWidth = cards[0].getBoundingClientRect().width;
+  const offset = -currentSlideIndex * cardWidth;
+  track.style.transform = `translateX(${offset}px)`;
   
   // ドットを更新
   updateDots(dots);
@@ -32,15 +33,17 @@ function slideCarousel(direction) {
 
 function goToSlide(index) {
   const track = document.querySelector('.carousel-track');
+  const cards = document.querySelectorAll('.carousel-card');
   const dots = document.querySelectorAll('.dot');
   
-  if (!track) return;
+  if (!track || cards.length === 0) return;
   
   currentSlideIndex = index;
   
   // スライドを移動
-  const offset = -currentSlideIndex * 100;
-  track.style.transform = `translateX(${offset}%)`;
+  const cardWidth = cards[0].getBoundingClientRect().width;
+  const offset = -currentSlideIndex * cardWidth;
+  track.style.transform = `translateX(${offset}px)`;
   
   // ドットを更新
   updateDots(dots);

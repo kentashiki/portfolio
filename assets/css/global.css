@@ -190,276 +190,6 @@ header.nav-open .nav-toggle span:nth-child(3) {
   font-weight: 400;
 }
 
-/* セクション共通スタイル */
-section {
-  padding: 80px 7.5%;
-}
-
-.section-light {
-  background-color: #ffffff;
-}
-
-.section-gray {
-  background-color: #f8f9fa;
-}
-
-/* プロフィール */
-.profile-content {
-  display: flex;
-  gap: 50px;
-  align-items: flex-start;
-}
-
-.profile-image {
-  width: 250px;
-  height: 250px;
-  border-radius: 12px;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-text {
-  flex: 1;
-}
-
-.profile-text p {
-  margin: 0 0 1rem 0;
-  color: #555;
-  line-height: 1.8;
-}
-
-.profile-detail-link {
-  display: inline-block;
-  margin-top: 1.8rem;
-  padding: 0.7rem 1.6rem;
-  border: 1.8px solid #357edd;
-  border-radius: 50px;
-  color: #357edd;
-  font-weight: 500;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  background-color: transparent;
-  letter-spacing: 0.03em;
-}
-
-.profile-detail-link:hover {
-  background-color: #357edd;
-  color: #ffffff;
-  box-shadow: 0 4px 10px rgba(53, 126, 221, 0.2);
-  transform: translateY(-2px);
-}
-
-/* 研究・プロジェクト */
-.work {
-  margin: 0 0 50px 0;
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  background: #fafafa;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.work:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.work img {
-  width: 40%;
-  object-fit: cover;
-  height: 280px;
-  flex-shrink: 0;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-}
-
-.work-description {
-  padding: 30px 40px 30px 0;
-  flex: 1;
-}
-
-.work-description p {
-  color: #666;
-  margin: 0 0 1rem 0;
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.work-meta {
-  display: flex;
-  gap: 15px;
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: #777;
-}
-
-.work-tag {
-  background: #e9ecef;
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-weight: 500;
-}
-
-/* 出版物 */
-.publication-item {
-  margin: 0 0 2rem 0;
-  padding: 1.5rem;
-  background: #fafafa;
-  border-radius: 8px;
-}
-
-.publication-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #011121;
-  margin: 0 0 0.5rem 0;
-}
-
-.publication-authors {
-  color: #555;
-  margin: 0 0 0.3rem 0;
-  font-size: 0.95rem;
-}
-
-.publication-venue {
-  color: #777;
-  font-size: 0.9rem;
-  font-style: italic;
-}
-
-/* 受賞歴 */
-.award-item {
-  margin: 0 0 2rem 0;
-  padding: 1.5rem;
-  background: #ffffff;
-  border-left: 4px solid #0066cc;
-  border-radius: 4px;
-}
-
-.award-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #011121;
-  margin: 0 0 0.5rem 0;
-}
-
-.award-organization {
-  color: #555;
-  margin: 0 0 0.3rem 0;
-}
-
-.award-date {
-  color: #777;
-  font-size: 0.9rem;
-}
-
-/* スキル */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.skill-category {
-  padding: 2rem;
-  border-radius: 12px;
-}
-
-.skill-category h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
-  color: #0066cc;
-}
-
-.skill-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skill-list li {
-  padding: 0.5rem 0;
-  color: #555;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.skill-list li:last-child {
-  border-bottom: none;
-}
-
-
-/* コンタクト */
-#contact {
-  text-align: center;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 2rem;
-  justify-content: center;
-  max-width: 600px;
-  margin: 3rem auto 0;
-}
-
-.contact-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #333;
-  background: white;
-  border-radius: 16px;
-  padding: 2rem 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.contact-card i {
-  font-size: 2rem;
-  margin-bottom: 0.6rem;
-  transition: transform 0.3s ease;
-}
-
-.fa-envelope { color: #0066cc; }     /* 自由（サイトのテーマカラー） */
-.fa-github { color: #181717; }       /* GitHub Black */
-.fa-linkedin { color: #0077B5; }     /* LinkedIn Blue */
-.fa-x-twitter { color: #000000; }    /* X Black */
-.fa-instagram {
-  background: linear-gradient(45deg, #FCAF45, #F77737, #E1306C, #C13584, #833AB4);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.contact-card:hover i {
-  transform: scale(1.15);
-}
-
-.contact-card span {
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-}
-
-.contact-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
-}
-
 /* フッター */
 footer {
   padding: 40px 7.5%;
@@ -497,6 +227,47 @@ footer {
 
 .footer-links a:hover {
   color: #0066cc;
+}
+
+/* News/Updatesタグの配色 */
+/* Base */
+.update-tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* edu + career */
+[data-group="educareer"] {
+  background-color: #166534;
+  border: 1px solid #15803D;
+}
+
+/* academic */
+[data-group="academic"] {
+  background-color: #1E3A8A;
+  border: 1px solid #1D4ED8;
+}
+
+/* dev */
+[data-group="dev"] {
+  background-color: #92400E;
+  border: 1px solid #C05621;
+}
+
+/* award */
+[data-group="award"] {
+  background-color: #B45309;
+  border: 1px solid #D97706;
+}
+
+/* milestone */
+[data-group="milestone"] {
+  background-color: #7F1D1D;
+  border: 1px solid #9B2C2C;
 }
 
 /* レスポンシブ対応 */

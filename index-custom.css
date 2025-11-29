@@ -1,3 +1,69 @@
+/* セクション共通スタイル */
+section {
+  padding: 80px 7.5%;
+}
+
+.section-light {
+  background-color: #ffffff;
+}
+
+.section-gray {
+  background-color: #f8f9fa;
+}
+
+/* プロフィール */
+.profile-content {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-text {
+  flex: 1;
+}
+
+.profile-text p {
+  margin: 0 0 1rem 0;
+  color: #555;
+  line-height: 1.8;
+}
+
+.profile-detail-link {
+  display: inline-block;
+  margin-top: 1.8rem;
+  padding: 0.7rem 1.6rem;
+  border: 1.8px solid #357edd;
+  border-radius: 50px;
+  color: #357edd;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  letter-spacing: 0.03em;
+}
+
+.profile-detail-link:hover {
+  background-color: #357edd;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(53, 126, 221, 0.2);
+  transform: translateY(-2px);
+}
+
 /* News / Updates セクション */
 .news-container {
   max-width: 900px;
@@ -63,35 +129,9 @@
 
 .news-content {
   flex: 1;
-}
-
-.news-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.news-badge.award {
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-  color: #8b6914;
-}
-
-.news-badge.presentation {
-  background: #0066cc;
-  color: white;
-}
-
-.news-badge.milestone {
-  background: #28a745;
-  color: white;
-}
-
-.news-badge.internship {
-  background: #667eea;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .news-content h3 {
@@ -134,6 +174,15 @@
 
 .news-content a:hover::after {
   width: 100%;
+}
+
+.news-content .update-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 0.75rem 0 0.35rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Featured Projects セクション */
@@ -283,6 +332,65 @@
   background: #0066cc;
   width: 32px;
   border-radius: 6px;
+}
+
+/* コンタクト */
+#contact {
+  text-align: center;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  max-width: 600px;
+  margin: 3rem auto 0;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #333;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+  transition: transform 0.3s ease;
+}
+
+.fa-envelope { color: #0066cc; }     /* 自由（サイトのテーマカラー） */
+.fa-github { color: #181717; }       /* GitHub Black */
+.fa-linkedin { color: #0077B5; }     /* LinkedIn Blue */
+.fa-x-twitter { color: #000000; }    /* X Black */
+.fa-instagram {
+  background: linear-gradient(45deg, #FCAF45, #F77737, #E1306C, #C13584, #833AB4);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-card:hover i {
+  transform: scale(1.15);
+}
+
+.contact-card span {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
 }
 
 /* レスポンシブ対応 */

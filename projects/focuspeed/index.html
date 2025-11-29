@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocuSpeed - Project Detail</title>
+    <link rel="stylesheet" href="../../assets/css/global.css" />
+    <link rel="stylesheet" href="focuspeed.css" />
+    <link rel="icon" href="../../assets/images/favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="../">
+          <img src="../../assets/images/favicon.png" alt="Kenta Shiki Logo" />
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="ナビゲーションメニューを開閉" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav>
+        <ul>
+          <li><a href="../../profile/">Profile</a></li>
+          <li><a href="../">Projects</a></li>
+          <li><a href="../../works/">Works</a></li>
+          <li><a href="../../updates/">Updates</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="project-hero">
+      <canvas id="network-canvas"></canvas>
+      <div class="project-hero-content">
+        <p class="project-label">Project Detail</p>
+        <h1>FocuSpeed</h1>
+        <p class="project-subtitle">
+          Adaptive audio playback driven by real-time EEG-based focus estimation.
+        </p>
+        <div class="hero-meta">
+          <span class="hero-tag">HCI</span>
+          <span class="hero-tag">EEG</span>
+          <span class="hero-tag">Biosignals</span>
+          <span class="hero-tag">Adaptive System</span>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="detail-section">
+        <div class="detail-container">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h2>Purpose</h2>
+              <p>
+                Build an adaptive audio playback system that estimates a listener’s focus level from EEG signals in real time and dynamically tunes playback speed to reduce missed information and sustain engagement.
+              </p>
+            </div>
+            <div class="detail-card">
+              <h2>Significance</h2>
+              <p>
+                By linking cognitive state estimation to content delivery, the system aims to improve learning efficacy and create more human-aware media experiences for education and productivity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-section alt">
+        <div class="detail-container">
+          <div class="detail-flex">
+            <div class="detail-block">
+              <h2>Publications & Awards</h2>
+              <ul class="detail-list">
+                <li>
+                  Poster & Demo: Human Interface Symposium 2025 Student Contest (SICHI2025)
+                </li>
+                <li>
+                  Encouragement Award for “FocuSpeed: EEG-driven adaptive audio playback”
+                </li>
+              </ul>
+            </div>
+            <div class="detail-block">
+              <h2>My Role</h2>
+              <ul class="detail-list">
+                <li>Led EEG signal processing pipeline and focus estimation logic.</li>
+                <li>Implemented adaptive playback controller and UX flow.</li>
+                <li>Prepared demo assets and on-site presentation materials.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-left">
+        <div>© 2025 Kenta Shiki. All rights reserved.</div>
+        <div class="footer-credit">
+          Website created with the assistance of Claude (Anthropic AI) and
+          ChatGPT (OpenAI)
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../../profile/">Profile</a>
+        <a href="../">Projects</a>
+        <a href="../../works/">Works</a>
+        <a href="../../updates/">Updates</a>
+        <a href="../../index.html#contact">Contact</a>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/nav-toggle.js"></script>
+    <script src="../../assets/js/network-animation-light.js"></script>
+  </body>
+</html>

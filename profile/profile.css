@@ -573,6 +573,7 @@
 
   .philosophy-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .interest-section > p {
@@ -655,37 +656,8 @@
 .mission-section p,
 .vision-section h2,
 .vision-section p,
-.philosophy-section h2 {
-  opacity: 0;
-}
-
-.mission-section.fade-in h2,
-.mission-section.fade-in p,
-.vision-section.fade-in h2,
-.vision-section.fade-in p,
-.philosophy-section.fade-in h2 {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.mission-section.fade-in p {
-  animation-delay: 0.2s;
-}
-
-.vision-section.fade-in p {
-  animation-delay: 0.2s;
-}
-
+.philosophy-section h2,
 .philosophy-card {
-  opacity: 0;
+  opacity: 1;
+  animation: none;
 }
-
-.philosophy-card.fade-in {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.philosophy-card.fade-in:nth-child(1) { animation-delay: 0.1s; }
-.philosophy-card.fade-in:nth-child(2) { animation-delay: 0.2s; }
-.philosophy-card.fade-in:nth-child(3) { animation-delay: 0.3s; }
-.philosophy-card.fade-in:nth-child(4) { animation-delay: 0.4s; }
-.philosophy-card.fade-in:nth-child(5) { animation-delay: 0.5s; }
-.philosophy-card.fade-in:nth-child(6) { animation-delay: 0.6s; }

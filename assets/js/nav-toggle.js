@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   const toggle = document.querySelector('.nav-toggle');
+  const nav = header ? header.querySelector('nav') : null;
   const navLinks = document.querySelectorAll('header nav a');
 
-  if (!header || !toggle) return;
+  if (!header || !toggle || !nav) return;
 
   const closeMenu = () => {
     header.classList.remove('nav-open');
@@ -21,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMenu();
       }
     });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (
+      header.classList.contains('nav-open') &&
+      !nav.contains(event.target) &&
+      !toggle.contains(event.target)
+    ) {
+      closeMenu();
+    }
   });
 
   window.addEventListener('resize', () => {

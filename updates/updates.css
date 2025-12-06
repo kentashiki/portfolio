@@ -118,6 +118,34 @@
   font-size: 0.98rem;
 }
 
+.update-description a {
+  color: #0066cc;
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.update-description a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: #0066cc;
+  opacity: 0.6;
+  transition: width 0.3s ease;
+}
+
+.update-description a:hover {
+  color: #004c99;
+}
+
+.update-description a:hover::after {
+  width: 100%;
+}
+
 /* Placeholder Item */
 .update-item.placeholder {
   opacity: 0.6;

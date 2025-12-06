@@ -229,6 +229,22 @@ footer {
   color: #0066cc;
 }
 
+/* Research field tags */
+.research-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  border: none;
+  background: #0066cc;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
 /* News/Updatesタグの配色 */
 /* Base */
 .update-tag {
@@ -242,32 +258,27 @@ footer {
 
 /* edu + career */
 [data-group="educareer"] {
-  background-color: #166534;
-  border: 1px solid #15803D;
+  background-color: #7BB93C;
 }
 
 /* academic */
 [data-group="academic"] {
-  background-color: #1E3A8A;
-  border: 1px solid #1D4ED8;
+  background-color: #1593E6;
 }
 
 /* dev */
 [data-group="dev"] {
-  background-color: #92400E;
-  border: 1px solid #C05621;
+  background-color: #EA8E1A;
 }
 
 /* award */
 [data-group="award"] {
-  background-color: #B45309;
-  border: 1px solid #D97706;
+  background-color: #E5C711;
 }
 
 /* milestone */
 [data-group="milestone"] {
-  background-color: #7F1D1D;
-  border: 1px solid #9B2C2C;
+  background-color: #8E79F7;
 }
 
 /* レスポンシブ対応 */

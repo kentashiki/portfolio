@@ -340,6 +340,19 @@ section {
   text-align: center;
 }
 
+.contact-email {
+  text-align: center;
+  margin: 1.5rem auto;
+  font-weight: 600;
+  color: #293d6c;
+  font-size: 1rem;
+}
+
+.contact-email a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

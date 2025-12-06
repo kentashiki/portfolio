@@ -87,7 +87,7 @@
 /* Main metric (top part) */
 .metric-main {
   padding: 18px 20px;
-  background: linear-gradient(135deg, #4e8cff, #6aa8ff);
+  background-color: #0066cc;
   color: white;
   text-align: center;
 }
@@ -185,9 +185,6 @@
 .citation-authors .highlight-name {
   color: #0066cc;
   font-weight: 700;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  padding: 2px 6px;
-  border-radius: 4px;
 }
 
 .citation-title {
@@ -201,9 +198,10 @@
 .date-tag {
   display: inline-block;
   padding: 3px 10px;
-  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  background: #f4f5f7;
   color: #333;
   border-radius: 12px;
+  border: 1px solid #d6dce5;
   font-size: 0.8rem;
   font-weight: 600;
   margin-left: 8px;
@@ -214,29 +212,12 @@
   align-items: center;
   gap: 4px;
   padding: 2px 8px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  background-color: #f9d055;
   color: #8b6914;
   border-radius: 12px;
   font-size: 0.85rem;
   font-weight: 600;
   margin-left: 8px;
-}
-
-.presentation-formats {
-  display: inline-flex;
-  gap: 6px;
-  margin-left: 8px;
-  align-items: center;
-}
-
-.format-tag {
-  display: inline-block;
-  padding: 3px 10px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  color: #1565c0;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
 }
 
 .research-content {
@@ -255,16 +236,6 @@
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1rem;
-}
-
-.meta-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  background: #e9ecef;
-  color: #555;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 500;
 }
 
 .research-abstract {
@@ -413,110 +384,52 @@
 
 /* Awards & Recognitions */
 .awards-list {
+  list-style: none;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-bottom: 0;
 }
 
 .award-item {
-  padding-left: 2rem;
-  position: relative;
-  background: transparent;
-  padding: 0 0 0 2rem;
-  border-radius: 0;
-  border-left: none;
-  transition: none;
-}
-
-.award-item:hover {
-  box-shadow: none;
-  transform: none;
-}
-
-.award-item::before {
-  content: '▶';
-  position: absolute;
-  left: 0;
-  top: 0.3rem;
-  font-size: 0.8rem;
-  color: #ffd700;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.award-item.open::before {
-  transform: rotate(90deg);
-}
-
-.award-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  cursor: pointer;
-  user-select: none;
-  padding: 0.5rem 0;
-}
-
-.award-header:hover .award-title {
-  color: #8b6914;
-}
-
-.award-title-wrapper {
-  flex: 1;
-}
-
-.award-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #011121;
-  line-height: 1.5;
-  margin: 0 0 0.5rem 0;
-  transition: color 0.3s ease;
-}
-
-.award-organization {
-  color: #8b6914;
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
-  display: inline-block;
-  background: linear-gradient(135deg, #fff9e6 0%, #ffefc2 100%);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.award-event {
-  color: #666;
-  font-size: 0.85rem;
-  margin-top: 0.3rem;
-}
-
-.award-content {
-  display: none;
-  margin-top: 1rem;
   padding-left: 0;
 }
 
-.award-item.open .award-content {
-  display: block;
+.award-header {
+  user-select: none;
 }
 
-.award-meta {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.award-description {
-  padding: 1rem;
-  background: #fffef7;
-  border-radius: 6px;
-  color: #555;
-  font-size: 0.9rem;
+.award-citation {
+  font-size: 0.95rem;
+  color: #333;
   line-height: 1.7;
-  border-left: 3px solid #ffd700;
+}
+
+.award-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #011121;
+}
+
+.award-organization {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.award-event {
+  color: #555;
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.9rem;
+}
+
+.awards-coming-soon {
+  color: #666;
+  font-style: italic;
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
 }
 
 /* レスポンシブ対応 */
@@ -570,8 +483,6 @@
   }
 
   .award-header {
-    flex-direction: row;
-    align-items: flex-start;
     gap: 0.8rem;
   }
 }

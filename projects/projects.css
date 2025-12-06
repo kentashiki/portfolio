@@ -143,7 +143,7 @@
 .project-link {
   display: inline-block;
   margin-top: 1.5rem;
-  color: #667eea;
+  color: #0066cc;
   font-weight: 600;
   font-size: 1.05rem;
   text-decoration: none;
@@ -155,24 +155,8 @@
   transform: translateX(5px);
 }
 
-.project-tag {
-  display: inline-block;
-  padding: 6px 14px;
-  background: #e9ecef;
-  color: #555;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.project-tag.primary {
-  background: #667eea;
-  color: white;
-}
-
-.project-tag:hover {
-  transform: scale(1.05);
+.project-meta .research-tag {
+  margin: 0;
 }
 
 .section-placeholder {

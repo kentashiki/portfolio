@@ -317,32 +317,26 @@
 }
 
 .interest-card {
-  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
-  color: white;
-  padding: 2.5rem;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
-
-.interest-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 102, 204, 0.35);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: #f5f6fb;
+  color: #0f141f;
+  padding: 2rem;
+  border-radius: 14px;
+  border: 1px solid #e1e4ef;
+  box-shadow: 0 6px 18px rgba(15, 20, 31, 0.04);
+  min-height: 200px;
 }
 
 .interest-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: white;
+  font-size: 1.3rem;
+  margin: 0 0 0.5rem;
   font-weight: 600;
 }
 
 .interest-card p {
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.7;
+  color: #1f2430;
+  line-height: 1.8;
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.02rem;
 }
 
 .interest-section img {

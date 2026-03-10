@@ -1,34 +1,3 @@
-/* プロフィールヒーローセクション */
-.profile-hero {
-  min-height: 400px;
-  padding: 150px 7.5% 80px;
-  background: linear-gradient(90deg, #011121, #131121);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 60px;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.profile-hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.profile-hero h1 {
-  color: white;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
-
-.profile-hero p {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
 /* プロフィール詳細セクション */
 .profile-detail-section {
   padding: 100px 7.5%;
@@ -489,19 +458,6 @@
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-  .profile-hero {
-    padding: 120px 5% 60px;
-    min-height: 350px;
-  }
-
-  .profile-hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .profile-hero p {
-    font-size: 1.1rem;
-  }
-
   .profile-detail-section {
     padding: 60px 5%;
   }

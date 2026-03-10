@@ -1,34 +1,3 @@
-/* Projectsヒーローセクション */
-.projects-hero {
-  min-height: 400px;
-  padding: 150px 7.5% 80px;
-  background: linear-gradient(90deg, #011121, #131121);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 60px;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-
-.projects-hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.projects-hero h1 {
-  color: white;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
-
-.projects-hero p {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
 /* プロジェクトセクション */
 .projects-section {
   padding: 80px 7.5%;
@@ -150,8 +119,8 @@
   transition: all 0.3s ease;
 }
 
-.project-:hover {
-  color: link#5568d3;
+.project-link:hover {
+  color: #5568d3;
   transform: translateX(5px);
 }
 
@@ -184,19 +153,6 @@
 }
 
 @media (max-width: 768px) {
-  .projects-hero {
-    padding: 120px 5% 60px;
-    min-height: 350px;
-  }
-
-  .projects-hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .projects-hero p {
-    font-size: 1.1rem;
-  }
-
   .projects-section {
     padding: 60px 5%;
   }

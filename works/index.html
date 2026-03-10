@@ -8,36 +8,12 @@
     <link rel="stylesheet" href="works.css" />
     <link rel="icon" href="../assets/images/favicon.ico" />
   </head>
-  <body>
-    <header>
-      <div class="logo">
-        <a href="../">
-          <img src="../assets/images/favicon.png" alt="Kenta Shiki Logo" />
-        </a>
-      </div>
-      <button
-        class="nav-toggle"
-        aria-label="ナビゲーションメニューを開閉"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul>
-          <li><a href="../profile/">Profile</a></li>
-          <li><a href="../projects/">Projects</a></li>
-          <li><a href="./">Works</a></li>
-          <li><a href="../updates/">Updates</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
+  <body class="shell-ready" data-root="../" data-section="works">
+    <div data-site-header></div>
 
-    <div class="works-hero">
+    <div class="works-hero page-hero page-hero--dark">
       <canvas id="network-canvas"></canvas>
-      <div class="works-hero-content">
+      <div class="works-hero-content page-hero-content">
         <h1>Works</h1>
         <p>A collection of research, development, and recognitions.</p>
       </div>
@@ -432,23 +408,9 @@
       </div>
     </section>
 
-    <footer>
-      <div class="footer-left">
-        <div>© 2025 Kenta Shiki. All rights reserved.</div>
-        <div class="footer-credit">
-          Website created with the assistance of Claude (Anthropic AI) and
-          ChatGPT (OpenAI)
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="../profile/">Profile</a>
-        <a href="../projects/">Projects</a>
-        <a href="../works/">Works</a>
-        <a href="../updates/">Updates</a>
-        <a href="../index.html#contact">Contact</a>
-      </div>
-    </footer>
+    <div data-site-footer></div>
 
+    <script src="../assets/js/site-shell.js"></script>
     <script>
       // Research itemsのトグル機能
       document.querySelectorAll(".research-item").forEach((item) => {

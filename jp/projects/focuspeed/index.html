@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocuSpeed - Project Detail</title>
+    <link rel="stylesheet" href="../../../assets/css/global.css" />
+    <link rel="stylesheet" href="../../../projects/focuspeed/focuspeed.css" />
+    <link rel="icon" href="../../../assets/images/favicon.ico" />
+  </head>
+  <body
+    class="shell-ready"
+    data-root="../../../"
+    data-section="projects"
+    data-page="focuspeed"
+    data-locale="ja"
+  >
+    <div data-site-header></div>
+
+    <div class="project-hero page-hero page-hero--dark">
+      <canvas id="network-canvas"></canvas>
+      <div class="project-hero-content page-hero-content">
+        <p class="project-label">Project Detail</p>
+        <h1>FocuSpeed</h1>
+        <p class="project-subtitle">
+          Adaptive audio playback driven by real-time EEG-based focus estimation.
+        </p>
+        <div class="hero-meta">
+          <span class="hero-tag">HCI</span>
+          <span class="hero-tag">EEG</span>
+          <span class="hero-tag">Biosignals</span>
+          <span class="hero-tag">Adaptive System</span>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <!-- Project image -->
+      <section class="detail-section image-section">
+        <div class="detail-container detail-narrow">
+          <img src="../../../assets/images/project_focuspeed.png" alt="FocuSpeed image" class="project-main-image">
+        </div>
+      </section>
+
+      <!-- Overview -->
+      <section class="detail-section">
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Overview</h2>
+          <p>
+            FocuSpeed は、EEG 信号からリスナーの集中度をリアルタイムに推定し、
+            オーディオコンテンツの再生速度を自動調整するシステムです。
+          </p>
+          <p>
+            学習や情報収集の場面で、速く聞きたいときと、内容をじっくり理解したいときが
+            自然に切り替わるように設計されており、「聞き逃し」を減らしながらも
+            高い効率を保つことを目指しています。
+          </p>
+        </div>
+      </section>
+
+      <!-- Purpose & Significance -->
+      <section class="detail-section alt">
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Purpose</h2>
+          <p>
+            EEG から推定した集中度に基づいて再生速度を動的に変えることで、
+            学習効率を高めつつ、長時間のリスニングでも集中を維持しやすい環境を作ることを目的としています。
+          </p>
+
+          <h2 class="section-title secondary">Significance</h2>
+          <p>
+            脳活動という内的状態とコンテンツ提示を結びつけることで、
+            教育コンテンツや音声メディアが、より「人に寄り添う」形で提供される可能性を示します。
+            将来的には、教育・トレーニング・ウェルビーイングなど、多様な領域への応用が期待されます。
+          </p>
+        </div>
+      </section>
+
+      <!-- Publications & Role -->
+      <section class="detail-section">
+        <div class="detail-container detail-narrow">
+          <h2 class="section-title">Publications &amp; Awards</h2>
+          <ul class="detail-list">
+            <li>
+              Poster &amp; Demo: Human Interface Symposium 2025 Student Contest (SICHI2025)
+            </li>
+            <li>
+              Encouragement Award for “FocuSpeed: EEG-driven adaptive audio playback”
+            </li>
+          </ul>
+
+          <h2 class="section-title secondary">My Role</h2>
+          <ul class="detail-list">
+            <li>EEG 信号処理パイプラインおよび集中度推定ロジックの設計・実装。</li>
+            <li>再生速度を制御するアダプティブ再生コントローラと UX フローの設計。</li>
+            <li>デモ用 UI・資料の作成、および会場でのプレゼンテーション。</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+
+    <script src="../../../assets/js/site-shell.js"></script>
+    <script src="../../../assets/js/nav-toggle.js"></script>
+    <script src="../../../assets/js/network-animation-light.js"></script>
+  </body>
+</html>

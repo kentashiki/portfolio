@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="focuspeed.css" />
     <link rel="icon" href="../../assets/images/favicon.ico" />
   </head>
-  <body class="shell-ready" data-root="../../" data-section="projects">
+  <body
+    class="shell-ready"
+    data-root="../../"
+    data-section="projects"
+    data-page="focuspeed"
+    data-locale="en"
+  >
     <div data-site-header></div>
 
     <div class="project-hero page-hero page-hero--dark">
@@ -29,65 +35,79 @@
     </div>
 
     <main>
-      <!-- Project image -->
       <section class="detail-section image-section">
         <div class="detail-container detail-narrow">
-          <img src="../../assets/images/project_focuspeed.png" alt="FocuSpeed image" class="project-main-image">
+          <img
+            src="../../assets/images/project_focuspeed.png"
+            alt="FocuSpeed project image"
+            class="project-main-image"
+          />
         </div>
       </section>
 
-      <!-- Overview -->
       <section class="detail-section">
         <div class="detail-container detail-narrow">
           <h2 class="section-title">Overview</h2>
           <p>
-            FocuSpeed は、EEG 信号からリスナーの集中度をリアルタイムに推定し、
-            オーディオコンテンツの再生速度を自動調整するシステムです。
+            FocuSpeed is a system that estimates a listener's focus level in real
+            time from EEG signals and automatically adjusts audio playback speed.
           </p>
           <p>
-            学習や情報収集の場面で、速く聞きたいときと、内容をじっくり理解したいときが
-            自然に切り替わるように設計されており、「聞き逃し」を減らしながらも
-            高い効率を保つことを目指しています。
+            It is designed for situations such as learning and information intake,
+            where users naturally shift between wanting to move quickly and wanting
+            to slow down for deeper understanding. The goal is to reduce missed
+            information while maintaining efficient listening.
           </p>
         </div>
       </section>
 
-      <!-- Purpose & Significance -->
       <section class="detail-section alt">
         <div class="detail-container detail-narrow">
           <h2 class="section-title">Purpose</h2>
           <p>
-            EEG から推定した集中度に基づいて再生速度を動的に変えることで、
-            学習効率を高めつつ、長時間のリスニングでも集中を維持しやすい環境を作ることを目的としています。
+            By dynamically changing playback speed based on focus estimated from
+            EEG, this project aims to improve learning efficiency while making it
+            easier to sustain attention during extended listening.
           </p>
 
           <h2 class="section-title secondary">Significance</h2>
           <p>
-            脳活動という内的状態とコンテンツ提示を結びつけることで、
-            教育コンテンツや音声メディアが、より「人に寄り添う」形で提供される可能性を示します。
-            将来的には、教育・トレーニング・ウェルビーイングなど、多様な領域への応用が期待されます。
+            The project connects internal state, represented by brain activity,
+            with content presentation. It suggests how educational content and
+            audio media could become more responsive to the individual user, with
+            possible applications in education, training, and well-being.
           </p>
         </div>
       </section>
 
-      <!-- Publications & Role -->
       <section class="detail-section">
         <div class="detail-container detail-narrow">
           <h2 class="section-title">Publications &amp; Awards</h2>
           <ul class="detail-list">
             <li>
-              Poster &amp; Demo: Human Interface Symposium 2025 Student Contest (SICHI2025)
+              Poster &amp; demo presentation at the Human Interface Symposium 2025
+              Student Contest (SICHI2025)
             </li>
             <li>
-              Encouragement Award for “FocuSpeed: EEG-driven adaptive audio playback”
+              Received the Encouragement Award for "FocuSpeed: Adaptive control of
+              audio playback speed through focus estimation based on biosignals"
             </li>
           </ul>
 
           <h2 class="section-title secondary">My Role</h2>
           <ul class="detail-list">
-            <li>EEG 信号処理パイプラインおよび集中度推定ロジックの設計・実装。</li>
-            <li>再生速度を制御するアダプティブ再生コントローラと UX フローの設計。</li>
-            <li>デモ用 UI・資料の作成、および会場でのプレゼンテーション。</li>
+            <li>
+              Designed and implemented the EEG signal-processing pipeline and focus
+              estimation logic.
+            </li>
+            <li>
+              Designed the adaptive playback controller and the surrounding UX
+              flow.
+            </li>
+            <li>
+              Prepared the demo UI and presentation materials, and presented the
+              work onsite.
+            </li>
           </ul>
         </div>
       </section>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects - Kenta Shiki</title>
-    <link rel="stylesheet" href="../assets/css/global.css" />
-    <link rel="stylesheet" href="projects.css" />
-    <link rel="icon" href="../assets/images/favicon.ico" />
+    <link rel="stylesheet" href="../../assets/css/global.css" />
+    <link rel="stylesheet" href="../../projects/projects.css" />
+    <link rel="icon" href="../../assets/images/favicon.ico" />
   </head>
   <body
     class="shell-ready"
-    data-root="../"
+    data-root="../../"
     data-section="projects"
     data-page="projects"
-    data-locale="en"
+    data-locale="ja"
   >
     <div data-site-header></div>
 
@@ -21,31 +21,29 @@
       <canvas id="network-canvas"></canvas>
       <div class="projects-hero-content page-hero-content">
         <h1>Projects</h1>
-        <p>Where ideas are shaped into working systems.</p>
+        <p>Where ideas become reality.</p>
       </div>
     </div>
 
+    <!-- Research Projects -->
     <section class="projects-section">
       <div class="projects-container">
         <h2>Research Projects</h2>
 
         <div class="project-card">
+          <!-- <span class="project-status archived">Archived</span> -->
           <span class="project-status ongoing">Ongoing</span>
           <div class="project-content">
             <div class="project-image">
               <img
-                src="../assets/images/project_science-of-reality.png"
-                alt="Science of Reality project image"
+                src="../../assets/images/project_science-of-reality.png"
+                alt="Image of Science of Reality"
               />
             </div>
             <div class="project-details">
-              <h3>Science of Reality (Master's Research)</h3>
+              <h3>リアリティの科学（修士研究）</h3>
               <p class="project-description">
-                Through Virtual Reality (VR) research that recreates sensory
-                information such as the five senses, I explore the question of
-                what reality is from a scientific perspective.<br />Detailed
-                information is omitted because this work has not yet been
-                published.
+                ヒトが現実世界で感じている五感などの感覚情報を人工的に再現する人工現実感 (Virtual Reality; VR)の研究を通して、「現実とは何か」を科学的に追究します。<br>※未発表のため詳細は割愛します。
               </p>
               <div class="project-meta">
                 <span class="research-tag">VR</span>
@@ -57,17 +55,18 @@
         </div>
 
         <div class="project-card">
-          <span class="project-status ongoing">Ongoing</span>
+          <!-- <span class="project-status archived">Archived</span> -->
+           <span class="project-status ongoing">Ongoing</span>
           <div class="project-content">
             <div class="project-image">
-              <img src="../assets/images/project_focuspeed.png" alt="FocuSpeed project image" />
+              <img src="../../assets/images/project_focuspeed.png" alt="Image of FocuSpeed" />
             </div>
             <div class="project-details">
-              <h3>FocuSpeed</h3>
+              <h3>
+                FocuSpeed
+              </h3>
               <p class="project-description">
-                I am developing a system that estimates a user's focus level in
-                real time from EEG signals measured with a lightweight headset and
-                adapts audio playback speed accordingly.
+                簡易脳波計で計測したユーザの脳波からリアルタイムで集中度を推定し、最適な速度で音声を再生するシステムを開発しています。
               </p>
               <div class="project-meta">
                 <span class="research-tag">HCI</span>
@@ -76,28 +75,27 @@
                 <span class="research-tag">Audio Learning</span>
                 <span class="research-tag">Adaptive System</span>
               </div>
-              <a href="./focuspeed/" class="project-link">View Details →</a>
+              <a href="./focuspeed/" class="project-link"
+                >View Details →</a
+              >
             </div>
           </div>
         </div>
 
         <div class="project-card">
+          <!-- <span class="project-status archived">Archived</span> -->
           <span class="project-status ongoing">Ongoing</span>
           <div class="project-content">
             <div class="project-image">
               <img
-                src="../assets/images/project_furitalk.png"
-                alt="Human augmentation project image"
+                src="../../assets/images/project_furitalk.png"
+                alt="Image of Human Augmentation"
               />
             </div>
             <div class="project-details">
-              <h3>Human Augmentation Project</h3>
+              <h3>Human Augmentationに関する制作</h3>
               <p class="project-description">
-                In a class project, my team is developing a system that extends a
-                user's ability to verbalize ideas, with the goal of evolving it
-                into work suitable for international conference presentation.<br />
-                Detailed information is omitted because this work has not yet been
-                published.
+                ユーザの言語化能力を拡張するようなシステムを授業でチーム開発し、それを発展させて国際学会などで発表することを目指しています。<br>※未発表のため詳細は割愛します。
               </p>
               <div class="project-meta">
                 <span class="research-tag">Human Augmentation</span>
@@ -112,18 +110,14 @@
           <span class="project-status archived">Archived</span>
           <div class="project-content">
             <div class="project-image">
-              <img
-                src="../assets/images/project_visual-attention.png"
-                alt="Visual attention research image"
-              />
+              <img src="../../assets/images/project_visual-attention.png" alt="Image of Visual Attention Research" />
             </div>
             <div class="project-details">
-              <h3>Visual Attention Research (Bachelor's Thesis)</h3>
+              <h3>
+                視覚的注意の研究（卒業研究）
+              </h3>
               <p class="project-description">
-                I conducted psychophysical experiments to investigate mechanisms of
-                attention in human visual information processing.<br />Detailed
-                information is omitted because this work has not yet been
-                published.
+                ヒトの視覚情報処理における注意のメカニズムを、心理物理実験を実施して探る研究を行いました。<br>※未発表のため詳細は割愛します。
               </p>
               <div class="project-meta">
                 <span class="research-tag">Visual Information Processing</span>
@@ -134,9 +128,11 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
+    <!-- Engineering Projects -->
     <section class="projects-section engineering-section">
       <div class="projects-container">
         <h2>Engineering Projects</h2>
@@ -144,6 +140,7 @@
       </div>
     </section>
 
+    <!-- Side Projects -->
     <section class="projects-section side-section">
       <div class="projects-container">
         <h2>Side Projects</h2>
@@ -152,8 +149,8 @@
     </section>
 
     <div data-site-footer></div>
-    <script src="../assets/js/site-shell.js"></script>
-    <script src="../assets/js/nav-toggle.js"></script>
-    <script src="../assets/js/network-animation-light.js"></script>
+    <script src="../../assets/js/site-shell.js"></script>
+    <script src="../../assets/js/nav-toggle.js"></script>
+    <script src="../../assets/js/network-animation-light.js"></script>
   </body>
 </html>

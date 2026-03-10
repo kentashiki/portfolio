@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kenta Shiki</title>
-    <link rel="stylesheet" href="assets/css/global.css" />
-    <link rel="stylesheet" href="index-custom.css" />
-    <link rel="icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../index-custom.css" />
+    <link rel="icon" href="../assets/images/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <!-- Google tag (gtag.js) -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-RHZJ84JYRR"
@@ -21,71 +22,71 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
+
       gtag("config", "G-RHZJ84JYRR");
     </script>
   </head>
   <body
     class="shell-ready"
-    data-root=""
+    data-root="../"
     data-section="home"
     data-page="home"
-    data-locale="en"
+    data-locale="ja"
   >
     <div data-site-header></div>
 
     <div class="mainvisual">
       <canvas id="network-canvas"></canvas>
       <div class="mainvisual-content">
-        <h1>Kenta Shiki</h1>
+        <h1>志貴 健太 / Kenta Shiki</h1>
         <p>
-          Master's student in Japan researching VR, HCI, and human perception
+          Master's student in Japan conducting research on VR, HCI, and human
+          perception
         </p>
       </div>
     </div>
 
+    <!-- Profile Section -->
     <section id="profile" class="section-light">
       <h2>Profile</h2>
       <div class="profile-content">
         <div class="profile-image">
-          <img src="assets/images/kentashiki.jpg" alt="Portrait of Kenta Shiki" />
+          <img src="../assets/images/kentashiki.jpg" alt="Kenta Shiki's picture" />
         </div>
         <div class="profile-text">
           <p>
-            I study Virtual Reality (VR) and Human-Computer Interaction (HCI).
+            Virtual Reality (VR)やHuman-Computer Interaction
+            (HCI)の研究をしています。
           </p>
           <p>
-            My interests center on human sensation, perception, and higher-level
-            cognition. By developing interfaces that apply those insights, I want
-            to explore questions such as what reality is and what it means to be
-            human.
+            ヒトの感覚・知覚や高次の認知機能に関心を持ち、それを応用したインタフェースを開発することで、「現実とは何か」「人間とは何か」といった問いに挑みたいと考えています。
           </p>
           <p>
-            I am also interested in bringing research into society, so I try to
-            work across a wide range of phases, from fundamental investigation to
-            applied development.
+            また研究成果の社会実装にも関心を持っており、研究のあらゆるフェーズを経験するため、基礎から応用まで幅広く取り組んでいます。
           </p>
-          <a href="profile/" class="profile-detail-link">View Full Profile</a>
+          <a href="profile/" class="profile-detail-link">
+            詳しいプロフィールを見る
+          </a>
         </div>
       </div>
     </section>
 
+    <!-- News / Updates Section -->
     <section id="news" class="section-gray">
       <h2>News / Updates</h2>
       <div class="news-container">
         <div class="news-item">
           <div class="news-date">2026.02.10</div>
           <div class="news-content">
-            <h3>Accepted to Augmented Humans 2026 Posters &amp; Demos</h3>
+            <h3>Augmented Humans 2026 Posters & Demosに採択</h3>
             <p>
-              A project developed in collaboration with students from other labs
-              was accepted to the Posters &amp; Demos track of
+              他研究室の学生と協働して取り組んだテーマが、3月16〜19日に沖縄で開催される国際会議
               <a
                 href="https://augmented-humans.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Augmented Humans 2026</a
-              >, which will be held in Okinawa from March 16 to March 19, 2026.
-              This will be my first presentation at an international conference.
+              >のPosters & Demosに採択されました。私にとって初めての国際学会での発表となります。
             </p>
             <div class="update-tags">
               <div class="update-tag poster" data-group="academic">Poster</div>
@@ -98,16 +99,14 @@
         <div class="news-item">
           <div class="news-date">2025.12.01</div>
           <div class="news-content">
-            <h3>Portfolio website launched</h3>
+            <h3>ポートフォリオサイトを公開</h3>
             <p>
-              I launched this
               <a
                 href="https://kentashiki.github.io/portfolio/"
                 target="_blank"
                 rel="noopener noreferrer"
-                >portfolio website</a
-              >
-              to share my research activities, development projects, and awards.
+                >ポートフォリオサイト</a
+              >を公開しました。研究活動、開発プロジェクト、受賞歴などについて発信していきます。
             </p>
             <div class="update-tags">
               <div class="update-tag launch" data-group="dev">Launch</div>
@@ -119,17 +118,15 @@
         <div class="news-item">
           <div class="news-date">2025.09.10</div>
           <div class="news-content">
-            <h3>Participated in SICHI2025 and received an Encouragement Award</h3>
+            <h3>SICHI2025に参加、奨励賞受賞</h3>
             <p>
-              I presented the research theme "FocuSpeed: Adaptive control of audio
-              playback speed through focus estimation based on biosignals" at
-              <a
+              ヒューマンインタフェースシンポジウムの学生コンテストである<a
                 href="https://sites.google.com/view/sichi/home"
                 target="_blank"
                 rel="noopener noreferrer"
                 >SICHI2025</a
-              >, the student contest of the Human Interface Symposium, and received
-              an Encouragement Award.
+              >に参加しました。雨宮研M1同期と取り組んだ研究テーマ「FocuSpeed:
+              生体信号に基づいた集中度計測による音声再生速度の適応制御」を発表し、奨励賞を受賞しました。
             </p>
             <div class="update-tags">
               <div class="update-tag award" data-group="award">Award</div>
@@ -149,11 +146,9 @@
             <span>2025.09.05</span>
           </div>
           <div class="news-content">
-            <h3>Completed a four-week summer internship at NTT R&amp;D</h3>
+            <h3>NTT R&Dにて4週間の夏期実習に参加</h3>
             <p>
-              I joined the Human Informatics Laboratories at NTT and worked on a
-              project exploring the decoding of subjective impressions from EEG
-              responses to various sensory stimuli.
+              NTT人間情報研究所にて、「様々な感覚刺激に対する脳波反応に基づく主観的印象のデコード技術の検討」のテーマで実習を行いました。
             </p>
             <div class="update-tags">
               <div class="update-tag internship" data-group="educareer">
@@ -166,16 +161,14 @@
         <div class="news-item">
           <div class="news-date">2025.04.01</div>
           <div class="news-content">
-            <h3>Entered the master's program at the University of Tokyo</h3>
+            <h3>東京大学大学院 修士課程 入学</h3>
             <p>
-              I joined the Graduate School of Arts and Sciences at the University
-              of Tokyo and started my master's research in the
-              <a
+              総合文化研究科 広域科学専攻に入学し、<a
                 href="https://www.amelab.vr.u-tokyo.ac.jp/home"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Amemiya Lab</a
-              >.
+                >雨宮研究室</a
+              >にて修士研究をスタートしました。
             </p>
             <div class="update-tags">
               <div class="update-tag education" data-group="educareer">
@@ -191,11 +184,9 @@
         <div class="news-item">
           <div class="news-date">2025.03.31</div>
           <div class="news-content">
-            <h3>Graduated from the University of Electro-Communications</h3>
+            <h3>電気通信大学 卒業</h3>
             <p>
-              I completed my bachelor's degree in engineering after two years in
-              the Information and Communication Engineering track, following my
-              third-year transfer.
+              情報理工学域Ⅰ類（情報系）を卒業し、学士（工学）の学位を取得しました。3年次編入してから2年間お世話になり、特に卒業研究や海外インターンシップでは、有意義な経験をさせていただきました。
             </p>
             <div class="update-tags">
               <div class="update-tag education" data-group="educareer">
@@ -210,6 +201,7 @@
       </div>
     </section>
 
+    <!-- Featured Projects Section -->
     <section id="featured-projects" class="section-light">
       <h2>Featured Projects</h2>
 
@@ -217,7 +209,7 @@
         <button
           class="carousel-btn prev"
           onclick="slideCarousel(-1)"
-          aria-label="Previous project"
+          aria-label="前のプロジェクト"
         >
           ‹
         </button>
@@ -227,28 +219,27 @@
             <a href="projects/" class="carousel-card">
               <div class="carousel-image">
                 <img
-                  src="assets/images/project_science-of-reality.png"
-                  alt="Science of Reality project image"
+                  src="../assets/images/project_science-of-reality.png"
+                  alt="Image of Science of Reality"
                 />
               </div>
               <div class="carousel-caption">
-                <h3>Science of Reality</h3>
-                <p>A scientific approach to the question of what reality is</p>
+                <h3>リアリティの科学</h3>
+                <p>「現実とは何か」を科学的に追究</p>
               </div>
             </a>
 
             <a href="projects/focuspeed/" class="carousel-card">
               <div class="carousel-image">
                 <img
-                  src="assets/images/project_focuspeed.png"
-                  alt="FocuSpeed project image"
+                  src="../assets/images/project_focuspeed.png"
+                  alt="Image of FocuSpeed"
                 />
               </div>
               <div class="carousel-caption">
                 <h3>FocuSpeed</h3>
                 <p>
-                  Adaptive audio playback based on real-time focus estimation from
-                  EEG signals
+                  リアルタイム計測した脳波から推定した集中度に応じた音声再生速度の適応制御システム
                 </p>
               </div>
             </a>
@@ -256,15 +247,13 @@
             <a href="projects/" class="carousel-card">
               <div class="carousel-image">
                 <img
-                  src="assets/images/project_furitalk.png"
-                  alt="Human augmentation project image"
+                  src="../assets/images/project_furitalk.png"
+                  alt="Image of Human Augmentation"
                 />
               </div>
               <div class="carousel-caption">
-                <h3>Human Augmentation Project</h3>
-                <p>
-                  A system designed to expand users' ability to verbalize ideas
-                </p>
+                <h3>Human Augmentationに関する制作</h3>
+                <p>ユーザの言語化能力の拡張を目的としたシステム</p>
               </div>
             </a>
           </div>
@@ -273,7 +262,7 @@
         <button
           class="carousel-btn next"
           onclick="slideCarousel(1)"
-          aria-label="Next project"
+          aria-label="次のプロジェクト"
         >
           ›
         </button>
@@ -286,6 +275,7 @@
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section-gray">
       <h2>Contact</h2>
       <div class="contact-grid">
@@ -330,9 +320,9 @@
 
     <div data-site-footer></div>
 
-    <script src="assets/js/site-shell.js"></script>
-    <script src="assets/js/nav-toggle.js"></script>
-    <script src="assets/js/network-animation.js"></script>
-    <script src="slider.js"></script>
+    <script src="../assets/js/site-shell.js"></script>
+    <script src="../assets/js/nav-toggle.js"></script>
+    <script src="../assets/js/network-animation.js"></script>
+    <script src="../slider.js"></script>
   </body>
 </html>

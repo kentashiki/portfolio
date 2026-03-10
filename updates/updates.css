@@ -1,17 +1,3 @@
-/* Updates Hero Section */
-.updates-hero {
-  min-height: 400px;
-  padding: 150px 7.5% 80px;
-  background: linear-gradient(90deg, #011121, #131121);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 60px;
-  position: relative;
-  overflow: hidden;
-  color: white;
-}
-
 #network-canvas {
   position: absolute;
   top: 0;
@@ -19,25 +5,6 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-}
-
-.updates-hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.updates-hero h1 {
-  color: white;
-  margin: 0 0 1rem 0;
-  font-size: 3.5rem;
-  font-weight: 700;
-}
-
-.updates-hero p {
-  font-size: 1.3rem;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 400;
 }
 
 /* Updates Section */
@@ -171,19 +138,6 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .updates-hero {
-    padding: 120px 5% 60px;
-    min-height: 350px;
-  }
-
-  .updates-hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .updates-hero p {
-    font-size: 1.1rem;
-  }
-
   .updates-section {
     padding: 60px 5%;
   }

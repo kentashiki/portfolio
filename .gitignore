@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# env
+.env
+
+# dependencies
+node_modules/
+
+# build
+dist/
+build/
+
+# IDE
+.vscode/
+
+# logs
+*.log
+
+# for AI Agents
+.codex/
+
+# others
+notes/
+archive/

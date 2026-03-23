@@ -1,0 +1,506 @@
+/* セクション共通スタイル */
+section {
+  padding: 80px 7.5%;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-heading h2 {
+  margin-bottom: 0;
+}
+
+.section-inline-link {
+  color: #0066cc;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.section-inline-link:hover {
+  color: #004c99;
+  opacity: 0.85;
+}
+
+.section-light {
+  background-color: #ffffff;
+}
+
+.section-gray {
+  background-color: #f8f9fa;
+}
+
+.hero-idea-strip {
+  padding: 48px 7.5% 36px;
+  text-align: center;
+}
+
+.hero-idea-copy {
+  margin: 0 auto;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero-idea-prefix {
+  font-size: clamp(0.95rem, 0.82rem + 0.35vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.hero-idea-word-wrap {
+  position: relative;
+  display: block;
+  min-height: 1.3em;
+  overflow: hidden;
+}
+
+.hero-idea-word {
+  display: inline-block;
+  font-size: clamp(2.1rem, 1.4rem + 2vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #0066cc;
+  will-change: transform, opacity;
+}
+
+.hero-idea-word.is-entering {
+  animation: hero-word-enter 0.42s ease forwards;
+}
+
+.hero-idea-word.is-leaving {
+  animation: hero-word-leave 0.42s ease forwards;
+}
+
+@keyframes hero-word-enter {
+  from {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-word-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-40%);
+  }
+}
+
+/* プロフィール */
+.profile-content {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-text {
+  flex: 1;
+}
+
+.profile-text p {
+  margin: 0 0 1rem 0;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* News / Updates セクション */
+.news-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: transparent;
+}
+
+.news-item {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(1, 17, 33, 0.08);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #6b7280;
+  gap: 0.2rem;
+  min-width: 108px;
+  flex-shrink: 0;
+}
+
+.news-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-content h3 {
+  font-size: 1rem;
+  color: #011121;
+  margin: 0 0 0.45rem 0;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.news-summary {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+.news-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.news-read-more {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Featured Projects セクション */
+#featured-projects {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 80px;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-card {
+  flex: 0 0 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  display: block;
+  text-decoration: none;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.carousel-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .carousel-caption {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.carousel-caption h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  margin: 0;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+/* カルーセルボタン */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 2px solid #e9ecef;
+  color: #0066cc;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn:hover {
+  background: #0066cc;
+  color: white;
+  border-color: #0066cc;
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+/* カルーセルドット */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.dot {
+  border: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background: #0066cc;
+  opacity: 0.7;
+}
+
+.dot.active {
+  background: #0066cc;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* コンタクト */
+#contact {
+  text-align: center;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+  max-width: 600px;
+  margin: 3rem auto 0;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #333;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+  transition: transform 0.3s ease;
+}
+
+.fa-envelope { color: #0066cc; }     /* 自由（サイトのテーマカラー） */
+.fa-github { color: #181717; }       /* GitHub Black */
+.fa-linkedin { color: #0077B5; }     /* LinkedIn Blue */
+.fa-x-twitter { color: #000000; }    /* X Black */
+.fa-instagram {
+  background: linear-gradient(45deg, #FCAF45, #F77737, #E1306C, #C13584, #833AB4);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-card:hover i {
+  transform: scale(1.15);
+}
+
+.contact-card span {
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .hero-idea-strip {
+    padding: 38px 5% 28px;
+  }
+
+  .hero-idea-copy {
+    gap: 0.25rem;
+  }
+
+  .hero-idea-prefix {
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .news-item {
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem 1.1rem;
+  }
+
+  .news-summary {
+    font-size: 0.95rem;
+  }
+
+  .news-date {
+    min-width: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 6px;
+    font-size: 0.84rem;
+  }
+
+  .carousel-container {
+    padding: 0 24px;
+  }
+
+  .carousel-wrapper {
+    border-radius: 12px;
+  }
+
+  .carousel-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  .carousel-image {
+    height: 220px;
+  }
+
+  .carousel-caption {
+    padding: 1rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.1rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    top: calc(50% - 10px);
+  }
+
+  .carousel-btn.prev {
+    left: 0;
+  }
+
+  .carousel-btn.next {
+    right: 0;
+  }
+}

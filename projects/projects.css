@@ -1,0 +1,196 @@
+/* プロジェクトセクション */
+.projects-section {
+  padding: 80px 7.5%;
+  background: #ffffff;
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(1, 17, 33, 0.12);
+  position: relative;
+  scroll-margin-top: 110px;
+}
+
+.project-card:last-child {
+  border-bottom: 1px solid rgba(1, 17, 33, 0.12);
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid transparent;
+}
+
+.project-status.ongoing {
+  color: #0f6b57;
+  background: #e8f7f1;
+  border-color: rgba(15, 107, 87, 0.12);
+}
+
+.project-status.completed {
+  color: #526173;
+  background: #eef2f6;
+  border-color: rgba(82, 97, 115, 0.12);
+}
+
+.project-content {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 18px;
+  background: #e9eef4;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-details {
+  min-width: 0;
+  padding: 0.2rem 0 0;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  color: #011121;
+  margin: 0 0 0.9rem 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.project-year {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.project-description {
+  color: #555;
+  line-height: 1.8;
+  margin: 0 0 1.3rem 0;
+  font-size: 1rem;
+}
+
+.project-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 0;
+}
+
+.project-link {
+  display: inline-block;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.project-link:hover {
+  color: #5568d3;
+  transform: translateX(5px);
+}
+
+.project-meta .research-tag {
+  margin: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1200px) {
+  .methodology-grid {
+    flex-direction: column;
+  }
+
+  .methodology-arrow {
+    transform: rotate(90deg);
+  }
+
+  .methodology-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 60px 5%;
+  }
+
+  .projects-container h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-content {
+    grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .project-image {
+    min-height: 0;
+  }
+
+  .project-details {
+    padding: 0;
+  }
+
+  .project-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .project-card {
+    padding: 2rem 0;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .project-image {
+    aspect-ratio: 16 / 10;
+  }
+}

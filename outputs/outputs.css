@@ -1,0 +1,265 @@
+/* Outputs page */
+.works-section {
+  padding: 80px 7.5%;
+  background: #ffffff;
+}
+
+.works-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.outputs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.awards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.outputs-axis-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 2rem 0;
+}
+
+.outputs-axis-button {
+  border: 1px solid #d0d8e2;
+  background: #ffffff;
+  color: #334155;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.outputs-axis-button:hover,
+.outputs-axis-button.is-active {
+  border-color: #0066cc;
+  background: #0066cc;
+  color: #ffffff;
+}
+
+.output-subsection + .output-subsection {
+  margin-top: 4rem;
+}
+
+.outputs-grouped-sections {
+  margin-top: 2.5rem;
+}
+
+.output-subsection-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.7rem;
+  color: #011121;
+}
+
+.outputs-metrics-container {
+  margin-top: 2rem;
+}
+
+.outputs-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(1, 17, 33, 0.06);
+}
+
+.metric-main {
+  padding: 18px 20px;
+  background: #0066cc;
+  color: #ffffff;
+}
+
+.metric-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.metric-label {
+  margin-top: 0.45rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.metric-breakdown {
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: #f8fafc;
+}
+
+.metric-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.metric-sub-label {
+  color: #667085;
+}
+
+.metric-sub-number {
+  color: #011121;
+  font-weight: 700;
+}
+
+.output-card,
+.award-card {
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(1, 17, 33, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-height: 100%;
+  scroll-margin-top: 110px;
+}
+
+.output-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.output-card-link .output-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.output-card-link:hover .output-card {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(1, 17, 33, 0.1);
+  border-color: rgba(0, 102, 204, 0.22);
+}
+
+.output-card-link:focus-visible {
+  outline: none;
+}
+
+.output-card-link:focus-visible .output-card {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.18);
+}
+
+.output-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: #011121;
+}
+
+.output-card-authors {
+  margin: -0.15rem 0 0;
+  color: #555;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.author-highlight {
+  color: #0066cc;
+  font-weight: 700;
+}
+
+.output-card-venue {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.output-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.award-card-year {
+  margin: 0;
+  color: #0066cc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.award-card-issuer {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.award-card-description,
+.award-card-related {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+.award-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.award-card-links {
+  margin-top: auto;
+}
+
+.output-link {
+  display: inline-block;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.output-link:hover {
+  color: #0052a3;
+  transform: translateX(4px);
+}
+
+.date-tag {
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  .works-section {
+    padding: 60px 5%;
+  }
+
+  .outputs-metrics,
+  .awards-list {
+    grid-template-columns: 1fr;
+  }
+
+  .output-subsection + .output-subsection {
+    margin-top: 3rem;
+  }
+
+  .output-subsection-title {
+    font-size: 1.45rem;
+  }
+
+  .output-card,
+  .award-card {
+    padding: 1.25rem;
+  }
+}

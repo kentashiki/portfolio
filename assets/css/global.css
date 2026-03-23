@@ -623,7 +623,9 @@ footer {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: flex-end;
 }
 
 .footer-links a {
@@ -937,5 +939,10 @@ footer {
 
   .footer-left {
     align-items: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: 12px 20px;
   }
 }

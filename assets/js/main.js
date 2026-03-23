@@ -1,7 +1,7 @@
-import projects from "../data/projects.js";
-import news from "../data/news.js";
-import outputs from "../data/outputs.js";
-import awards from "../data/awards.js";
+import projects from "../../data/projects.js";
+import news from "../../data/news.js";
+import outputs from "../../data/outputs.js";
+import awards from "../../data/awards.js";
 import { renderProjects } from "./renderProjects.js";
 import { renderNews } from "./renderNews.js";
 import { renderOutputs } from "./renderOutputs.js";

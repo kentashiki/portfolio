@@ -1,0 +1,177 @@
+タグつけの方法をAIでまとめたのが以下
+簡単にいうと、data-groupがカテゴリになっていて、これに基づいて色分けする
+各カテゴリについて、いくつかのクラスがある
+これに従って将来的に追加していく
+
+<educareerカテゴリ>
+- education
+- internship
+
+<academicカテゴリ>
+- poster
+- demo
+- conference
+
+<devカテゴリ>
+- launch
+- website
+
+<awardカテゴリ>
+- awardのみ（将来的には細分化するかも）
+
+<milestoneカテゴリ>
+- milestoneのみ
+
+
+============================================================
+Portfolio Site - Tagging Guidelines
+============================================================
+
+This document summarizes the rules for assigning tags to
+News/Updates items on the portfolio site.  
+Tags are grouped into several high-level categories, each
+with consistent semantics and color coding.  
+Use this guideline when adding new updates.
+
+------------------------------------------------------------
+1. Tag Groups and Their Purposes
+------------------------------------------------------------
+
+Tags belong to one of the following groups:
+
+------------------------------------------------------------
+(1) educareer
+------------------------------------------------------------
+Purpose:
+    Events related to academic progression or career steps.
+
+Tags:
+    - Education
+    - Internship
+
+Examples:
+    "Entered Graduate School"
+    "Completed an internship at NTT"
+
+------------------------------------------------------------
+(2) academic
+------------------------------------------------------------
+Purpose:
+    Research-related activities, especially those involving
+    academic presentations, conferences, or demonstrations.
+
+Tags:
+    - Poster
+    - Demo
+    - Conference
+
+Examples:
+    "Poster presentation at SICHI"
+    "Demo session"
+    "Attended a conference"
+
+Notes:
+    Future additions such as Publication or Talk may also
+    belong to this group.
+
+------------------------------------------------------------
+(3) dev
+------------------------------------------------------------
+Purpose:
+    Releases, launches, or updates of projects, systems, or
+    websites. Covers creation and deployment activities.
+
+Tags:
+    - Launch
+    - Website
+
+Examples:
+    "Portfolio website launched"
+    "Released a new prototype"
+
+Notes:
+    Launch replaces the previously used Announcement tag.
+
+------------------------------------------------------------
+(4) award
+------------------------------------------------------------
+Purpose:
+    Achievements that involve receiving formal recognition.
+
+Tags:
+    - Award
+
+Examples:
+    "Received an Encouragement Award at SICHI 2025"
+
+Notes:
+    Treated as a standalone group because of its special
+    meaning and design.
+
+------------------------------------------------------------
+(5) milestone
+------------------------------------------------------------
+Purpose:
+    Major personal or professional milestones, including
+    transitions or significant turning points.
+
+Tags:
+    - Milestone
+
+Examples:
+    "Graduated from University"
+    "First major long-term project completed"
+
+Notes:
+    Treated as an independent category.
+
+------------------------------------------------------------
+2. Data Attribute for Styling
+------------------------------------------------------------
+
+Each tag in HTML should include a `data-group` attribute
+indicating its group.
+
+Example:
+    <span class="update-tag award" data-group="award">Award</span>
+
+CSS uses `data-group` to assign colors and styles based on
+the group.  
+Classes like "award" or "conference" may remain for semantic
+meaning or future filtering.
+
+------------------------------------------------------------
+3. General Tagging Rules
+------------------------------------------------------------
+
+- Each update item should have one or more tags.
+- Tags must belong to the predefined list above.
+- Avoid creating new tags casually; add them only when the 
+  existing groups cannot logically cover the event.
+- Groups are primarily for styling; tags represent the
+  specific event type.
+- Award and Milestone should always be used sparingly and
+  only when appropriate.
+
+------------------------------------------------------------
+4. Future Expansion
+------------------------------------------------------------
+
+Possible future tags:
+    academic:
+        - Talk
+        - Publication
+
+    dev:
+        - Release
+        - Update
+
+    milestone:
+        - CareerChange
+
+If added, each should be attached to an existing group unless
+a new group is necessary.
+
+------------------------------------------------------------
+End of Document
+============================================================

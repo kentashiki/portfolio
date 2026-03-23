@@ -182,7 +182,7 @@ footer p {
     margin: 10px 10px 0 0;
 }
 
-/* responsive */
+/* responsive layout */
 @media (max-width: 900px) {
     .threejobs {
         height: auto;

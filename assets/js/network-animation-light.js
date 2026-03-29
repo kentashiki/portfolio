@@ -11,6 +11,7 @@ class NetworkAnimation {
     this.tapMoveThreshold = 12;
     this.tapMaxDuration = 300;
     this.activeTouch = null;
+    this.resizeFrame = null;
     
     this.init();
     this.setupEventListeners();
@@ -18,13 +19,53 @@ class NetworkAnimation {
   }
 
   init() {
-    this.resizeCanvas();
+    this.resizeCanvas({ force: true });
     this.createNodes();
   }
 
-  resizeCanvas() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
+  resizeCanvas({ force = false } = {}) {
+    const nextWidth = this.canvas.offsetWidth;
+    const nextHeight = this.canvas.offsetHeight;
+    const prevWidth = this.canvas.width;
+    const prevHeight = this.canvas.height;
+
+    if (!force && nextWidth === prevWidth && nextHeight === prevHeight) {
+      return false;
+    }
+
+    this.canvas.width = nextWidth;
+    this.canvas.height = nextHeight;
+
+    if (!force && prevWidth > 0 && prevHeight > 0) {
+      const widthRatio = nextWidth / prevWidth;
+      const heightRatio = nextHeight / prevHeight;
+
+      this.nodes.forEach((node) => {
+        node.x *= widthRatio;
+        node.y *= heightRatio;
+      });
+
+      this.tapNodes = this.tapNodes
+        .map((tapNode) => ({
+          ...tapNode,
+          x: tapNode.x * widthRatio,
+          y: tapNode.y * heightRatio,
+        }))
+        .filter((tapNode) => tapNode.x >= 0 && tapNode.x <= nextWidth && tapNode.y >= 0 && tapNode.y <= nextHeight);
+    }
+
+    return true;
+  }
+
+  handleResize() {
+    if (this.resizeFrame !== null) {
+      return;
+    }
+
+    this.resizeFrame = requestAnimationFrame(() => {
+      this.resizeFrame = null;
+      this.resizeCanvas();
+    });
   }
 
   createNodes() {
@@ -59,11 +100,7 @@ class NetworkAnimation {
   }
 
   setupEventListeners() {
-    window.addEventListener('resize', () => {
-      this.resizeCanvas();
-      this.createNodes();
-      this.tapNodes = [];
-    });
+    window.addEventListener('resize', () => this.handleResize(), { passive: true });
 
     this.canvas.addEventListener('mousemove', (e) => {
       const point = this.getCanvasPoint(e.clientX, e.clientY);

@@ -25,7 +25,7 @@ function formatTypeLabel(value) {
 }
 
 function getPrimaryLink(links = {}, root) {
-  const priority = ["page", "pdf", "demo", "github", "doi"];
+  const priority = ["projectDetail", "page", "pdf", "demo", "github", "doi"];
 
   for (const key of priority) {
     if (links[key]) {
@@ -39,25 +39,62 @@ function getPrimaryLink(links = {}, root) {
   return null;
 }
 
-function renderAuthors(authors = []) {
+function getOutputLinks(links = {}, root) {
+  const labels = {
+    pdf: "View paper",
+    poster: "View poster",
+    conference: "Conference site",
+    demo: "Live demo",
+    github: "GitHub",
+    doi: "DOI",
+  };
+
+  return Object.entries(links)
+    .filter(([, href]) => href)
+    .map(([key, href]) => {
+      const resolvedHref = resolveUrl(root, href);
+      const sameDocument = isSameDocumentUrl(resolvedHref);
+      const isPdf = key === "pdf";
+
+      return {
+        key,
+        href: resolvedHref,
+        label: labels[key] || humanizeSlug(key),
+        external: /^https?:\/\//.test(href) || isPdf,
+        sameDocument,
+      };
+    })
+    .filter((link) => !link.sameDocument && link.key !== "page" && link.key !== "projectDetail");
+}
+
+function renderAuthors(authors = [], equalContributionCount = 0) {
   if (!authors.length) {
     return "";
   }
 
   const markup = authors
-    .map((author) => {
+    .map((author, index) => {
+      const isEqualContribution = index < equalContributionCount;
+      const marker = isEqualContribution
+        ? '<span class="equal-contribution-marker" aria-hidden="true">*</span>'
+        : "";
+
       if (author === "Kenta Shiki") {
-        return `<span class="author-highlight">${escapeHtml(author)}</span>`;
+        return `<span class="author-highlight">${escapeHtml(author)}${marker}</span>`;
       }
 
-      return escapeHtml(author);
+      return `${escapeHtml(author)}${marker}`;
     })
     .join(", ");
 
-  return `<p class="output-card-authors">${markup}</p>`;
+  const note = equalContributionCount > 0
+    ? '<span class="equal-contribution-note">*Equal contribution</span>'
+    : "";
+
+  return `<p class="output-card-authors">${markup}${note}</p>`;
 }
 
-function renderOutputCard(output, root) {
+export function renderOutputCard(output, root) {
   const tags = (output.tags || [])
     .map(
       (tag) =>
@@ -68,29 +105,41 @@ function renderOutputCard(output, root) {
     ? `<p class="output-card-venue">${escapeHtml(output.venue)}</p>`
     : "";
   const primaryLink = getPrimaryLink(output.links, root);
-  const cardInner = `
-    <article id="output-${escapeHtml(output.slug)}" class="output-card">
-      <h3 class="output-card-title">${escapeHtml(output.title)}</h3>
-      ${renderAuthors(output.authors)}
-      ${venue}
-      <div class="output-card-tags">${tags}</div>
-    </article>
-  `;
-
-  if (!primaryLink) {
-    return cardInner;
-  }
-
-  if (isSameDocumentUrl(primaryLink.href)) {
-    return cardInner;
-  }
+  const outputLinks = getOutputLinks(output.links, root);
+  const cardHref = primaryLink && !isSameDocumentUrl(primaryLink.href) ? primaryLink.href : "";
+  const title = `<h3 class="output-card-title">${escapeHtml(output.title)}</h3>`;
 
   return `
-    <a class="output-card-link" href="${escapeHtml(primaryLink.href)}"${
-      primaryLink.external ? ' target="_blank" rel="noopener noreferrer"' : ""
-    }>
-      ${cardInner}
-    </a>
+    <article
+      id="output-${escapeHtml(output.slug)}"
+      class="output-card${cardHref ? " output-card--interactive" : ""}"
+      ${cardHref ? `data-card-href="${escapeHtml(cardHref)}"` : ""}
+      ${cardHref ? 'tabindex="0" role="link"' : ""}
+    >
+      ${title}
+      ${renderAuthors(output.authors, output.equalContributionCount)}
+      ${venue}
+      <div class="output-card-tags">${tags}</div>
+      ${
+        outputLinks.length
+          ? `
+            <div class="output-card-links">
+              ${outputLinks
+                .map(
+                  (link) => `
+                    <a class="output-link" href="${escapeHtml(link.href)}"${
+                      link.external ? ' target="_blank" rel="noopener noreferrer"' : ""
+                    }>
+                      ${escapeHtml(link.label)}
+                    </a>
+                  `
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+    </article>
   `;
 }
 
@@ -206,5 +255,36 @@ export function renderOutputs(container, outputs, options = {}) {
     sortEntries: sortGroupEntries,
     formatAxisValue,
     renderSection: renderOutputSection,
+  });
+
+  initClickableCards(container, ".output-card--interactive");
+}
+
+function initClickableCards(container, selector) {
+  const cards = container.querySelectorAll(selector);
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) {
+        return;
+      }
+
+      const href = card.dataset.cardHref;
+      if (href) {
+        window.location.href = href;
+      }
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      const href = card.dataset.cardHref;
+      if (href) {
+        window.location.href = href;
+      }
+    });
   });
 }

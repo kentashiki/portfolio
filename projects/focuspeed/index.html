@@ -5,118 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FocuSpeed - Project Detail</title>
     <link rel="stylesheet" href="../../assets/css/global.css" />
-    <link rel="stylesheet" href="focuspeed.css" />
+    <link rel="stylesheet" href="../../outputs/outputs.css" />
+    <link rel="stylesheet" href="../../assets/css/project-detail.css" />
     <link rel="icon" href="../../assets/images/favicon.ico" />
   </head>
   <body
-    class="shell-ready"
+    class="shell-ready project-detail-page"
     data-root="../../"
     data-section="projects"
     data-page="focuspeed"
+    data-project-slug="focuspeed"
     data-locale="en"
   >
     <div data-site-header></div>
 
-    <div class="project-hero page-hero">
-      <canvas id="network-canvas"></canvas>
-      <div class="project-hero-content page-hero-content">
-        <p class="project-label">Project Detail</p>
-        <h1>FocuSpeed</h1>
-        <p class="project-subtitle">
-          Adaptive audio playback driven by real-time EEG-based focus estimation.
-        </p>
-        <div class="hero-meta">
-          <span class="hero-tag">HCI</span>
-          <span class="hero-tag">EEG</span>
-          <span class="hero-tag">Biosignals</span>
-          <span class="hero-tag">Adaptive System</span>
-        </div>
-      </div>
-    </div>
-
-    <main>
-      <section class="detail-section image-section">
-        <div class="detail-container detail-narrow">
-          <img
-            src="../../assets/images/project_focuspeed.png"
-            alt="FocuSpeed project image"
-            class="project-main-image"
-          />
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <div class="detail-container detail-narrow">
-          <h2 class="section-title">Overview</h2>
-          <p>
-            FocuSpeed is a system that estimates a listener's focus level in real
-            time from EEG signals and automatically adjusts audio playback speed.
-          </p>
-          <p>
-            It is designed for situations such as learning and information intake,
-            where users naturally shift between wanting to move quickly and wanting
-            to slow down for deeper understanding. The goal is to reduce missed
-            information while maintaining efficient listening.
-          </p>
-        </div>
-      </section>
-
-      <section class="detail-section alt">
-        <div class="detail-container detail-narrow">
-          <h2 class="section-title">Purpose</h2>
-          <p>
-            By dynamically changing playback speed based on focus estimated from
-            EEG, this project aims to improve learning efficiency while making it
-            easier to sustain attention during extended listening.
-          </p>
-
-          <h2 class="section-title secondary">Significance</h2>
-          <p>
-            The project connects internal state, represented by brain activity,
-            with content presentation. It suggests how educational content and
-            audio media could become more responsive to the individual user, with
-            possible applications in education, training, and well-being.
-          </p>
-        </div>
-      </section>
-
-      <section class="detail-section">
-        <div class="detail-container detail-narrow">
-          <h2 class="section-title">Publications &amp; Awards</h2>
-          <ul class="detail-list">
-            <li>
-              Poster &amp; demo presentation at the Human Interface Symposium 2025
-              Student Contest (SICHI2025)
-            </li>
-            <li>
-              Received the Encouragement Award for "FocuSpeed: Adaptive control of
-              audio playback speed through focus estimation based on biosignals"
-            </li>
-          </ul>
-
-          <h2 class="section-title secondary">My Role</h2>
-          <ul class="detail-list">
-            <li>
-              Designed and implemented the EEG signal-processing pipeline and focus
-              estimation logic.
-            </li>
-            <li>
-              Designed the adaptive playback controller and the surrounding UX
-              flow.
-            </li>
-            <li>
-              Prepared the demo UI and presentation materials, and presented the
-              work onsite.
-            </li>
-          </ul>
-        </div>
-      </section>
-    </main>
+    <div data-project-detail-root></div>
 
     <div data-site-footer></div>
 
     <script src="../../assets/js/site-shell.js"></script>
     <script src="../../assets/js/nav-toggle.js"></script>
+    <script type="module" src="../../assets/js/project-detail-page.js"></script>
     <script src="../../assets/js/network-animation.js"></script>
   </body>
 </html>

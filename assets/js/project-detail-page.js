@@ -36,7 +36,6 @@ function buildProjectDetail(project) {
     primaryOutputSlug: outputEntries.some((item) => item.slug === initialOutputSlug)
       ? initialOutputSlug
       : null,
-    relatedProjects: projectDetail.relatedProjects || project.relatedProjects,
     footer: projectDetail.footer || project.footer,
     links: project.links || {},
   };
@@ -56,10 +55,10 @@ function buildProjectOutputs(project, projectDetail) {
       role: detail.role || "",
       team: detail.team || "",
       outcome: detail.outcome || "",
-      approach: detail.approach || [],
+      implementation: detail.implementation || [],
       visuals: detail.visuals || [],
-      contributions: detail.contributions || [],
-      reflection: detail.reflection || [],
+      myContributions: detail.myContributions || [],
+      lessonsLearned: detail.lessonsLearned || [],
       techStack: detail.techStack || [],
       relatedAwards: detail.relatedAwards || [],
     };
@@ -77,7 +76,7 @@ function renderProjectDetail(container, detail) {
       ${renderSection(
         "Outputs",
         detail.outputEntries?.length ? renderOutputExplorer(detail.outputEntries, detail.primaryOutputSlug) : "",
-        "Click an output card to expand output-specific details such as approach, visuals, links, reflection, and team context."
+        "Click an output card to expand output-specific details such as implementation, visuals, links, lessons learned, and team context."
       )}
       ${renderFooter(detail)}
     </main>
@@ -141,13 +140,6 @@ function renderHero(detail) {
                   src="${escapeAttribute(heroImageSrc)}"
                   alt="${escapeAttribute(detail.heroImage.alt || detail.title)}"
                 />
-                ${
-                  detail.heroImage.caption
-                    ? `<figcaption class="project-detail-hero__caption">${escapeHtml(
-                        detail.heroImage.caption
-                      )}</figcaption>`
-                    : ""
-                }
               </figure>
             </div>
           `
@@ -403,21 +395,17 @@ function renderOutputPanel(output, isActive) {
       data-output-panel="${escapeAttribute(output.slug)}"
       ${isActive ? "" : "hidden"}
     >
-      <div class="project-detail-output-panel__header">
-        <h3 class="project-detail-output-panel__title">${escapeHtml(output.title)}</h3>
-        ${output.venue ? `<p class="project-detail-output-panel__venue">${escapeHtml(output.venue)}</p>` : ""}
-      </div>
       ${renderOutputMeta(output)}
       ${renderOutputLinks(output)}
-      ${output.approach?.length ? renderInlineOutputSection("Approach", renderApproach(output.approach)) : ""}
+      ${output.implementation?.length ? renderInlineOutputSection("Implementation", renderApproach(output.implementation)) : ""}
       ${
         output.visuals?.length
           ? renderInlineOutputSection("Visuals", renderVisuals(output.visuals))
           : ""
       }
-      ${output.contributions?.length ? renderInlineOutputSection("Contributions", renderBullets(output.contributions)) : ""}
+      ${output.myContributions?.length ? renderInlineOutputSection("My Contributions", renderBullets(output.myContributions)) : ""}
       ${output.relatedAwards?.length ? renderOutputAwards(output.relatedAwards) : ""}
-      ${output.reflection?.length ? renderInlineOutputSection("Reflection", renderReflection(output.reflection)) : ""}
+      ${output.lessonsLearned?.length ? renderInlineOutputSection("Lessons Learned", renderReflection(output.lessonsLearned)) : ""}
       ${output.techStack?.length ? renderInlineOutputSection("Tech Stack", renderTechStack(output.techStack)) : ""}
     </section>
   `;

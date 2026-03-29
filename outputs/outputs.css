@@ -133,29 +133,9 @@
   scroll-margin-top: 110px;
 }
 
-.output-card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.output-card-link .output-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.output-card-link:hover .output-card {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(1, 17, 33, 0.1);
-  border-color: rgba(0, 102, 204, 0.22);
-}
-
-.output-card-link:focus-visible {
-  outline: none;
-}
-
-.output-card-link:focus-visible .output-card {
-  border-color: #0066cc;
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.18);
+.output-card--interactive,
+.award-card.output-card--interactive {
+  cursor: pointer;
 }
 
 .output-card-title {
@@ -165,11 +145,36 @@
   color: #011121;
 }
 
+.output-card-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.output-card-title-link:hover,
+.output-card-title-link:focus-visible {
+  color: #0066cc;
+}
+
 .output-card-authors {
   margin: -0.15rem 0 0;
   color: #555;
   font-size: 0.96rem;
   line-height: 1.7;
+}
+
+.equal-contribution-marker {
+  color: #0066cc;
+  font-weight: 700;
+}
+
+.equal-contribution-note {
+  display: inline-block;
+  margin-left: 0.45rem;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .author-highlight {
@@ -190,6 +195,14 @@
   gap: 0.5rem;
 }
 
+.output-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: auto;
+  padding-top: 0.2rem;
+}
+
 .award-card-year {
   margin: 0;
   color: #0066cc;
@@ -204,6 +217,13 @@
   color: #555;
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.award-card-recipients {
+  margin: -0.2rem 0 0;
+  color: #555;
+  font-size: 0.96rem;
+  line-height: 1.7;
 }
 
 .award-card-description,
@@ -224,7 +244,8 @@
 }
 
 .output-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   color: #0066cc;
   text-decoration: none;
   font-weight: 600;

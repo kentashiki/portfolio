@@ -3,9 +3,14 @@ class NetworkAnimation {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext('2d');
     this.nodes = [];
+    this.tapNodes = [];
     this.nodeCount = 50;
     this.maxDistance = 150;
     this.mouse = { x: null, y: null };
+    this.tapNodeLifetime = 1800;
+    this.tapMoveThreshold = 12;
+    this.tapMaxDuration = 300;
+    this.activeTouch = null;
     
     this.init();
     this.setupEventListeners();
@@ -35,22 +40,115 @@ class NetworkAnimation {
     }
   }
 
+  getCanvasPoint(clientX, clientY) {
+    const rect = this.canvas.getBoundingClientRect();
+
+    return {
+      x: clientX - rect.left,
+      y: clientY - rect.top,
+    };
+  }
+
+  addTapNode(x, y) {
+    this.tapNodes.push({
+      x,
+      y,
+      createdAt: performance.now(),
+      radius: 3.5,
+    });
+  }
+
   setupEventListeners() {
     window.addEventListener('resize', () => {
       this.resizeCanvas();
       this.createNodes();
+      this.tapNodes = [];
     });
 
     this.canvas.addEventListener('mousemove', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
+      const point = this.getCanvasPoint(e.clientX, e.clientY);
+      this.mouse.x = point.x;
+      this.mouse.y = point.y;
     });
 
     this.canvas.addEventListener('mouseleave', () => {
       this.mouse.x = null;
       this.mouse.y = null;
     });
+
+    this.canvas.addEventListener('touchstart', (e) => {
+      const touch = e.changedTouches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      const point = this.getCanvasPoint(touch.clientX, touch.clientY);
+      this.activeTouch = {
+        id: touch.identifier,
+        startX: point.x,
+        startY: point.y,
+        currentX: point.x,
+        currentY: point.y,
+        startTime: performance.now(),
+        moved: false,
+      };
+    }, { passive: true });
+
+    this.canvas.addEventListener('touchmove', (e) => {
+      if (!this.activeTouch) {
+        return;
+      }
+
+      const touch = Array.from(e.changedTouches).find(({ identifier }) => identifier === this.activeTouch.id);
+
+      if (!touch) {
+        return;
+      }
+
+      const point = this.getCanvasPoint(touch.clientX, touch.clientY);
+      this.activeTouch.currentX = point.x;
+      this.activeTouch.currentY = point.y;
+
+      const dx = point.x - this.activeTouch.startX;
+      const dy = point.y - this.activeTouch.startY;
+
+      if (Math.hypot(dx, dy) > this.tapMoveThreshold) {
+        this.activeTouch.moved = true;
+      }
+
+      this.mouse.x = null;
+      this.mouse.y = null;
+    }, { passive: true });
+
+    this.canvas.addEventListener('touchend', (e) => {
+      if (!this.activeTouch) {
+        return;
+      }
+
+      const touch = Array.from(e.changedTouches).find(({ identifier }) => identifier === this.activeTouch.id);
+
+      if (!touch) {
+        return;
+      }
+
+      const point = this.getCanvasPoint(touch.clientX, touch.clientY);
+      const duration = performance.now() - this.activeTouch.startTime;
+
+      if (!this.activeTouch.moved && duration <= this.tapMaxDuration) {
+        this.addTapNode(point.x, point.y);
+      }
+
+      this.activeTouch = null;
+      this.mouse.x = null;
+      this.mouse.y = null;
+    }, { passive: true });
+
+    this.canvas.addEventListener('touchcancel', () => {
+      this.activeTouch = null;
+      this.mouse.x = null;
+      this.mouse.y = null;
+    }, { passive: true });
   }
 
   drawNodes() {
@@ -102,6 +200,41 @@ class NetworkAnimation {
     });
   }
 
+  drawTapConnections() {
+    if (!this.tapNodes.length) return;
+
+    const now = performance.now();
+
+    this.tapNodes = this.tapNodes.filter((tapNode) => now - tapNode.createdAt < this.tapNodeLifetime);
+
+    this.tapNodes.forEach((tapNode) => {
+      const age = now - tapNode.createdAt;
+      const lifeRatio = 1 - age / this.tapNodeLifetime;
+      const connectionDistance = this.maxDistance * 1.35;
+
+      this.nodes.forEach((node) => {
+        const dx = node.x - tapNode.x;
+        const dy = node.y - tapNode.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < connectionDistance) {
+          const opacity = (1 - distance / connectionDistance) * 0.55 * lifeRatio;
+          this.ctx.beginPath();
+          this.ctx.moveTo(node.x, node.y);
+          this.ctx.lineTo(tapNode.x, tapNode.y);
+          this.ctx.strokeStyle = `rgba(0, 102, 204, ${opacity})`;
+          this.ctx.lineWidth = 1;
+          this.ctx.stroke();
+        }
+      });
+
+      this.ctx.beginPath();
+      this.ctx.arc(tapNode.x, tapNode.y, tapNode.radius + lifeRatio * 1.4, 0, Math.PI * 2);
+      this.ctx.fillStyle = `rgba(0, 102, 204, ${0.55 * lifeRatio})`;
+      this.ctx.fill();
+    });
+  }
+
   updateNodes() {
     this.nodes.forEach(node => {
       node.x += node.vx;
@@ -117,6 +250,7 @@ class NetworkAnimation {
     
     this.drawLines();
     this.drawMouseConnections();
+    this.drawTapConnections();
     this.drawNodes();
     this.updateNodes();
 

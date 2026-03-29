@@ -25,34 +25,118 @@ function formatTypeLabel(value) {
   return humanizeSlug(value);
 }
 
-function renderAwardCard(award, root) {
+function renderNames(names = [], equalContributionCount = 0, className = "award-card-recipients") {
+  if (!names.length) {
+    return "";
+  }
+
+  const markup = names
+    .map((name, index) => {
+      const marker = index < equalContributionCount
+        ? '<span class="equal-contribution-marker" aria-hidden="true">*</span>'
+        : "";
+
+      if (name === "Kenta Shiki") {
+        return `<span class="author-highlight">${escapeHtml(name)}${marker}</span>`;
+      }
+
+      return `${escapeHtml(name)}${marker}`;
+    })
+    .join(", ");
+
+  const note = equalContributionCount > 0
+    ? '<span class="equal-contribution-note">*Equal contribution</span>'
+    : "";
+
+  return `<p class="${escapeHtml(className)}">${markup}${note}</p>`;
+}
+
+function getAwardPrimaryLink(links = {}, root) {
+  const priority = ["projectDetail", "page", "conference", "pdf", "demo", "github", "doi"];
+
+  for (const key of priority) {
+    if (links[key]) {
+      return {
+        href: resolveUrl(root, links[key]),
+        external: /^https?:\/\//.test(links[key]),
+      };
+    }
+  }
+
+  return null;
+}
+
+function getAwardLinks(links = {}, root) {
+  const labels = {
+    conference: "Conference site",
+    pdf: "View paper",
+    poster: "View poster",
+    demo: "Live demo",
+    github: "GitHub",
+    doi: "DOI",
+  };
+
+  return Object.entries(links)
+    .filter(([, href]) => href)
+    .map(([key, href]) => {
+      const resolvedHref = resolveUrl(root, href);
+      const sameDocument = isSameDocumentUrl(resolvedHref);
+      const isPdf = key === "pdf";
+
+      return {
+        key,
+        href: resolvedHref,
+        label: labels[key] || humanizeSlug(key),
+        external: /^https?:\/\//.test(href) || isPdf,
+        sameDocument,
+      };
+    })
+    .filter((link) => !link.sameDocument && link.key !== "page" && link.key !== "projectDetail");
+}
+
+export function renderAwardCard(award, root) {
   const tags = (award.tags || [])
     .map(
       (tag) =>
         `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`
     )
     .join("");
-  const primaryHref = award.links?.page ? resolveUrl(root, award.links.page) : "";
-  const cardInner = `
-    <article id="award-${escapeHtml(award.slug)}" class="award-card">
-      <h3 class="output-card-title">${escapeHtml(award.title)}</h3>
-      <p class="award-card-issuer">${escapeHtml(award.issuer)}</p>
-      <div class="award-card-tags">${tags}</div>
-    </article>
-  `;
-
-  if (!primaryHref) {
-    return cardInner;
-  }
-
-  if (isSameDocumentUrl(primaryHref)) {
-    return cardInner;
-  }
+  const primaryLink = getAwardPrimaryLink(award.links, root);
+  const awardLinks = getAwardLinks(award.links, root);
+  const cardHref = primaryLink && !isSameDocumentUrl(primaryLink.href) ? primaryLink.href : "";
+  const title = `<h3 class="output-card-title">${escapeHtml(award.title)}</h3>`;
 
   return `
-    <a class="output-card-link" href="${escapeHtml(primaryHref)}">
-      ${cardInner}
-    </a>
+    <article
+      id="award-${escapeHtml(award.slug)}"
+      class="award-card${cardHref ? " output-card--interactive" : ""}"
+      ${cardHref ? `data-card-href="${escapeHtml(cardHref)}"` : ""}
+      ${cardHref ? 'tabindex="0" role="link"' : ""}
+    >
+      ${title}
+      <p class="award-card-issuer">${escapeHtml(award.issuer)}</p>
+      ${renderNames(award.recipients, award.equalContributionCount)}
+      <div class="award-card-tags">${tags}</div>
+      ${
+        awardLinks.length
+          ? `
+            <div class="award-card-links">
+              ${awardLinks
+                .map(
+                  (link) => `
+                    <a class="output-link" href="${escapeHtml(link.href)}"${
+                      link.external ? ' target="_blank" rel="noopener noreferrer"' : ""
+                    }>
+                      ${escapeHtml(link.label)}
+                    </a>
+                  `
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+    </article>
   `;
 }
 
@@ -154,5 +238,36 @@ export function renderAwards(container, awards, options = {}) {
     sortEntries: sortGroupEntries,
     formatAxisValue,
     renderSection: renderAwardSection,
+  });
+
+  initClickableCards(container, ".output-card--interactive");
+}
+
+function initClickableCards(container, selector) {
+  const cards = container.querySelectorAll(selector);
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) {
+        return;
+      }
+
+      const href = card.dataset.cardHref;
+      if (href) {
+        window.location.href = href;
+      }
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      const href = card.dataset.cardHref;
+      if (href) {
+        window.location.href = href;
+      }
+    });
   });
 }

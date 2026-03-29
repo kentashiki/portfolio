@@ -133,8 +133,7 @@ function renderFooter(root, currentSection, locale, pageKey, hash) {
       <div class="footer-left">
         <div>&copy; ${year} Kenta Shiki. All rights reserved.</div>
         <div class="footer-credit">
-          Website created with the assistance of Claude (Anthropic AI) and
-          ChatGPT (OpenAI)
+          Website created with the assistance of Codex (OpenAI) and Claude (Anthropic)
         </div>
       </div>
       <div class="footer-links">${footerMarkup}</div>

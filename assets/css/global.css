@@ -710,10 +710,6 @@ footer {
 .update-tag[data-tag="demo"],
 .tag[data-tag="demo"],
 .hero-tag[data-tag="demo"],
-.research-tag[data-tag="conference"],
-.update-tag[data-tag="conference"],
-.tag[data-tag="conference"],
-.hero-tag[data-tag="conference"],
 .research-tag[data-tag="acceptance"],
 .update-tag[data-tag="acceptance"],
 .tag[data-tag="acceptance"],
@@ -724,9 +720,45 @@ footer {
 .research-tag[data-tag="award"],
 .update-tag[data-tag="award"],
 .tag[data-tag="award"],
-.hero-tag[data-tag="award"] {
+.hero-tag[data-tag="award"],
+.research-tag[data-tag="student-contest"],
+.update-tag[data-tag="student-contest"],
+.tag[data-tag="student-contest"],
+.hero-tag[data-tag="student-contest"] {
   --tag-bg: #e5c711;
   --tag-text: #ffffff;
+}
+
+.research-tag[data-tag="international"],
+.update-tag[data-tag="international"],
+.tag[data-tag="international"],
+.hero-tag[data-tag="international"],
+.research-tag[data-tag="domestic-japan"],
+.update-tag[data-tag="domestic-japan"],
+.tag[data-tag="domestic-japan"],
+.hero-tag[data-tag="domestic-japan"],
+.research-tag[data-tag="not-region-specific"],
+.update-tag[data-tag="not-region-specific"],
+.tag[data-tag="not-region-specific"],
+.hero-tag[data-tag="not-region-specific"] {
+  --tag-bg: #dbeafe;
+  --tag-text: #1d4f91;
+}
+
+.research-tag[data-tag="domestic-japan"],
+.update-tag[data-tag="domestic-japan"],
+.tag[data-tag="domestic-japan"],
+.hero-tag[data-tag="domestic-japan"] {
+  --tag-bg: #dff3e4;
+  --tag-text: #256245;
+}
+
+.research-tag[data-tag="not-region-specific"],
+.update-tag[data-tag="not-region-specific"],
+.tag[data-tag="not-region-specific"],
+.hero-tag[data-tag="not-region-specific"] {
+  --tag-bg: #eceff3;
+  --tag-text: #4b5563;
 }
 
 .research-tag[data-tag="launch"],

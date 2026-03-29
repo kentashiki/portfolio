@@ -21,14 +21,14 @@ export const projects = [
     slug: "focuspeed",
     title: "FocuSpeed",
     summary:
-      "FocuSpeed connects internal cognitive state with external media control, enabling adaptive playback that responds to how a listener is actually concentrating.",
+      "FocuSpeed is a neuroadaptive system that dynamically adjusts audio playback speed based on the user’s cognitive state estimated from biosignals.",
     year: 2025,
     start: {
       year: 2025,
       month: 4,
     },
     status: "ongoing",
-    tags: ["Neuroadaptive", "EEG", "BCI"],
+    tags: ["Neuroadaptive", "EEG", "Auditory Learning", "BCI"],
     featured: true,
     period: "Apr 2025 - Present",
     links: {
@@ -45,38 +45,37 @@ export const projects = [
         {
           title: "Background",
           body:
-            "People often listen to lectures, podcasts, or study materials at different levels of attention, but playback speed is usually adjusted manually and only after the listener notices a mismatch.",
+            "To improve time efficiency in media consumption and auditory learning, many users increase playback speed. However, faster playback often leads to decreased attention and frequent rewinding to recover missed information.",
         },
         {
           title: "Problem",
           body:
-            "This creates friction during learning. The pace can feel too slow when attention is stable and too fast when concentration drops, yet the interface depends on repeated manual intervention.",
+            "This behavior undermines the intended time savings and disrupts efficient learning. Moreover, existing playback controls rely heavily on manual adjustments, placing the burden on users to continuously regulate their listening experience.",
         },
         {
-          title: "Core Idea",
+          title: "Approach",
           body:
-            "FocuSpeed connects internal cognitive state with external media control, proposing a state-aware interaction in which estimated focus helps shape playback speed in real time.",
+            "We developed FocuSpeed, a closed-loop system that continuously estimates users’ cognitive states from real-time biosignals (e.g., EEG) and adaptively modulates playback speed accordingly.",
         },
         {
           title: "Significance",
           body:
-            "The project explores a shift from explicitly operated media controls to adaptive systems that respond to internal cognitive conditions, opening a new direction for learning-oriented interaction design.",
+            "This project explores a shift from user-driven media control to neuroadaptive interaction, where systems respond to users’ internal cognitive states. Such an approach is particularly impactful in auditory learning, where interaction is inherently limited and passive.",
         },
       ],
       useCase: [
         {
-          title: "Use Case",
+          title: "Scenario",
           body:
-            "Designed for learners consuming spoken content such as lectures, podcasts, language-learning audio, or explanatory videos, where attention naturally fluctuates over time.",
+            "Learners listening to audio content such as podcasts or audiobooks—especially during activities like commuting or studying—often adjust playback speed to improve efficiency, but struggle to maintain comprehension at higher speeds as their attention fluctuates.",
         },
         {
-          title: "What Changed",
+          title: "Impact",
           body:
-            "Instead of repeatedly adjusting playback speed by hand, the system uses estimated cognitive state to help pace the listening experience automatically.",
+            "FocuSpeed reduces the need for manual playback control by automatically adapting to the user’s cognitive state, enabling more efficient learning while maintaining comprehension.",
         },
       ],
       outputSlugs: ["focuspeed-sichi2025"],
-      relatedProjects: ["science-of-reality", "humanaugmentation"],
       footer: {
         backHref: "../../projects/",
         backLabel: "Back to Projects",

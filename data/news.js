@@ -4,28 +4,28 @@ export const news = [
     region: "international",
     title: "Presented a collaborative project at Augmented Humans 2026 Posters & Demos",
     summary: [
-      "I presented a collaborative human augmentation project in the Posters & Demos track of ",
-      {
-        text: "Augmented Humans 2026",
-        href: "https://augmented-humans.org/",
-      },
-      ".",
-    ],
-    tags: ["Poster", "Demo", "Conference", "Human Augmentation"],
-  },
-  {
-    date: "2026-02-10",
-    region: "international",
-    title: "Accepted for Augmented Humans 2026 Posters & Demos",
-    summary: [
-      "A collaborative human augmentation project was accepted to the Posters & Demos track of ",
+      "I presented a collaborative Human Augmentation Project in the Posters & Demos track of ",
       {
         text: "Augmented Humans 2026",
         href: "https://augmented-humans.org/",
       },
       ", marking my first international conference presentation.",
     ],
-    tags: ["Acceptance", "Human Augmentation"],
+    tags: ["Poster", "Demo", "Milestone"],
+  },
+  {
+    date: "2026-02-10",
+    region: "international",
+    title: "Accepted for Augmented Humans 2026 Posters & Demos",
+    summary: [
+      "A collaborative Human Augmentation Project was accepted to the Posters & Demos track of ",
+      {
+        text: "Augmented Humans 2026",
+        href: "https://augmented-humans.org/",
+      },
+      ".",
+    ],
+    tags: ["Acceptance"],
   },
   {
     date: "2025-12-01",
@@ -41,28 +41,37 @@ export const news = [
     region: "domestic",
     title: "Received an Encouragement Award at SICHI2025",
     summary: [
-      "FocuSpeed received an Encouragement Award at ",
+      {
+        text: "FocuSpeed",
+        href: "projects/focuspeed/",
+      },
+      " received an Encouragement Award at ",
       {
         text: "SICHI2025",
         href: "https://sites.google.com/view/sichi/sichi2025",
       },
       ", the student contest of the Human Interface Symposium.",
     ],
-    tags: ["Award", "FocuSpeed"],
+    tags: ["Award", "Milestone"],
   },
   {
     date: "2025-09-10",
     region: "domestic",
     title: "Presented my work at SICHI2025",
     summary: [
-      "I presented a poster and demo of FocuSpeed at ",
+      "I presented a poster and demo of ",
+      {
+        text: "FocuSpeed",
+        href: "projects/focuspeed/",
+      },
+      " at ",
       {
         text: "SICHI2025",
         href: "https://sites.google.com/view/sichi/home",
       },
-      ", sharing an adaptive listening system driven by biosignal-based focus estimation.",
+      ", marking my first conference presentation.",
     ],
-    tags: ["Poster", "Demo", "Conference", "FocuSpeed"],
+    tags: ["Poster", "Demo", "Milestone"],
   },
   {
     date: "2025-09-05",

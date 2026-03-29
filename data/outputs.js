@@ -39,30 +39,30 @@ export const outputs = [
       page: "outputs/#output-focuspeed-sichi2025",
     },
     detail: {
-      role: "Researcher / Designer / Engineer",
-      team: "Solo project",
+      role: "Researcher & Engineer",
+      team: "Team Amelab M1 (Kenta Shiki, Tsukihi Sasao, Yuhi Hasegawa, Masatoshi Watanabe)",
       outcome:
-        "Poster and demo presentation at the Human Interface Symposium 2025 Student Contest, with an Encouragement Award.",
-      approach: [
+        "Presented a poster and interactive demo at SICHI 2025, the student contest of the Human Interface Symposium 2025, where the project received an Encouragement Award.",
+      implementation: [
         {
-          title: "Interaction model",
+          title: "System Structure",
           body:
-            "The core design question was not only whether focus could be estimated, but how that estimate should meaningfully affect interaction. The project defined a model in which attention level informs playback pacing without making the behavior feel arbitrary.",
+            "FocuSpeed consists of two main components: a biosignal acquisition device and a computer for real-time processing. The acquired signals are streamed to the computer via Lab Streaming Layer (LSL).",
         },
         {
-          title: "System structure",
+          title: "Signal Processing",
           body:
-            "The prototype combines EEG acquisition, signal processing, focus estimation, and playback control. These stages were kept modular so sensing performance and interaction behavior could be refined independently.",
+            "Incoming biosignals are buffered and periodically segmented for processing. The data undergo basic preprocessing, followed by feature extraction (e.g., power spectral density (PSD) for EEG).",
         },
         {
-          title: "Implementation strategy",
+          title: "Speed Determination",
           body:
-            "The system prioritized real-time responsiveness and interpretability. Rather than optimizing only for prediction accuracy, the design focused on whether speed changes would feel understandable and useful during listening.",
+            "Extracted features, along with candidate playback speeds, are fed into a pretrained machine learning model that predicts a comprehension score. The model is trained using data from a preliminary dictation task. The system selects the fastest speed that satisfies a predefined comprehension threshold and updates playback speed in real time.",
         },
         {
-          title: "Evaluation direction",
+          title: "Evaluation",
           body:
-            "The project was developed as a research prototype and presented through poster and demo formats, using live explanation and feedback to test whether the interaction concept was clear, relevant, and compelling.",
+            "The system was evaluated under three conditions: fast-fixed (1.5×), normal-fixed (1.0×), and adaptive (FocuSpeed).",
         },
       ],
       visuals: [
@@ -75,28 +75,31 @@ export const outputs = [
             "A representative view of the FocuSpeed prototype used in presentations and documentation.",
         },
       ],
-      contributions: [
-        "Framed the project around a state-aware interaction concept that links internal cognitive state with external media control.",
-        "Designed the overall user experience and the logic for how estimated focus should influence playback speed.",
-        "Implemented the EEG signal-processing and focus-estimation pipeline for real-time interaction.",
-        "Built the prototype and integrated sensing, adaptation, and presentation into a coherent end-to-end system.",
-        "Prepared the poster, demo, and supporting materials for public research presentation.",
+      myContributions: [
+        "Contributed to the ideation process through structured brainstorming",
+        "Conducted a literature review of prior work on neuroadaptive systems and biosignal-based interaction.",
+        "Managed the overall project timeline to ensure timely progress across all development phases.",
+        "Designed and implemented the real-time pipeline for biosignal processing and adaptive playback speed determination.",
+        "Built the system prototype and user interface for the interactive demo.",
+        "Integrated the pipeline into the experimental system.",
+        "Designed the demo experience to make system behavior intuitive and perceivable.",
+        "Designed and prepared the poster, slides, and supporting materials for the presentation.",
       ],
-      reflection: [
+      lessonsLearned: [
         {
-          title: "Learning",
+          title: "Key Insights",
           body:
-            "The project clarified that adaptive systems need more than accurate estimation. They also need a clear behavioral meaning that users can understand and trust.",
+            "We found that designing systems based on users’ cognitive states is inherently challenging, as such states are not directly observable and are often difficult for users themselves to recognize. This makes it difficult to design interactions that are both accurate and intuitively understandable. This highlights the importance of designing closed-loop systems that not only adapt to users’ internal states but also make those adaptations perceptible and interpretable.",
         },
         {
-          title: "Difficulty",
+          title: "Challenges",
           body:
-            "Working with biosignals required balancing noisy data, technical feasibility, and interaction clarity. The hardest part was making the adaptation feel conceptually coherent despite uncertainty in the signal.",
+            "Working with biosignals required careful experimental design and robust handling of noisy data. In particular, maintaining a stable measurement environment was critical and proved to be the most challenging aspect of the system.",
         },
         {
-          title: "Next step",
+          title: "Future work",
           body:
-            "A natural next step is to refine the estimation model and evaluate the system in longer learning sessions to better understand usability, comfort, and educational value.",
+            "As a next step, we plan to improve signal reliability by introducing more robust data acquisition and preprocessing techniques. Building on this, we aim to refine the estimation model to achieve more accurate and stable adaptation.",
         },
       ],
       techStack: [
@@ -123,7 +126,7 @@ export const outputs = [
     year: 2025,
     authors: [],
     venue: "",
-    tags: ["Website", "Static Site", "Portfolio"],
+    tags: ["Website"],
     links: {
       demo: "",
       page: "",

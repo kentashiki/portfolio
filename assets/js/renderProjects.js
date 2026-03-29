@@ -2,9 +2,25 @@ import {
   escapeHtml,
   isSameDocumentUrl,
   resolveUrl,
-  sortByYearThenTitle,
   toTagKey,
 } from "./utils/content.js";
+
+const PROJECT_DISPLAY_ORDER = ["focuspeed", "science-of-reality", "humanaugmentation"];
+
+function sortProjects(items) {
+  return [...items].sort((a, b) => {
+    const aIndex = PROJECT_DISPLAY_ORDER.indexOf(a.slug);
+    const bIndex = PROJECT_DISPLAY_ORDER.indexOf(b.slug);
+    const safeA = aIndex === -1 ? PROJECT_DISPLAY_ORDER.length : aIndex;
+    const safeB = bIndex === -1 ? PROJECT_DISPLAY_ORDER.length : bIndex;
+
+    if (safeA !== safeB) {
+      return safeA - safeB;
+    }
+
+    return Number(b.year || 0) - Number(a.year || 0) || (a.title || "").localeCompare(b.title || "");
+  });
+}
 
 function renderProjectLinks(links = {}, root) {
   const items = [
@@ -265,7 +281,7 @@ export function renderProjects(container, projects, options = {}) {
   } = options;
 
   let items = featuredOnly ? projects.filter((project) => project.featured) : [...projects];
-  items = sortByYearThenTitle(items);
+  items = sortProjects(items);
 
   if (typeof limit === "number") {
     items = items.slice(0, limit);

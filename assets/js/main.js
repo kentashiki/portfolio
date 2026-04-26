@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           root,
           detailed: true,
           showHeader: false,
+          pageSize: 10,
         }),
     },
     {

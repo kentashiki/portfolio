@@ -127,6 +127,34 @@
   width: 100%;
 }
 
+.updates-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.updates-page-button {
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.updates-page-button:hover {
+  color: #0066cc;
+}
+
+.updates-page-button.is-active {
+  color: #011121;
+  cursor: default;
+}
+
 /* Placeholder Item */
 .update-item.placeholder {
   opacity: 0.6;

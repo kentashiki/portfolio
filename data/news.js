@@ -1,5 +1,18 @@
 export const news = [
   {
+    date: "2026-04-26",
+    title: "Participated in the BR41N.IO Designers' Hackathon 2026",
+    summary: [
+      "I participated in the ",
+      {
+        text: "BR41N.IO Designers' Hackathon 2026",
+        href: "https://www.br41n.io/Spring-School-2026",
+      },
+      " organized by g.tec medical engineering GmbH, where I collaborated with researchers from Portugal and Brazil on a neuromarketing project.",
+    ],
+    tags: ["Hackathon"],
+  },
+  {
     date: "2026-03-18",
     region: "international",
     title: "Presented a collaborative project at Augmented Humans 2026 Posters & Demos",

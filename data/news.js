@@ -1,5 +1,23 @@
 export const news = [
   {
+    date: "2026-05-01",
+    title: "Joined Visionary Lab at Araya Inc. as a Student Intern",
+    summary: [
+      "I started working at ",
+      {
+        text: "Visionary Lab",
+        href: "https://vl.araya.org/",
+      },
+      " at ",
+      {
+        text: "Araya Inc.",
+        href: "https://www.araya.org/",
+      },
+      " as a student intern. I will contribute to exploring real-world applications of neurotechnology.",
+    ],
+    tags: ["Internship"],
+  },
+  {
     date: "2026-04-26",
     title: "Participated in the BR41N.IO Designers' Hackathon 2026",
     summary: [
@@ -70,17 +88,17 @@ export const news = [
   {
     date: "2025-09-10",
     region: "domestic",
-    title: "Presented my work at SICHI2025",
+    title: "Presented collaborative work at SICHI2025",
     summary: [
       "I presented a poster and demo of ",
       {
         text: "FocuSpeed",
         href: "projects/focuspeed/",
       },
-      " at ",
+      ", a collaborative project with my lab members, at ",
       {
         text: "SICHI2025",
-        href: "https://sites.google.com/view/sichi/home",
+        href: "https://sites.google.com/view/sichi/sichi2025",
       },
       ", marking my first conference presentation.",
     ],

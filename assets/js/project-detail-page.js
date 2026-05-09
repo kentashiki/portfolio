@@ -372,6 +372,7 @@ function renderOutputExplorerCard(output, isActive) {
 function getOutputCardLinks(output) {
   const labels = {
     conference: "Conference site",
+    paper: "View paper",
     pdf: "View paper",
     poster: "View poster",
     demo: "Demo",
@@ -441,6 +442,7 @@ function renderOutputMeta(output) {
 function renderOutputLinks(output) {
   const linkLabels = {
     conference: "Conference site",
+    paper: "View paper",
     pdf: "View paper",
     poster: "View poster",
     demo: "Demo",

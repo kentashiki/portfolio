@@ -25,7 +25,7 @@ function formatTypeLabel(value) {
 }
 
 function getPrimaryLink(links = {}, root) {
-  const priority = ["projectDetail", "page", "pdf", "demo", "github", "doi"];
+  const priority = ["projectDetail", "page", "paper", "pdf", "demo", "github", "doi"];
 
   for (const key of priority) {
     if (links[key]) {
@@ -41,6 +41,7 @@ function getPrimaryLink(links = {}, root) {
 
 function getOutputLinks(links = {}, root) {
   const labels = {
+    paper: "View paper",
     pdf: "View paper",
     poster: "View poster",
     conference: "Conference site",
@@ -54,13 +55,13 @@ function getOutputLinks(links = {}, root) {
     .map(([key, href]) => {
       const resolvedHref = resolveUrl(root, href);
       const sameDocument = isSameDocumentUrl(resolvedHref);
-      const isPdf = key === "pdf";
+      const isPaper = key === "paper" || key === "pdf";
 
       return {
         key,
         href: resolvedHref,
         label: labels[key] || humanizeSlug(key),
-        external: /^https?:\/\//.test(href) || isPdf,
+        external: /^https?:\/\//.test(href) || isPaper,
         sameDocument,
       };
     })
@@ -127,9 +128,7 @@ export function renderOutputCard(output, root) {
               ${outputLinks
                 .map(
                   (link) => `
-                    <a class="output-link" href="${escapeHtml(link.href)}"${
-                      link.external ? ' target="_blank" rel="noopener noreferrer"' : ""
-                    }>
+                    <a class="output-link" href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">
                       ${escapeHtml(link.label)}
                     </a>
                   `

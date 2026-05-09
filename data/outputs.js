@@ -5,12 +5,18 @@ export const outputs = [
     title: "Selecting Verbal Responses from Head Gestures to Support Remote Communication",
     type: "publication",
     year: 2026,
-    authors: ["Ryu Ishikura", "Yamato Takyo", "Kenta Shiki", "Yoshio Ishiguro"],
+    authors: [
+      "Ryu Ishikura",
+      "Yamato Takyo",
+      "Kenta Shiki",
+      "Yoshio Ishiguro"
+    ],
     equalContributionCount: 3,
     venue: "Augmented Humans 2026 Posters & Demos",
     tags: ["Poster", "Demo", "International"],
     links: {
       conference: "https://augmented-humans.org/",
+      paper: "https://dl.acm.org/doi/10.1145/3795011.3797418",
       page: "outputs/#output-selecting-verbal-responses-head-gestures",
     },
   },
@@ -33,7 +39,7 @@ export const outputs = [
     tags: ["Poster", "Demo", "Domestic (Japan)"],
     links: {
       conference: "https://sites.google.com/view/sichi/sichi2025",
-      pdf: "assets/documents/outputs/focuspeed-sichi2025-paper.pdf",
+      paper: "assets/documents/outputs/focuspeed-sichi2025-paper.pdf",
       poster: "assets/documents/outputs/focuspeed-sichi2025-poster.pdf",
       projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
       page: "outputs/#output-focuspeed-sichi2025",

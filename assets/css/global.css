@@ -803,6 +803,12 @@ footer {
   .nav-toggle {
     display: inline-flex;
     margin-left: auto;
+    border: 0;
+    background: transparent;
+  }
+
+  .nav-toggle:hover {
+    background: transparent;
   }
 
   .header-controls {

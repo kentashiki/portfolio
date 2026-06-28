@@ -217,10 +217,10 @@ section {
 }
 
 .carousel-container {
-  max-width: 1000px;
+  max-width: 1180px;
   margin: 0 auto;
   position: relative;
-  padding: 0 80px;
+  padding: 0 72px;
 }
 
 .carousel-wrapper {
@@ -238,7 +238,8 @@ section {
   flex: 0 0 100%;
   min-width: 100%;
   flex-shrink: 0;
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   background: white;
   border-radius: 16px;
@@ -255,29 +256,30 @@ section {
 
 .carousel-image {
   width: 100%;
-  height: 400px;
+  flex: 0 0 auto;
+  aspect-ratio: 5 / 2;
   overflow: hidden;
   background: #f8f9fa;
 }
 
 .carousel-image img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
 .carousel-card:hover .carousel-caption {
-  background: rgba(0, 0, 0, 0.75);
+  background: #011121;
 }
 
 .carousel-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
+  flex: 1 1 auto;
   padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(1, 17, 33, 0.94);
   color: #fff;
   box-sizing: border-box;
 }
@@ -479,7 +481,7 @@ section {
   }
 
   .carousel-container {
-    padding: 0 24px;
+    padding: 0 18px;
   }
 
   .carousel-wrapper {
@@ -492,7 +494,7 @@ section {
   }
 
   .carousel-image {
-    height: 220px;
+    aspect-ratio: 16 / 9;
   }
 
   .carousel-caption {

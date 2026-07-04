@@ -1,7 +1,26 @@
 export const news = [
   {
+    date: "2026-07-01",
+    region: "domestic",
+    title: "Received an Excellence Award at LIGP 2026",
+    summary: [
+      "Our Amelab M2 team received an Excellence Award at ",
+      {
+        text: "Learning Innovation Grand Prix (LIGP) 2026",
+        href: "https://ligp.gingerapp.co.jp/",
+      },
+      " for ",
+      {
+        text: "FocuSpeed",
+        href: "projects/focuspeed/",
+      },
+      ".",
+    ],
+    tags: ["Award"],
+  },
+  {
     date: "2026-05-01",
-    title: "Joined Visionary Lab at Araya Inc. as a Student Intern",
+    title: "Joined Visionary Lab at Araya Inc. as a student intern",
     summary: [
       "I started working at ",
       {
@@ -28,16 +47,16 @@ export const news = [
       },
       " organized by g.tec medical engineering GmbH, where I collaborated with researchers from Portugal and Brazil on a neuromarketing project.",
     ],
-    tags: ["Hackathon"],
+    tags: ["Event"],
   },
   {
     date: "2026-03-18",
     region: "international",
-    title: "Presented a collaborative project at Augmented Humans 2026 Posters & Demos",
+    title: "Presented a collaborative project at AHs 2026 Posters & Demos",
     summary: [
       "I presented a collaborative Human Augmentation Project in the Posters & Demos track of ",
       {
-        text: "Augmented Humans 2026",
+        text: "Augmented Humans (AHs) 2026",
         href: "https://augmented-humans.org/",
       },
       ", marking my first international conference presentation.",
@@ -47,11 +66,11 @@ export const news = [
   {
     date: "2026-02-10",
     region: "international",
-    title: "Accepted for Augmented Humans 2026 Posters & Demos",
+    title: "Accepted for AHs 2026 Posters & Demos",
     summary: [
       "A collaborative Human Augmentation Project was accepted to the Posters & Demos track of ",
       {
-        text: "Augmented Humans 2026",
+        text: "Augmented Humans (AHs) 2026",
         href: "https://augmented-humans.org/",
       },
       ".",
@@ -78,17 +97,17 @@ export const news = [
       },
       " received an Encouragement Award at ",
       {
-        text: "SICHI2025",
+        text: "Student Innovation Contest at Human Interface Symposium (SICHI) 2025",
         href: "https://sites.google.com/view/sichi/sichi2025",
       },
-      ", the student contest of the Human Interface Symposium.",
+      ", marking my first award recognition.",
     ],
     tags: ["Award", "Milestone"],
   },
   {
     date: "2025-09-10",
     region: "domestic",
-    title: "Presented collaborative work at SICHI2025",
+    title: "Presented a collaborative work at SICHI2025",
     summary: [
       "I presented a poster and demo of ",
       {
@@ -97,7 +116,7 @@ export const news = [
       },
       ", a collaborative project with my lab members, at ",
       {
-        text: "SICHI2025",
+        text: "Student Innovation Contest at Human Interface Symposium (SICHI) 2025",
         href: "https://sites.google.com/view/sichi/sichi2025",
       },
       ", marking my first conference presentation.",

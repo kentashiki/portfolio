@@ -7,6 +7,7 @@ import {
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js";
+import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
 
 function formatTypeLabel(value) {
   if (value === "publication") {
@@ -40,16 +41,6 @@ function getPrimaryLink(links = {}, root) {
 }
 
 function getOutputLinks(links = {}, root) {
-  const labels = {
-    paper: "View paper",
-    pdf: "View paper",
-    poster: "View poster",
-    conference: "Conference site",
-    demo: "Live demo",
-    github: "GitHub",
-    doi: "DOI",
-  };
-
   return Object.entries(links)
     .filter(([, href]) => href)
     .map(([key, href]) => {
@@ -60,7 +51,7 @@ function getOutputLinks(links = {}, root) {
       return {
         key,
         href: resolvedHref,
-        label: labels[key] || humanizeSlug(key),
+        label: getLinkActionLabel(key),
         external: /^https?:\/\//.test(href) || isPaper,
         sameDocument,
       };
@@ -126,13 +117,7 @@ export function renderOutputCard(output, root) {
           ? `
             <div class="output-card-links">
               ${outputLinks
-                .map(
-                  (link) => `
-                    <a class="output-link" href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">
-                      ${escapeHtml(link.label)}
-                    </a>
-                  `
-                )
+                .map((link) => renderLinkAction({ ...link, external: true }))
                 .join("")}
             </div>
           `

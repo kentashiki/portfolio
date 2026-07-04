@@ -7,6 +7,7 @@ import {
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js";
+import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
 
 const AWARD_AXES = [
   { key: "type", label: "Type" },
@@ -15,11 +16,11 @@ const AWARD_AXES = [
 ];
 
 const REGION_ORDER = ["international", "domestic", "not-region-specific"];
-const AWARD_TYPE_ORDER = ["student-contest"];
+const AWARD_TYPE_ORDER = ["competition-award"];
 
 function formatTypeLabel(value) {
-  if (value === "student-contest") {
-    return "Student Contest";
+  if (value === "competition-award") {
+    return "Competition Award";
   }
 
   return humanizeSlug(value);
@@ -67,15 +68,6 @@ function getAwardPrimaryLink(links = {}, root) {
 }
 
 function getAwardLinks(links = {}, root) {
-  const labels = {
-    conference: "Conference site",
-    pdf: "View paper",
-    poster: "View poster",
-    demo: "Live demo",
-    github: "GitHub",
-    doi: "DOI",
-  };
-
   return Object.entries(links)
     .filter(([, href]) => href)
     .map(([key, href]) => {
@@ -86,7 +78,7 @@ function getAwardLinks(links = {}, root) {
       return {
         key,
         href: resolvedHref,
-        label: labels[key] || humanizeSlug(key),
+        label: getLinkActionLabel(key),
         external: /^https?:\/\//.test(href) || isPdf,
         sameDocument,
       };
@@ -122,15 +114,7 @@ export function renderAwardCard(award, root) {
           ? `
             <div class="award-card-links">
               ${awardLinks
-                .map(
-                  (link) => `
-                    <a class="output-link" href="${escapeHtml(link.href)}"${
-                      link.external ? ' target="_blank" rel="noopener noreferrer"' : ""
-                    }>
-                      ${escapeHtml(link.label)}
-                    </a>
-                  `
-                )
+                .map((link) => renderLinkAction(link))
                 .join("")}
             </div>
           `

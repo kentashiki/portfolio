@@ -1,7 +1,7 @@
 /* Outputs page */
 .works-section {
   padding: 80px 7.5%;
-  background: #ffffff;
+  background: var(--color-surface);
 }
 
 .works-container {
@@ -17,8 +17,8 @@
 
 .awards-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
 .outputs-axis-switch {
@@ -29,9 +29,9 @@
 }
 
 .outputs-axis-button {
-  border: 1px solid #d0d8e2;
-  background: #ffffff;
-  color: #334155;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
   border-radius: 999px;
   padding: 0.55rem 1rem;
   font-weight: 600;
@@ -41,8 +41,8 @@
 
 .outputs-axis-button:hover,
 .outputs-axis-button.is-active {
-  border-color: #0066cc;
-  background: #0066cc;
+  border-color: var(--color-accent);
+  background: var(--color-accent);
   color: #ffffff;
 }
 
@@ -57,7 +57,7 @@
 .output-subsection-title {
   margin: 0 0 1.5rem 0;
   font-size: 1.7rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .outputs-metrics-container {
@@ -71,16 +71,16 @@
 }
 
 .metric-card {
-  background: #ffffff;
-  border: 1px solid #dbe4ef;
-  border-radius: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(1, 17, 33, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .metric-main {
   padding: 18px 20px;
-  background: #0066cc;
+  background: var(--color-accent);
   color: #ffffff;
 }
 
@@ -101,7 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  background: #f8fafc;
+  background: var(--color-surface-muted);
 }
 
 .metric-breakdown-item {
@@ -111,21 +111,21 @@
 }
 
 .metric-sub-label {
-  color: #667085;
+  color: var(--color-muted);
 }
 
 .metric-sub-number {
-  color: #011121;
+  color: var(--color-heading);
   font-weight: 700;
 }
 
 .output-card,
 .award-card {
-  background: #ffffff;
-  border: 1px solid #e1e7ef;
-  border-radius: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 10px;
   padding: 1.5rem;
-  box-shadow: 0 8px 24px rgba(1, 17, 33, 0.06);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
@@ -142,7 +142,7 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.45;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .output-card-title-link {
@@ -153,38 +153,38 @@
 
 .output-card-title-link:hover,
 .output-card-title-link:focus-visible {
-  color: #0066cc;
+  color: var(--color-accent);
 }
 
 .output-card-authors {
   margin: -0.15rem 0 0;
-  color: #555;
+  color: var(--color-body);
   font-size: 0.96rem;
   line-height: 1.7;
 }
 
 .equal-contribution-marker {
-  color: #0066cc;
+  color: var(--color-accent);
   font-weight: 700;
 }
 
 .equal-contribution-note {
   display: inline-block;
   margin-left: 0.45rem;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 0.88rem;
   font-weight: 600;
   white-space: nowrap;
 }
 
 .author-highlight {
-  color: #0066cc;
+  color: var(--color-accent);
   font-weight: 700;
 }
 
 .output-card-venue {
   margin: 0;
-  color: #555;
+  color: var(--color-body);
   font-size: 0.95rem;
   font-weight: 600;
 }
@@ -198,14 +198,14 @@
 .output-card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
+  gap: 0.55rem;
   margin-top: auto;
   padding-top: 0.2rem;
 }
 
 .award-card-year {
   margin: 0;
-  color: #0066cc;
+  color: var(--color-accent);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -214,14 +214,14 @@
 
 .award-card-issuer {
   margin: 0;
-  color: #555;
+  color: var(--color-body);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
 .award-card-recipients {
   margin: -0.2rem 0 0;
-  color: #555;
+  color: var(--color-body);
   font-size: 0.96rem;
   line-height: 1.7;
 }
@@ -229,7 +229,7 @@
 .award-card-description,
 .award-card-related {
   margin: 0;
-  color: #555;
+  color: var(--color-body);
   line-height: 1.7;
 }
 
@@ -240,21 +240,35 @@
 }
 
 .award-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
   margin-top: auto;
 }
 
 .output-link {
   display: inline-flex;
   align-items: center;
-  color: #0066cc;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--color-heading);
+  font-size: 0.88rem;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .output-link:hover {
-  color: #0052a3;
-  transform: translateX(4px);
+  color: var(--color-accent);
+  background: var(--color-surface);
+  border-color: rgba(47, 93, 98, 0.28);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
 }
 
 .date-tag {

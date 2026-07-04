@@ -1,15 +1,14 @@
-import projects from "../../data/projects.js";
-import outputs from "../../data/outputs.js";
-import awards from "../../data/awards.js";
+import projects from "../../data/projects.js?v=20260704e";
+import outputs from "../../data/outputs.js?v=20260704e";
+import awards from "../../data/awards.js?v=20260704e";
 import { resolveUrl, toTagKey } from "./utils/content.js";
+import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
 import { renderOutputCard } from "./renderOutputs.js";
 import { renderAwardCard } from "./renderAwards.js";
 
 const root = document.querySelector("[data-project-detail-root]");
 const rootPath = document.body?.dataset.root || "";
 const slug = document.body?.dataset.projectSlug;
-const initialOutputSlug =
-  typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("output") : null;
 
 if (root) {
   const project = projects.find((item) => item.slug === slug);
@@ -24,18 +23,17 @@ if (root) {
 function buildProjectDetail(project) {
   const projectDetail = project.detail || {};
   const outputEntries = buildProjectOutputs(project, projectDetail);
-  const primaryOutput =
-    outputEntries.find((item) => item.slug === initialOutputSlug) || outputEntries[0] || null;
+  const awardEntries = buildProjectAwards(project, outputEntries, projectDetail);
 
   return {
     ...project,
     heroImage: projectDetail.heroImage || project.heroImage,
+    featuredVideo: projectDetail.featuredVideo || project.featuredVideo,
     overview: projectDetail.overview || project.overview,
     useCase: projectDetail.useCase || project.useCase,
+    techStack: projectDetail.techStack || project.techStack,
     outputEntries,
-    primaryOutputSlug: outputEntries.some((item) => item.slug === initialOutputSlug)
-      ? initialOutputSlug
-      : null,
+    awardEntries,
     footer: projectDetail.footer || project.footer,
     links: project.links || {},
   };
@@ -65,28 +63,56 @@ function buildProjectOutputs(project, projectDetail) {
   });
 }
 
+function buildProjectAwards(project, outputEntries, projectDetail) {
+  const configuredAwardSlugs = projectDetail.awardSlugs || [];
+  const outputSlugs = new Set(outputEntries.map((output) => output.slug));
+  const outputAwardSlugs = outputEntries.flatMap((output) => output.relatedAwards || []);
+  const awardSlugs = new Set([...configuredAwardSlugs, ...outputAwardSlugs]);
+  const matchedAwards = [
+    ...configuredAwardSlugs
+      .map((awardSlug) => awards.find((award) => award.slug === awardSlug))
+      .filter(Boolean),
+    ...awards.filter(
+      (award) =>
+        award.projectSlug === project.slug ||
+        awardSlugs.has(award.slug) ||
+        outputSlugs.has(award.outputSlug)
+    ),
+  ];
+  const seen = new Set();
+
+  return matchedAwards.filter((award) => {
+    if (seen.has(award.slug)) {
+      return false;
+    }
+
+    seen.add(award.slug);
+    return true;
+  });
+}
+
 function renderProjectDetail(container, detail) {
   document.title = `${detail.title} - Project Detail`;
 
   container.innerHTML = `
     ${renderHero(detail)}
     <main class="project-detail-root">
-      ${renderSection("Overview", detail.overview?.length ? renderOverview(detail.overview) : "")}
+      ${renderSection("Overview", renderOverviewSection(detail))}
+      ${renderSection("Featured Video", renderFeaturedVideo(detail.featuredVideo))}
       ${renderSection("Use Case", detail.useCase?.length ? renderOverview(detail.useCase) : "")}
+      ${renderSection("Tech Stack", detail.techStack?.length ? renderTechStack(detail.techStack) : "")}
       ${renderSection(
         "Outputs",
-        detail.outputEntries?.length ? renderOutputExplorer(detail.outputEntries, detail.primaryOutputSlug) : "",
-        "Click an output card to expand output-specific details such as implementation, visuals, links, lessons learned, and team context."
+        detail.outputEntries?.length ? renderOutputRecords(detail.outputEntries) : ""
       )}
+      ${renderSection("Awards", detail.awardEntries?.length ? renderProjectAwards(detail.awardEntries) : "")}
       ${renderFooter(detail)}
     </main>
   `;
 
-  initOutputExplorer(container);
 }
 
 function renderHero(detail) {
-  const heroImageSrc = detail.thumbnail ? resolveUrl(rootPath, detail.thumbnail) : "";
   const metaItems = [{ label: "Period", value: detail.period }].filter((item) => item.value);
   const detailLinks = [
     ["github", "GitHub"],
@@ -97,6 +123,7 @@ function renderHero(detail) {
   ]
     .filter(([key]) => detail.links?.[key])
     .map(([key, label]) => ({
+      key,
       label,
       href: detail.links[key],
     }));
@@ -130,21 +157,6 @@ function renderHero(detail) {
           ${detail.tags?.length ? renderTags(detail.tags) : ""}
           ${detailLinks.length ? renderLinks(detailLinks) : ""}
         </div>
-        ${
-          detail.heroImage && heroImageSrc
-            ? `
-            <div class="project-detail-hero__media">
-              <figure class="project-detail-hero__image-frame">
-                <img
-                  class="project-detail-hero__image"
-                  src="${escapeAttribute(heroImageSrc)}"
-                  alt="${escapeAttribute(detail.heroImage.alt || detail.title)}"
-                />
-              </figure>
-            </div>
-          `
-            : ""
-        }
       </div>
     </section>
   `;
@@ -168,6 +180,104 @@ function renderSection(title, content, intro = "") {
   `;
 }
 
+function renderFeaturedVideo(video) {
+  if (!video?.src) {
+    return "";
+  }
+
+  const media = renderFeaturedVideoMedia(video);
+
+  if (!media) {
+    return "";
+  }
+
+  return `
+    <figure class="project-detail-featured-video">
+      <div class="project-detail-featured-video__media">${media}</div>
+      ${
+        video.title || video.caption
+          ? `
+            <figcaption class="project-detail-featured-video__body">
+              ${video.title ? `<h3 class="project-detail-featured-video__title">${escapeHtml(video.title)}</h3>` : ""}
+              ${
+                video.caption
+                  ? `<p class="project-detail-featured-video__caption">${escapeHtml(video.caption)}</p>`
+                  : ""
+              }
+            </figcaption>
+          `
+          : ""
+      }
+    </figure>
+  `;
+}
+
+function renderFeaturedVideoMedia(video) {
+  const type = video.type || "video";
+
+  if (type === "youtube") {
+    const embedUrl = toYouTubeEmbedUrl(video.src);
+
+    if (!embedUrl) {
+      return "";
+    }
+
+    return `
+      <iframe
+        src="${escapeAttribute(embedUrl)}"
+        title="${escapeAttribute(video.title || "Featured project video")}"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    `;
+  }
+
+  if (type === "embed") {
+    return `
+      <iframe
+        src="${escapeAttribute(video.src)}"
+        title="${escapeAttribute(video.title || "Featured project video")}"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    `;
+  }
+
+  const src = resolveUrl(rootPath, video.src);
+  const poster = video.poster ? resolveUrl(rootPath, video.poster) : "";
+
+  return `
+    <video
+      src="${escapeAttribute(src)}"
+      ${poster ? `poster="${escapeAttribute(poster)}"` : ""}
+      controls
+      preload="metadata"
+    ></video>
+  `;
+}
+
+function toYouTubeEmbedUrl(value) {
+  try {
+    const url = new URL(value);
+    let videoId = "";
+
+    if (url.hostname.includes("youtu.be")) {
+      videoId = url.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (url.pathname.startsWith("/embed/")) {
+      videoId = url.pathname.split("/").filter(Boolean)[1] || "";
+    } else if (url.pathname.startsWith("/shorts/")) {
+      videoId = url.pathname.split("/").filter(Boolean)[1] || "";
+    } else {
+      videoId = url.searchParams.get("v") || "";
+    }
+
+    return videoId ? `https://www.youtube.com/embed/${encodeURIComponent(videoId)}` : "";
+  } catch {
+    return "";
+  }
+}
+
 function renderOverview(items) {
   return `
     <div class="project-detail-overview">
@@ -182,6 +292,38 @@ function renderOverview(items) {
         )
         .join("")}
     </div>
+  `;
+}
+
+function renderOverviewSection(detail) {
+  const overview = detail.overview?.length ? renderOverview(detail.overview) : "";
+  const teaser = renderProjectTeaser(detail);
+
+  return `${overview}${teaser}`;
+}
+
+function renderProjectTeaser(detail) {
+  if (!detail.heroImage || !detail.thumbnail) {
+    return "";
+  }
+
+  const imageSrc = resolveUrl(rootPath, detail.thumbnail);
+
+  return `
+    <figure class="project-detail-teaser">
+      <div class="project-detail-teaser__media">
+        <img
+          src="${escapeAttribute(imageSrc)}"
+          alt="${escapeAttribute(detail.heroImage.alt || detail.title)}"
+          loading="lazy"
+        />
+      </div>
+      ${
+        detail.heroImage.caption
+          ? `<figcaption class="project-detail-teaser__caption">${escapeHtml(detail.heroImage.caption)}</figcaption>`
+          : ""
+      }
+    </figure>
   `;
 }
 
@@ -304,38 +446,101 @@ function renderResults(items, detail) {
   `;
 }
 
-function renderOutputExplorer(items, activeSlug) {
+function renderProjectAwards(items) {
   return `
-    <div class="project-detail-output-explorer">
-      <div class="project-detail-output-grid">
-        ${items.map((item) => renderOutputExplorerCard(item, item.slug === activeSlug)).join("")}
-      </div>
-      <div class="project-detail-output-panels">
-        ${items.map((item) => renderOutputPanel(item, item.slug === activeSlug)).join("")}
-      </div>
+    <div class="project-detail-award-records">
+      ${items
+        .slice()
+        .sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || a.title.localeCompare(b.title))
+        .map((award) => renderAwardRecord(award))
+        .join("")}
     </div>
   `;
 }
 
-function renderOutputExplorerCard(output, isActive) {
-  const outputLinks = getOutputCardLinks(output);
+function renderAwardRecord(award) {
+  const awardLinks = getProjectAwardLinks(award);
 
   return `
-    <div
-      class="project-detail-output-card${isActive ? " is-active" : ""}"
-      data-output-toggle="${escapeAttribute(output.slug)}"
-      tabindex="0"
-      role="button"
-      aria-expanded="${isActive ? "true" : "false"}"
-      aria-controls="output-panel-${escapeAttribute(output.slug)}"
-    >
-      <article class="output-card">
-        <h3 class="output-card-title">${escapeHtml(output.title)}</h3>
-        ${output.authors?.length ? `<p class="output-card-authors">${escapeHtml(output.authors.join(", "))}</p>` : ""}
-        ${output.venue ? `<p class="output-card-venue">${escapeHtml(output.venue)}</p>` : ""}
+    <article class="project-detail-award-record" id="award-${escapeAttribute(award.slug)}">
+      <div class="project-detail-award-record__content">
+        <h3 class="project-detail-award-record__title">${escapeHtml(award.title)}</h3>
+        ${award.issuer ? `<p class="project-detail-award-record__issuer">${escapeHtml(award.issuer)}</p>` : ""}
+        ${award.recipients?.length ? `<p class="project-detail-award-record__recipients">${renderNamesList(award.recipients)}</p>` : ""}
+        ${
+          award.tags?.length
+            ? `<div class="project-detail-award-record__tags">${award.tags
+                .map(
+                  (tag) =>
+                    `<span class="research-tag" data-tag="${escapeAttribute(toTagKey(tag))}">${escapeHtml(tag)}</span>`
+                )
+                .join("")}</div>`
+            : ""
+        }
+        ${
+          awardLinks.length
+            ? `
+              <div class="project-detail-award-record__links">
+                ${awardLinks
+                  .map((link) =>
+                    renderLinkAction({
+                      ...link,
+                      className: "project-detail-award-record__link",
+                    })
+                  )
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
+      </div>
+    </article>
+  `;
+}
+
+function getProjectAwardLinks(award) {
+  return Object.entries(award.links || {})
+    .filter(([key, href]) => href && key !== "page" && key !== "projectDetail")
+    .map(([key, href]) => ({
+      key,
+      href: resolveUrl(rootPath, href),
+      label: getLinkActionLabel(key),
+      external: shouldOpenInNewTab(href),
+    }));
+}
+
+function renderNamesList(names = []) {
+  return names
+    .map((name) =>
+      name === "Kenta Shiki"
+        ? `<span class="author-highlight">${escapeHtml(name)}</span>`
+        : escapeHtml(name)
+    )
+    .join(", ");
+}
+
+function renderOutputRecords(items) {
+  return `
+    <div class="project-detail-output-records">
+      ${items.map((item) => renderOutputRecord(item)).join("")}
+    </div>
+  `;
+}
+
+function renderOutputRecord(output) {
+  const outputLinks = getOutputLinks(output);
+
+  return `
+    <article class="project-detail-output-record" id="output-${escapeAttribute(output.slug)}">
+      <div class="project-detail-output-record__header">
+        <div class="project-detail-output-record__summary">
+          <h3 class="project-detail-output-record__title">${escapeHtml(output.title)}</h3>
+          ${output.authors?.length ? `<p class="project-detail-output-record__authors">${renderNamesList(output.authors)}</p>` : ""}
+          ${output.venue ? `<p class="project-detail-output-record__venue">${escapeHtml(output.venue)}</p>` : ""}
+        </div>
         ${
           output.tags?.length
-            ? `<div class="output-card-tags">${output.tags
+            ? `<div class="project-detail-output-record__tags">${output.tags
                 .map(
                   (tag) =>
                     `<span class="research-tag" data-tag="${escapeAttribute(toTagKey(tag))}">${escapeHtml(tag)}</span>`
@@ -346,70 +551,45 @@ function renderOutputExplorerCard(output, isActive) {
         ${
           outputLinks.length
             ? `
-              <div class="output-card-links">
+              <div class="project-detail-output-record__links">
                 ${outputLinks
-                  .map(
-                    (link) => `
-                      <a
-                        class="output-link"
-                        href="${escapeAttribute(link.href)}"
-                        ${shouldOpenInNewTab(link.href) ? 'target="_blank" rel="noopener noreferrer"' : ""}
-                      >
-                        ${escapeHtml(link.label)}
-                      </a>
-                    `
+                  .map((link) =>
+                    renderLinkAction({
+                      ...link,
+                      className: "project-detail-output-record__link",
+                    })
                   )
                   .join("")}
               </div>
             `
             : ""
         }
-      </article>
-    </div>
+      </div>
+      <div class="project-detail-output-record__body">
+        ${renderOutputMeta(output)}
+        ${output.implementation?.length ? renderInlineOutputSection("Implementation", renderApproach(output.implementation)) : ""}
+        ${output.myContributions?.length ? renderInlineOutputSection("My Contributions", renderBullets(output.myContributions)) : ""}
+        ${output.lessonsLearned?.length ? renderInlineOutputSection("Reflection", renderReflection(output.lessonsLearned)) : ""}
+      </div>
+    </article>
   `;
 }
 
-function getOutputCardLinks(output) {
-  const labels = {
-    conference: "Conference site",
-    paper: "View paper",
-    pdf: "View paper",
-    poster: "View poster",
-    demo: "Demo",
-    github: "GitHub",
-    doi: "DOI",
-  };
-
+function getOutputLinks(output) {
   return Object.entries(output.links || {})
     .filter(([key, href]) => href && key !== "page" && key !== "projectDetail")
     .map(([key, href]) => ({
+      key,
       href: resolveUrl(rootPath, href),
-      label: labels[key] || key,
+      label: getLinkActionLabel(key),
+      external: shouldOpenInNewTab(href),
     }));
 }
 
-function renderOutputPanel(output, isActive) {
-  return `
-    <section
-      class="project-detail-output-panel${isActive ? " is-active" : ""}"
-      id="output-panel-${escapeAttribute(output.slug)}"
-      data-output-panel="${escapeAttribute(output.slug)}"
-      ${isActive ? "" : "hidden"}
-    >
-      ${renderOutputMeta(output)}
-      ${renderOutputLinks(output)}
-      ${output.implementation?.length ? renderInlineOutputSection("Implementation", renderApproach(output.implementation)) : ""}
-      ${
-        output.visuals?.length
-          ? renderInlineOutputSection("Visuals", renderVisuals(output.visuals))
-          : ""
-      }
-      ${output.myContributions?.length ? renderInlineOutputSection("My Contributions", renderBullets(output.myContributions)) : ""}
-      ${output.relatedAwards?.length ? renderOutputAwards(output.relatedAwards) : ""}
-      ${output.lessonsLearned?.length ? renderInlineOutputSection("Lessons Learned", renderReflection(output.lessonsLearned)) : ""}
-      ${output.techStack?.length ? renderInlineOutputSection("Tech Stack", renderTechStack(output.techStack)) : ""}
-    </section>
-  `;
+function humanizeOutputMeta(value) {
+  return String(value || "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function renderOutputMeta(output) {
@@ -439,33 +619,6 @@ function renderOutputMeta(output) {
   `;
 }
 
-function renderOutputLinks(output) {
-  const linkLabels = {
-    conference: "Conference site",
-    paper: "View paper",
-    pdf: "View paper",
-    poster: "View poster",
-    demo: "Demo",
-    github: "GitHub",
-    doi: "DOI",
-  };
-  const items = Object.entries(output.links || {})
-    .filter(([key, href]) => href && key !== "page" && key !== "projectDetail")
-    .map(([key, href]) => ({
-      href: resolveUrl(rootPath, href),
-      label: linkLabels[key] || key,
-    }));
-
-  if (!items.length) {
-    return "";
-  }
-
-  return renderInlineOutputSection(
-    "Links",
-    renderLinks(items)
-  );
-}
-
 function renderInlineOutputSection(title, content, intro = "") {
   return `
     <section class="project-detail-output-subsection">
@@ -476,25 +629,6 @@ function renderInlineOutputSection(title, content, intro = "") {
       ${content}
     </section>
   `;
-}
-
-function renderOutputAwards(awardSlugs) {
-  const relatedAwards = awardSlugs
-    .map((relatedSlug) => awards.find((award) => award.slug === relatedSlug))
-    .filter(Boolean);
-
-  if (!relatedAwards.length) {
-    return "";
-  }
-
-  return renderInlineOutputSection(
-    "Awards",
-    `
-      <div class="project-detail-related-cards">
-        ${relatedAwards.map((award) => renderAwardCard(award, rootPath)).join("")}
-      </div>
-    `
-  );
 }
 
 function renderResultBody(item, detail) {
@@ -531,34 +665,6 @@ function renderResultBody(item, detail) {
   return (item.items || []).length ? renderTextList(item.items) : renderParagraphs(item.body || "");
 }
 
-function initOutputExplorer(container) {
-  const toggles = container.querySelectorAll("[data-output-toggle]");
-  const panels = container.querySelectorAll("[data-output-panel]");
-
-  if (!toggles.length || !panels.length) {
-    return;
-  }
-
-  toggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const slug = toggle.dataset.outputToggle;
-      const shouldClose = toggle.classList.contains("is-active");
-
-      toggles.forEach((item) => {
-        const isActive = shouldClose ? false : item.dataset.outputToggle === slug;
-        item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-expanded", String(isActive));
-      });
-
-      panels.forEach((panel) => {
-        const isActive = shouldClose ? false : panel.dataset.outputPanel === slug;
-        panel.classList.toggle("is-active", isActive);
-        panel.hidden = !isActive;
-      });
-    });
-  });
-}
-
 function renderReflection(items) {
   return `
     <div class="project-detail-reflection">
@@ -566,7 +672,7 @@ function renderReflection(items) {
         .map(
           (item) => `
           <article class="project-detail-reflection__item">
-            <h3>${escapeHtml(item.title)}</h3>
+            ${item.title ? `<h3>${escapeHtml(item.title)}</h3>` : ""}
             <div class="project-detail-richtext">${renderParagraphs(item.body)}</div>
           </article>
         `
@@ -613,16 +719,12 @@ function renderLinks(links) {
     <div class="project-detail-links">
       ${links
         .filter((link) => link.href && link.label)
-        .map(
-          (link) => `
-          <a
-            class="project-detail-link"
-            href="${escapeAttribute(link.href)}"
-            ${shouldOpenInNewTab(link.href) ? 'target="_blank" rel="noopener noreferrer"' : ""}
-          >
-            ${escapeHtml(link.label)}
-          </a>
-        `
+        .map((link) =>
+          renderLinkAction({
+            ...link,
+            className: "project-detail-link",
+            external: shouldOpenInNewTab(link.href),
+          })
         )
         .join("")}
     </div>

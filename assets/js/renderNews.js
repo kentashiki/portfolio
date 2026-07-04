@@ -1,7 +1,18 @@
 import { escapeHtml, resolveUrl, toTagKey } from "./utils/content.js";
 
 function formatDate(dateString) {
-  return dateString.replace(/-/g, ".");
+  const [year, month, day] = String(dateString).split("-").map(Number);
+
+  if (!year || !month || !day) {
+    return String(dateString);
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
 function renderSummaryContent(summary, root) {

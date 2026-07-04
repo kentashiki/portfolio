@@ -1,7 +1,7 @@
 /* プロフィール詳細セクション */
 .profile-detail-section {
   padding: 100px 7.5%;
-  background: #ffffff;
+  background: var(--color-surface);
 }
 
 .profile-detail-container {
@@ -16,9 +16,9 @@
   flex-shrink: 0;
   width: 320px;
   height: 320px;
-  border-radius: 16px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-soft);
 }
 
 .profile-detail-image img {
@@ -34,11 +34,11 @@
 .profile-detail-text h2 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .profile-basic-info {
-  background: #f8f9fa;
+  background: var(--color-surface-muted);
   padding: 2rem;
   border-radius: 12px;
   margin-bottom: 2rem;
@@ -47,7 +47,7 @@
 .info-row {
   display: flex;
   padding: 0.8rem 0;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid var(--color-border-soft);
 }
 
 .info-row:last-child {
@@ -57,17 +57,17 @@
 .info-label {
   font-weight: 600;
   width: 120px;
-  color: #011121;
+  color: var(--color-heading);
   flex-shrink: 0;
 }
 
 .info-value {
-  color: #555;
+  color: var(--color-body);
   flex: 1;
 }
 
 .profile-intro {
-  color: #555;
+  color: var(--color-body);
   line-height: 1.8;
   font-size: 1.05rem;
 }
@@ -84,20 +84,20 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.9rem 1.5rem;
-  background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+  background: var(--color-accent);
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+  box-shadow: 0 2px 8px rgba(47, 93, 98, 0.16);
 }
 
 .cv-download-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.35);
-  background: linear-gradient(135deg, #0052a3 0%, #003d7a 100%);
+  box-shadow: 0 4px 16px rgba(47, 93, 98, 0.32);
+  background: var(--color-accent-hover);
 }
 
 .cv-icon {
@@ -111,14 +111,14 @@
 /* ミッションセクション */
 .mission-section {
   padding: 100px 7.5%;
-  background: #f8f9fa;
+  background: var(--color-surface-muted);
 }
 
 .mission-section h2 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .mission-section p {
@@ -126,14 +126,14 @@
   margin: 0 auto;
   font-size: 1.15rem;
   line-height: 2.2;
-  color: #333;
+  color: var(--color-text);
   text-align: center;
 }
 
 .mission-section p strong {
   font-size: 1.3em;
   font-weight: 700;
-  color: #0066cc;
+  color: var(--color-accent);
   display: inline-block;
   margin: 0 2px;
 }
@@ -141,14 +141,14 @@
 /* ビジョンセクション */
 .vision-section {
   padding: 100px 7.5%;
-  background: #f8f9fa;
+  background: var(--color-surface-muted);
 }
 
 .vision-section h2 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .vision-section p {
@@ -156,14 +156,14 @@
   margin: 0 auto;
   font-size: 1.15rem;
   line-height: 2.2;
-  color: #333;
+  color: var(--color-text);
   text-align: center;
 }
 
 .vision-section p strong {
   font-size: 1.3em;
   font-weight: 700;
-  color: #6a11cb;
+  color: var(--color-accent);
   display: inline-block;
   margin: 0 2px;
 }
@@ -171,14 +171,14 @@
 /* フィロソフィーセクション */
 .philosophy-section {
   padding: 100px 7.5%;
-  background: #f8f9fa;
+  background: var(--color-surface-muted);
 }
 
 .philosophy-section h2 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .philosophy-grid {
@@ -190,10 +190,10 @@
 }
 
 .philosophy-card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  background: var(--color-surface);
   padding: 2.5rem;
   border-radius: 12px;
-  border: 2px solid #e9ecef;
+  border: 1px solid var(--color-border-soft);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -206,7 +206,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #0066cc 0%, #0052a3 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -217,17 +217,17 @@
 }
 
 .philosophy-card:hover {
-  border-color: #0066cc;
-  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.15);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-soft);
 }
 
 .philosophy-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #e9ecef;
+  color: #dfe6e5;
   margin-bottom: 1rem;
   transition: all 0.4s ease;
-  background: linear-gradient(135deg, #0066cc 0%, #6a11cb 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-soft) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -236,7 +236,7 @@
 
 .philosophy-card:hover .philosophy-number {
   opacity: 1;
-  background: linear-gradient(135deg, #0066cc 0%, #2575fc 50%, #6a11cb 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -245,11 +245,11 @@
 .philosophy-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .philosophy-card p {
-  color: #666;
+  color: var(--color-body);
   line-height: 1.7;
   margin: 0;
   font-size: 0.95rem;
@@ -258,14 +258,14 @@
 /* 興味・関心セクション */
 .interest-section {
   padding: 100px 7.5%;
-  background: #ffffff;
+  background: var(--color-surface);
 }
 
 .interest-section h2 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .interest-section > p {
@@ -273,7 +273,7 @@
   margin: 0 auto 3rem;
   font-size: 1.05rem;
   line-height: 1.9;
-  color: #555;
+  color: var(--color-body);
   text-align: center;
 }
 
@@ -286,12 +286,12 @@
 }
 
 .interest-card {
-  background: #f5f6fb;
-  color: #0f141f;
+  background: var(--color-surface-muted);
+  color: var(--color-text);
   padding: 2rem;
-  border-radius: 14px;
-  border: 1px solid #e1e4ef;
-  box-shadow: 0 6px 18px rgba(15, 20, 31, 0.04);
+  border-radius: 10px;
+  border: 1px solid var(--color-border-soft);
+  box-shadow: none;
   min-height: 200px;
 }
 
@@ -302,7 +302,7 @@
 }
 
 .interest-card p {
-  color: #1f2430;
+  color: var(--color-text);
   line-height: 1.8;
   margin: 0;
   font-size: 1.02rem;
@@ -313,8 +313,8 @@
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
 }
 
 .interest-cloud {
@@ -332,14 +332,14 @@
 /* 学歴・経歴セクション */
 .eduexpqual-section {
   padding: 100px 7.5%;
-  background: #f8f9fa;
+  background: var(--color-surface-muted);
 }
 
 .eduexpqual-section h2 {
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .eduexpqual-container {
@@ -353,9 +353,9 @@
 .eduexpqual-column h3 {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  color: #011121;
+  color: var(--color-heading);
   padding-bottom: 1rem;
-  border-bottom: 3px solid #0066cc;
+  border-bottom: 3px solid var(--color-accent);
 }
 
 .eduexpqual-list {
@@ -371,11 +371,20 @@
 
 .eduexpqual-year {
   flex-shrink: 0;
-  width: 140px;
+  width: 150px;
+  display: grid;
+  grid-template-columns: max-content 0.8rem max-content;
+  column-gap: 0.25rem;
+  align-items: baseline;
   font-weight: 600;
-  color: #666;
+  color: var(--color-muted);
   font-size: 0.95rem;
   padding-top: 2px;
+  white-space: nowrap;
+}
+
+.eduexpqual-year-separator {
+  text-align: center;
 }
 
 .eduexpqual-content {
@@ -385,13 +394,13 @@
 .eduexpqual-title {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #011121;
+  color: var(--color-heading);
   margin-bottom: 0.5rem;
   line-height: 1.6;
 }
 
 .eduexpqual-detail {
-  color: #666;
+  color: var(--color-body);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -399,14 +408,14 @@
 /* ツールセクション */
 .tools-section {
   padding: 100px 7.5%;
-  background: #ffffff;
+  background: var(--color-surface);
 }
 
 .tools-section > h2 {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 2rem;
-  color: #011121;
+  color: var(--color-heading);
 }
 
 .tools-container {
@@ -428,11 +437,11 @@
   gap: 1rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 3px solid #e9ecef;
+  border-bottom: 2px solid var(--color-border-soft);
 }
 
 .category-header h3 {
-  color: #011121;
+  color: var(--color-heading);
   font-size: 1.5rem;
   margin: 0;
 }
@@ -453,13 +462,13 @@
   display: inline-block;
   transition: all 0.2s ease;
   cursor: default;
-  color: #333;
+  color: var(--color-text);
   font-size: 0.95rem;
 }
 
 .tech-item:hover {
   transform: none;
-  color: #0066cc;
+  color: var(--color-accent);
 }
 
 .tech-name {
@@ -577,7 +586,7 @@
   }
 
   .eduexpqual-year {
-    width: 100%;
+    width: min(100%, 150px);
   }
 
   .tools-category {

@@ -5,7 +5,7 @@ import {
   toTagKey,
 } from "./utils/content.js";
 
-const PROJECT_DISPLAY_ORDER = ["focuspeed", "science-of-reality", "humanaugmentation"];
+const PROJECT_DISPLAY_ORDER = ["focuspeed", "evaluation-of-haptics", "humanaugmentation"];
 
 function sortProjects(items) {
   return [...items].sort((a, b) => {
@@ -18,7 +18,10 @@ function sortProjects(items) {
       return safeA - safeB;
     }
 
-    return Number(b.year || 0) - Number(a.year || 0) || (a.title || "").localeCompare(b.title || "");
+    return (
+      Number(b.start?.year || 0) - Number(a.start?.year || 0) ||
+      (a.title || "").localeCompare(b.title || "")
+    );
   });
 }
 
@@ -89,7 +92,7 @@ function formatProjectPeriod(project) {
     return `${start} - ${end}`;
   }
 
-  if (start && project.status === "ongoing") {
+  if (start && project.status === "active") {
     return `${start} - Present`;
   }
 
@@ -97,15 +100,11 @@ function formatProjectPeriod(project) {
     return start;
   }
 
-  if (project.year) {
-    return String(project.year);
-  }
-
   return "";
 }
 
 function renderProjectCard(project, root, compact = false) {
-  const statusLabel = project.status === "ongoing" ? "Ongoing" : "Completed";
+  const status = project.status === "active" ? '<span class="project-status">Active</span>' : "";
   const thumbnail = resolveUrl(root, project.thumbnail);
   const tags = project.tags
     .map((tag) => `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`)
@@ -127,7 +126,7 @@ function renderProjectCard(project, root, compact = false) {
         <div class="project-details">
           <div class="project-header">
             <p class="project-year">${escapeHtml(period)}</p>
-            <span class="project-status ${escapeHtml(project.status)}">${statusLabel}</span>
+            ${status}
           </div>
           <h3 class="project-title">${escapeHtml(project.title)}</h3>
           <p class="project-description">${escapeHtml(project.summary)}</p>

@@ -1,34 +1,32 @@
 export const projects = [
   {
-    slug: "science-of-reality",
-    title: "Science of Reality",
+    slug: "evaluation-of-haptics",
+    title: "EEG-Based Evaluation of Subjective Haptic Experience",
     summary:
-      "Through VR systems that reconstruct sensory experience, I explore what reality feels like and how it can be studied scientifically.",
-    year: 2026,
+      "This project investigates EEG characteristics associated with virtual tactile sensations presented by haptic devices, aiming to clarify the neural basis of subjective haptic experience and explore objective metrics for evaluating and improving haptic interfaces.",
     start: {
       year: 2025,
       month: 4,
     },
-    status: "ongoing",
-    tags: ["Haptics", "Virtual Reality", "EEG", "Sense of Reality"],
+    status: "active",
+    tags: ["Haptics", "Tactile Perception", "EEG", "Evaluation Metrics"],
     featured: true,
     links: {
-      page: "projects/#project-science-of-reality",
+      page: "projects/#project-evaluation-of-haptics",
     },
-    thumbnail: "assets/images/project_science-of-reality.png",
+    thumbnail: "assets/images/project_evaluation-of-haptics.png",
   },
   {
     slug: "focuspeed",
     title: "FocuSpeed",
     summary:
-      "FocuSpeed is a neuroadaptive system that dynamically adjusts audio playback speed based on the user’s cognitive state estimated from biosignals.",
-    year: 2025,
+      "FocuSpeed is a proof-of-concept neuroadaptive system that dynamically adjusts audio playback speed based on the user’s cognitive state estimated from biosignals.",
     start: {
       year: 2025,
       month: 4,
     },
-    status: "ongoing",
-    tags: ["Neuroadaptive", "EEG", "Auditory Learning", "BCI"],
+    status: "active",
+    tags: ["Neuroadaptive System", "EEG", "Auditory Learning", "Passive BCI"],
     featured: true,
     period: "Apr 2025 - Present",
     links: {
@@ -40,6 +38,13 @@ export const projects = [
         alt: "Overview image of the FocuSpeed project",
         caption:
           "FocuSpeed explores how estimated attention can shape media control in real time.",
+      },
+      featuredVideo: {
+        type: "youtube",
+        src: "https://www.youtube.com/watch?v=T_i72F27xVs",
+        title: "LIGP 2026 application video",
+        caption:
+          "Application video submitted to Learning Innovation Grand Prix (LIGP) 2026.",
       },
       overview: [
         {
@@ -75,6 +80,20 @@ export const projects = [
             "FocuSpeed reduces the need for manual playback control by automatically adapting to the user’s cognitive state, enabling more efficient learning while maintaining comprehension.",
         },
       ],
+      techStack: [
+        {
+          title: "Languages",
+          items: ["Python", "JavaScript", "HTML/CSS"],
+        },
+        {
+          title: "Frameworks / Libraries",
+          items: ["MNE-Python", "Flask"],
+        },
+        {
+          title: "Hardware",
+          items: ["BITalino (EEG, ECG, EDA)"],
+        },
+      ],
       outputSlugs: ["focuspeed-sichi2025"],
       footer: {
         backHref: "../../projects/",
@@ -87,12 +106,11 @@ export const projects = [
     title: "Human Augmentation Project",
     summary:
       "A collaborative class project exploring how interactive systems can help people externalize and verbalize emerging ideas.",
-    year: 2025,
     start: {
       year: 2025,
       month: 10,
     },
-    status: "ongoing",
+    status: "active",
     tags: ["Human Augmentation", "HCI", "Prototype", "NLP"],
     featured: true,
     links: {
@@ -105,7 +123,6 @@ export const projects = [
     title: "Visual Attention Research",
     summary:
       "Psychophysical experiments investigating mechanisms of visual attention in human information processing.",
-    year: 2025,
     start: {
       year: 2024,
       month: 4,

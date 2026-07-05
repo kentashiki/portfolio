@@ -2,6 +2,7 @@ import { escapeHtml, humanizeSlug } from "./content.js";
 
 const LINK_LABELS = {
   conference: "Conference",
+  officialSite: "Official Site",
   paper: "Paper",
   pdf: "Paper",
   poster: "Poster",
@@ -15,6 +16,7 @@ const LINK_LABELS = {
 
 const LINK_ICONS = {
   conference: "external",
+  officialSite: "external",
   paper: "fileText",
   pdf: "fileText",
   poster: "image",

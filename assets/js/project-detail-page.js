@@ -113,7 +113,6 @@ function renderProjectDetail(container, detail) {
 }
 
 function renderHero(detail) {
-  const metaItems = [{ label: "Period", value: detail.period }].filter((item) => item.value);
   const detailLinks = [
     ["github", "GitHub"],
     ["demo", "Demo"],
@@ -133,27 +132,13 @@ function renderHero(detail) {
       <canvas id="network-canvas"></canvas>
       <div class="project-detail-hero__content page-hero-content">
         <div>
-          <p class="project-detail-hero__eyebrow">Project Detail</p>
           <h1>${escapeHtml(detail.title)}</h1>
           ${
             detail.summary
               ? `<p class="project-detail-hero__summary">${escapeHtml(detail.summary)}</p>`
               : ""
           }
-          ${
-            metaItems.length
-              ? `<div class="project-detail-hero__meta">${metaItems
-                  .map(
-                    (item) => `
-                    <div class="project-detail-hero__meta-item">
-                      <p class="project-detail-hero__meta-label">${escapeHtml(item.label)}</p>
-                      <p class="project-detail-hero__meta-value">${escapeHtml(item.value)}</p>
-                    </div>
-                  `
-                  )
-                  .join("")}</div>`
-              : ""
-          }
+          ${detail.period ? `<p class="project-detail-hero__period">${escapeHtml(detail.period)}</p>` : ""}
           ${detail.tags?.length ? renderTags(detail.tags) : ""}
           ${detailLinks.length ? renderLinks(detailLinks) : ""}
         </div>

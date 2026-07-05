@@ -26,7 +26,7 @@ export const projects = [
       month: 4,
     },
     status: "active",
-    tags: ["Neuroadaptive System", "EEG", "Auditory Learning", "Passive BCI"],
+    tags: ["Neuroadaptive System", "EEG", "Biosignals", "Auditory Learning", "Passive BCI"],
     featured: true,
     period: "Apr 2025 - Present",
     links: {
@@ -42,7 +42,7 @@ export const projects = [
       featuredVideo: {
         type: "youtube",
         src: "https://www.youtube.com/watch?v=T_i72F27xVs",
-        title: "LIGP 2026 application video",
+        title: "LIGP 2026 application video (Japanese)",
         caption:
           "Application video submitted to Learning Innovation Grand Prix (LIGP) 2026.",
       },
@@ -50,12 +50,12 @@ export const projects = [
         {
           title: "Background",
           body:
-            "To improve time efficiency in media consumption and auditory learning, many users increase playback speed. However, faster playback often leads to decreased attention and frequent rewinding to recover missed information.",
+            "Many users nowadays increase playback speeds when watching videos or listening to audio contents for time efficiency. However, faster playback often leads to decreased understanding of the content itself and requires them to rewind to recover missed information, offsetting the time savings.",
         },
         {
           title: "Problem",
           body:
-            "This behavior undermines the intended time savings and disrupts efficient learning. Moreover, existing playback controls rely heavily on manual adjustments, placing the burden on users to continuously regulate their listening experience.",
+            "Many of the existing adaptive learning systems depend on external factors (e.g., task difficulty and content complexity) or behavioral indicators (e.g., task progress), and relatively few studies used biosignals to estimate users' cognitive state. Moreover, most of these systems assume visual learning schenario where users learn something visually, such as by reading. Although there are a limited number of adaptive learning systems for auditory learning, the systems behavior plays more critical in auditory learning than visual since audio listening is passive and users cannot change the listening speed unless they manually adjust the playback rate, while for reading, they can freely adjust the reading speed depending on their understanding.",
         },
         {
           title: "Approach",

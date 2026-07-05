@@ -123,6 +123,7 @@ Supported award link keys:
 | `projectDetail` | Internal link to the related project detail page. Preferred primary target when present. |
 | `page` | Internal anchor for the award itself. Useful for stable references, usually hidden as a visible action link. |
 | `conference` | External conference, event, or contest page. |
+| `officialSite` | Official award, program, or organizer site when `conference` would be misleading. |
 | `pdf` | Award certificate, paper, or related PDF. |
 | `poster` | Poster PDF or poster page. |
 | `video` | Related video, such as an application, presentation, or demo video. |
@@ -133,7 +134,7 @@ Supported award link keys:
 Primary link priority in `assets/js/renderAwards.js`:
 
 ```txt
-projectDetail -> page -> conference -> pdf -> demo -> github -> doi
+projectDetail -> page -> conference -> officialSite -> pdf -> demo -> github -> doi
 ```
 
 ## Relationship To Other Data

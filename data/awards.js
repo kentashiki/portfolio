@@ -41,7 +41,7 @@ export const awards = [
     ],
     tags: ["Research Contest", "Domestic (Japan)"],
     links: {
-      conference: "https://ligp.gingerapp.co.jp/",
+      officialSite: "https://ligp.gingerapp.co.jp/",
       video: "https://www.youtube.com/watch?v=T_i72F27xVs",
       projectDetail: "projects/focuspeed/",
       page: "awards/#award-ligp2026-excellence-award",

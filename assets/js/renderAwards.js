@@ -53,7 +53,7 @@ function renderNames(names = [], equalContributionCount = 0, className = "award-
 }
 
 function getAwardPrimaryLink(links = {}, root) {
-  const priority = ["projectDetail", "page", "conference", "pdf", "demo", "github", "doi"];
+  const priority = ["projectDetail", "page", "conference", "officialSite", "pdf", "demo", "github", "doi"];
 
   for (const key of priority) {
     if (links[key]) {

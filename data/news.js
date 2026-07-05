@@ -80,7 +80,7 @@ export const news = [
   {
     date: "2025-12-01",
     region: "domestic",
-    title: "Portfolio website launched",
+    title: "Launched this portfolio website",
     summary:
       "I launched this portfolio to bring together projects, outputs, and ongoing explorations in one place.",
     tags: ["Launch", "Website"],

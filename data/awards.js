@@ -1,6 +1,7 @@
 export const awards = [
   {
     slug: "sichi2025-encouragement-award",
+    themeSlugs: ["neuroadaptive-hci"],
     projectSlug: "focuspeed",
     outputSlug: "focuspeed-sichi2025",
     region: "domestic",
@@ -19,12 +20,13 @@ export const awards = [
     tags: ["Student Contest", "Domestic (Japan)"],
     links: {
       conference: "https://sites.google.com/view/sichi/sichi2025",
-      projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
+      projectDetail: "work/focuspeed/?output=focuspeed-sichi2025",
       page: "awards/#award-sichi2025-encouragement-award",
     },
   },
   {
     slug: "ligp2026-excellence-award",
+    themeSlugs: ["neuroadaptive-hci"],
     projectSlug: "focuspeed",
     region: "domestic",
     type: "competition-award",
@@ -43,7 +45,7 @@ export const awards = [
     links: {
       officialSite: "https://ligp.gingerapp.co.jp/",
       video: "https://www.youtube.com/watch?v=T_i72F27xVs",
-      projectDetail: "projects/focuspeed/",
+      projectDetail: "work/focuspeed/",
       page: "awards/#award-ligp2026-excellence-award",
     },
   },

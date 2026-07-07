@@ -1,6 +1,6 @@
-import projects from "../../data/projects.js?v=20260704e";
-import outputs from "../../data/outputs.js?v=20260704e";
-import awards from "../../data/awards.js?v=20260704e";
+import projects from "../../data/projects.js?v=20260707c";
+import outputs from "../../data/outputs.js?v=20260707c";
+import awards from "../../data/awards.js?v=20260707c";
 import { resolveUrl, toTagKey } from "./utils/content.js";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
 import { renderOutputCard } from "./renderOutputs.js";
@@ -92,7 +92,7 @@ function buildProjectAwards(project, outputEntries, projectDetail) {
 }
 
 function renderProjectDetail(container, detail) {
-  document.title = `${detail.title} - Project Detail`;
+  document.title = `${detail.title} - Work Detail`;
 
   container.innerHTML = `
     ${renderHero(detail)}
@@ -668,8 +668,8 @@ function renderReflection(items) {
 }
 
 function renderFooter(detail) {
-  const backHref = detail.footer?.backHref || "../../projects/";
-  const backLabel = detail.footer?.backLabel || "Back to Projects";
+  const backHref = detail.footer?.backHref || "../../work/";
+  const backLabel = detail.footer?.backLabel || "Back to Work";
 
   return `
     <section class="project-detail-footer">

@@ -66,7 +66,7 @@ Rules:
 - Each object part should have `text` and `href`.
 - External links should use full `https://` URLs.
 - Internal links should be relative to the current site root, such as
-  `projects/focuspeed/`.
+  `work/focuspeed/`.
 
 ## Tags
 

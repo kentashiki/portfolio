@@ -1,36 +1,38 @@
 export const projects = [
   {
-    slug: "evaluation-of-haptics",
-    title: "EEG-Based Evaluation of Subjective Haptic Experience",
+    slug: "virtual-softness-eeg",
+    themeSlugs: ["neural-evaluation-of-subjective-experiences"],
+    title: "EEG Characteristics of Virtual Softness Perception",
     summary:
-      "This project investigates EEG characteristics associated with virtual tactile sensations presented by haptic devices, aiming to clarify the neural basis of subjective haptic experience and explore objective metrics for evaluating and improving haptic interfaces.",
+      "This project investigates EEG characteristics associated with virtual softness sensations presented by haptic devices, aiming to clarify the neural basis of subjective haptic experience by comparing EEG responses to virtual and real softness stimuli.",
     start: {
       year: 2025,
       month: 4,
     },
     status: "active",
-    tags: ["Haptics", "Tactile Perception", "EEG", "Evaluation Metrics"],
+    tags: ["Virtual Softness", "Haptics", "EEG", "Tactile Perception", "Haptic Devices"],
     featured: true,
     links: {
-      page: "projects/#project-evaluation-of-haptics",
+      page: "work/#project-virtual-softness-eeg",
     },
-    thumbnail: "assets/images/project_evaluation-of-haptics.png",
+    thumbnail: "assets/images/project_virtual-softness-eeg.png",
   },
   {
     slug: "focuspeed",
+    themeSlugs: ["neuroadaptive-hci"],
     title: "FocuSpeed",
     summary:
-      "FocuSpeed is a proof-of-concept neuroadaptive system that dynamically adjusts audio playback speed based on the user’s cognitive state estimated from biosignals.",
+      "FocuSpeed is a proof-of-concept neuroadaptive system that dynamically adjusts audio playback speed based on the user’s cognitive state, estimated from biosignals.",
     start: {
       year: 2025,
       month: 4,
     },
     status: "active",
-    tags: ["Neuroadaptive System", "EEG", "Biosignals", "Auditory Learning", "Passive BCI"],
+    tags: ["EEG", "Auditory Learning", "Playback Control", "Real-Time Adaptation", "Passive BCI"],
     featured: true,
     period: "Apr 2025 - Present",
     links: {
-      page: "projects/focuspeed/",
+      page: "work/focuspeed/",
     },
     thumbnail: "assets/images/project_focuspeed.png",
     detail: {
@@ -50,12 +52,12 @@ export const projects = [
         {
           title: "Background",
           body:
-            "Many users nowadays increase playback speeds when watching videos or listening to audio contents for time efficiency. However, faster playback often leads to decreased understanding of the content itself and requires them to rewind to recover missed information, offsetting the time savings.",
+            "Many users increase playback speed when watching videos or listening to audio content to save time. However, faster playback can reduce comprehension and force users to rewind to recover missed information, offsetting the time savings.",
         },
         {
           title: "Problem",
           body:
-            "Many of the existing adaptive learning systems depend on external factors (e.g., task difficulty and content complexity) or behavioral indicators (e.g., task progress), and relatively few studies used biosignals to estimate users' cognitive state. Moreover, most of these systems assume visual learning schenario where users learn something visually, such as by reading. Although there are a limited number of adaptive learning systems for auditory learning, the systems behavior plays more critical in auditory learning than visual since audio listening is passive and users cannot change the listening speed unless they manually adjust the playback rate, while for reading, they can freely adjust the reading speed depending on their understanding.",
+            "Many existing adaptive learning systems depend on external factors, such as task difficulty and content complexity, or behavioral indicators, such as task progress. Relatively few systems use biosignals to estimate users' cognitive states. Moreover, most adaptive learning systems assume visual learning scenarios, such as reading. Auditory learning is more passive: listeners cannot adjust the pace unless they manually change the playback rate, while readers can naturally vary their reading speed based on their understanding.",
         },
         {
           title: "Approach",
@@ -96,30 +98,50 @@ export const projects = [
       ],
       outputSlugs: ["focuspeed-sichi2025"],
       footer: {
-        backHref: "../../projects/",
-        backLabel: "Back to Projects",
+        backHref: "../../work/",
+        backLabel: "Back to Work",
       },
     },
   },
   {
-    slug: "humanaugmentation",
-    title: "Human Augmentation Project",
+    slug: "ai-agent-response-selection",
+    themeSlugs: ["ai-mediated-nonverbal-interaction"],
+    title: "AI-Agent Response Selection from IMU-Sensed Head Gestures",
     summary:
-      "A collaborative class project exploring how interactive systems can help people externalize and verbalize emerging ideas.",
+      "This project explores the potential psychological effects of AI-generated verbal responses when speakers cannot see listeners' reactions in remote communication settings.",
     start: {
       year: 2025,
       month: 10,
     },
     status: "active",
-    tags: ["Human Augmentation", "HCI", "Prototype", "NLP"],
+    tags: ["Head Gestures", "IMU", "AI Agents", "Verbal Responses", "Remote Meetings"],
     featured: true,
     links: {
-      page: "projects/#project-humanaugmentation",
+      page: "work/#project-ai-agent-response-selection",
     },
-    thumbnail: "assets/images/project_furitalk.png",
+    thumbnail: "assets/images/project_ai-agent-response-selection.png",
   },
   {
-    slug: "visual-attention-research",
+    slug: "biosword",
+    themeSlugs: ["athletic-biofeedback-interfaces"],
+    title: "Biosword",
+    summary:
+      "Biosword is a biofeedback training prototype that combines VR sword interaction with physiological and motion sensing to help athletes reflect on mental and bodily states during practice.",
+    start: {
+      year: 2026,
+      month: 7,
+    },
+    status: "active",
+    tags: ["VR", "Kendo", "EDA", "PPG", "IMU"],
+    featured: false,
+    links: {
+      page: "work/#project-biosword",
+    },
+    thumbnail: "assets/images/project_biosword.png",
+  },
+  {
+    slug: "visual-attention",
+    themeSlugs: [],
     title: "Visual Attention Research",
     summary:
       "Psychophysical experiments investigating mechanisms of visual attention in human information processing.",
@@ -132,10 +154,10 @@ export const projects = [
       month: 3,
     },
     status: "completed",
-    tags: ["Visual Attention", "Psychophysics", "Neuroscience"],
+    tags: ["Visual Attention", "Psychophysics", "Human Perception", "Behavioral Experiments"],
     featured: false,
     links: {
-      page: "projects/#project-visual-attention-research",
+      page: "work/#project-visual-attention",
     },
     thumbnail: "assets/images/project_visual-attention.png",
   },

@@ -22,7 +22,7 @@ primary classification fields such as `type` and flexible display labels such as
   tags: ["Student Contest", "Domestic (Japan)"],
   links: {
     conference: "https://example.com",
-    projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
+    projectDetail: "work/focuspeed/?output=focuspeed-sichi2025",
     page: "awards/#award-sichi2025-encouragement-award",
   },
 }
@@ -175,7 +175,7 @@ When adding an award for an output, keep these three records aligned:
   tags: ["Student Contest", "Domestic (Japan)"],
   links: {
     conference: "https://sites.google.com/view/sichi/sichi2025",
-    projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
+    projectDetail: "work/focuspeed/?output=focuspeed-sichi2025",
     page: "awards/#award-sichi2025-encouragement-award",
   },
 }

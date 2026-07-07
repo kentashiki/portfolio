@@ -2,7 +2,7 @@ const PRIMARY_NAV_ITEMS = [
   { key: "home", label: "Home", href: "" },
   { key: "about", label: "About", href: "about/" },
   { key: "news", label: "News", href: "news/" },
-  { key: "projects", label: "Projects", href: "projects/" },
+  { key: "work", label: "Work", href: "work/" },
   { key: "outputs", label: "Outputs", href: "outputs/" },
   { key: "awards", label: "Awards", href: "awards/" },
   { key: "contact", label: "Contact", href: "#contact" },
@@ -12,7 +12,7 @@ const FOOTER_LINKS = [
   { key: "home", label: "Home", href: "" },
   { key: "about", label: "About", href: "about/" },
   { key: "news", label: "News", href: "news/" },
-  { key: "projects", label: "Projects", href: "projects/" },
+  { key: "work", label: "Work", href: "work/" },
   { key: "outputs", label: "Outputs", href: "outputs/" },
   { key: "awards", label: "Awards", href: "awards/" },
   { key: "contact", label: "Contact", href: "#contact" },
@@ -61,8 +61,8 @@ function getActiveNavKeys(currentSection, pageKey, hash) {
     activeKeys.add("news");
   }
 
-  if (pageKey === "projects" || pageKey === "focuspeed") {
-    activeKeys.add("projects");
+  if (currentSection === "work" || pageKey === "work" || pageKey === "focuspeed") {
+    activeKeys.add("work");
   }
 
   if (pageKey === "outputs") {

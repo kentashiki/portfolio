@@ -1,11 +1,12 @@
-import projects from "../../data/projects.js";
-import news from "../../data/news.js";
-import outputs from "../../data/outputs.js";
-import awards from "../../data/awards.js";
-import { renderProjects } from "./renderProjects.js";
-import { renderNews } from "./renderNews.js";
-import { renderOutputs } from "./renderOutputs.js";
-import { renderAwards } from "./renderAwards.js";
+import projects from "../../data/projects.js?v=20260707c";
+import workThemes from "../../data/workThemes.js?v=20260707c";
+import news from "../../data/news.js?v=20260707c";
+import outputs from "../../data/outputs.js?v=20260707c";
+import awards from "../../data/awards.js?v=20260707c";
+import { renderProjects } from "./renderProjects.js?v=20260707c";
+import { renderNews } from "./renderNews.js?v=20260707c";
+import { renderOutputs } from "./renderOutputs.js?v=20260707c";
+import { renderAwards } from "./renderAwards.js?v=20260707c";
 
 const IDEA_WORDS = [
   "interesting",
@@ -58,9 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       run: (container) =>
         renderProjects(container, projects, {
           featuredOnly: true,
-          limit: 3,
           root,
-          title: "Featured Projects",
+          title: "Featured Work",
           variant: "carousel",
           showViewAll: true,
         }),
@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
       selector: "#projects-list",
       run: (container) =>
         renderProjects(container, projects, {
+          themes: workThemes,
+          groupedByTheme: true,
           root,
           showHeader: false,
         }),

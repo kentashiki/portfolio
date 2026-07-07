@@ -9,6 +9,7 @@ class projects, and long-running explorations.
 ```js
 {
   slug: "focuspeed",
+  themeSlugs: ["neuroadaptive-hci"],
   title: "FocuSpeed",
   summary:
     "FocuSpeed is a proof-of-concept neuroadaptive system that dynamically adjusts audio playback speed.",
@@ -25,7 +26,7 @@ class projects, and long-running explorations.
   featured: true,
   period: "Apr 2025 - Present",
   links: {
-    page: "projects/focuspeed/",
+    page: "work/focuspeed/",
     demo: "",
     github: "",
   },
@@ -56,8 +57,8 @@ class projects, and long-running explorations.
     ],
     outputSlugs: ["focuspeed-sichi2025"],
     footer: {
-      backHref: "../../projects/",
-      backLabel: "Back to Projects",
+      backHref: "../../work/",
+      backLabel: "Back to Work",
     },
   },
 }
@@ -68,6 +69,7 @@ class projects, and long-running explorations.
 | Attribute | Required | Role | Notes |
 | --- | --- | --- | --- |
 | `slug` | Yes | Stable unique identifier for the project. | Use lowercase kebab-case when possible. This is used for anchors, detail page lookup, and cross-references. |
+| `themeSlugs` | Recommended | Connects the project to one or more work themes. | Values should match `data/workThemes.js` `slug` values. Use an empty array if the project is intentionally ungrouped. |
 | `title` | Yes | Project name shown on cards and detail pages. | Use the public-facing project title. |
 | `summary` | Yes | Short project description. | Shown on cards, carousel items, and detail hero sections. |
 | `start` | Recommended | Structured start date used for sorting and period generation. | Object with `year` and optional `month`. |
@@ -117,16 +119,18 @@ Currently only `active` has a special visual treatment.
 
 ## Tags
 
-Project tags should describe the domain, method, technology, or research theme.
+Project tags should describe concrete methods, signals, technologies, materials,
+interaction modalities, or application contexts. Broader areas and questions
+belong on work theme tags.
 
 Good tag examples:
 
 - `EEG`
 - `Haptics`
-- `Human Augmentation`
-- `Neuroadaptive System`
+- `IMU`
+- `Playback Control`
 - `Passive BCI`
-- `Prototype`
+- `Virtual Softness`
 - `Psychophysics`
 - `Tactile Perception`
 
@@ -134,7 +138,9 @@ Guidelines:
 
 - Use tags for topics users may recognize quickly.
 - Avoid using tags for lifecycle state; use `status` instead.
+- Avoid broad area labels when the parent work theme already communicates them.
 - Keep wording consistent across projects, outputs, and news where possible.
+- See `docs/tagging-guidelines.md` for the theme/project tag split.
 
 ## Link Keys
 
@@ -247,7 +253,7 @@ Projects connect to outputs and awards through slugs:
 When adding a project with a detail page:
 
 1. Add the project to `data/projects.js`.
-2. Add or confirm a matching HTML page under `projects/<slug>/` if `links.page`
+2. Add or confirm a matching HTML page under `work/<slug>/` if `links.page`
    points to a dedicated detail page.
 3. Add related outputs to `data/outputs.js`.
 4. Add output slugs to `detail.outputSlugs` in the order they should appear.

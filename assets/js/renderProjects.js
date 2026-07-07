@@ -5,7 +5,13 @@ import {
   toTagKey,
 } from "./utils/content.js";
 
-const PROJECT_DISPLAY_ORDER = ["focuspeed", "evaluation-of-haptics", "humanaugmentation"];
+const PROJECT_DISPLAY_ORDER = [
+  "focuspeed",
+  "virtual-softness-eeg",
+  "ai-agent-response-selection",
+  "biosword",
+  "visual-attention",
+];
 
 function sortProjects(items) {
   return [...items].sort((a, b) => {
@@ -138,11 +144,75 @@ function renderProjectCard(project, root, compact = false) {
   `;
 }
 
+function renderThemeProjectGroup(theme, projects, root, compact) {
+  if (!projects.length) {
+    return "";
+  }
+
+  const tags = (theme.tags || [])
+    .map((tag) => `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`)
+    .join("");
+
+  return `
+    <section class="work-theme" id="theme-${escapeHtml(theme.slug)}">
+      <div class="work-theme__heading">
+        <div>
+          <h2 class="work-theme__title">${escapeHtml(theme.title)}</h2>
+        </div>
+      </div>
+      ${theme.summary ? `<p class="work-theme__summary">${escapeHtml(theme.summary)}</p>` : ""}
+      ${tags ? `<div class="work-theme__tags">${tags}</div>` : ""}
+      <div class="work-theme__projects">
+        ${projects.map((project) => renderProjectCard(project, root, compact)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderGroupedProjects(items, themes, root, compact) {
+  const groupedProjectSlugs = new Set();
+  const themeSections = themes
+    .map((theme) => {
+      const themeProjects = sortProjects(
+        items.filter((project) => {
+          const belongsToTheme = project.themeSlugs?.includes(theme.slug);
+
+          if (belongsToTheme) {
+            groupedProjectSlugs.add(project.slug);
+          }
+
+          return belongsToTheme;
+        })
+      );
+
+      return renderThemeProjectGroup(theme, themeProjects, root, compact);
+    })
+    .filter(Boolean)
+    .join("");
+
+  const ungroupedProjects = sortProjects(items.filter((project) => !groupedProjectSlugs.has(project.slug)));
+  const ungroupedSection = ungroupedProjects.length
+    ? renderThemeProjectGroup(
+        {
+          slug: "other-work",
+          title: "Other Work",
+          summary: "Projects and explorations that are not currently grouped under a public work theme.",
+          tags: [],
+        },
+        ungroupedProjects,
+        root,
+        compact
+      )
+    : "";
+
+  return `<div class="work-themes">${themeSections}${ungroupedSection}</div>`;
+}
+
 function renderCarousel(projects, root) {
   const cards = projects
     .map((project) => {
       const thumbnail = resolveUrl(root, project.thumbnail);
-      const href = resolveUrl(root, project.links?.page || "projects/");
+      const href = resolveUrl(root, project.links?.page || "work/");
       return `
         <a href="${escapeHtml(href)}" class="carousel-card">
           <div class="carousel-image">
@@ -271,12 +341,14 @@ export function renderProjects(container, projects, options = {}) {
     featuredOnly = false,
     limit,
     root = "",
-    title = "Projects",
+    title = "Work",
     description = "",
     compact = false,
     showViewAll = false,
     variant = "list",
     showHeader = true,
+    groupedByTheme = false,
+    themes = [],
   } = options;
 
   let items = featuredOnly ? projects.filter((project) => project.featured) : [...projects];
@@ -289,11 +361,13 @@ export function renderProjects(container, projects, options = {}) {
   const content =
     variant === "carousel"
       ? renderCarousel(items, root)
+      : groupedByTheme
+        ? renderGroupedProjects(items, themes, root, compact)
       : `<div class="projects-container">${items
           .map((project) => renderProjectCard(project, root, compact))
           .join("")}</div>`;
   const viewAll = showViewAll
-    ? `<a href="${escapeHtml(resolveUrl(root, "projects/"))}" class="section-inline-link">View all projects →</a>`
+    ? `<a href="${escapeHtml(resolveUrl(root, "work/"))}" class="section-inline-link">View all work →</a>`
     : "";
 
   container.innerHTML = `

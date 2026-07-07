@@ -11,7 +11,7 @@ export const news = [
       " for ",
       {
         text: "FocuSpeed",
-        href: "projects/focuspeed/",
+        href: "work/focuspeed/",
       },
       ".",
     ],
@@ -101,7 +101,7 @@ export const news = [
     summary: [
       {
         text: "FocuSpeed",
-        href: "projects/focuspeed/",
+        href: "work/focuspeed/",
       },
       " received an Encouragement Award at ",
       {
@@ -119,7 +119,7 @@ export const news = [
       "I presented a poster and demo of ",
       {
         text: "FocuSpeed",
-        href: "projects/focuspeed/",
+        href: "work/focuspeed/",
       },
       ", a collaborative project with my lab members, at ",
       {

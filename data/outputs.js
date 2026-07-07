@@ -1,6 +1,8 @@
 export const outputs = [
   {
     slug: "selecting-verbal-responses-head-gestures",
+    themeSlugs: ["ai-mediated-nonverbal-interaction"],
+    projectSlug: "ai-agent-response-selection",
     region: "international",
     title: "Selecting Verbal Responses from Head Gestures to Support Remote Communication",
     type: "publication",
@@ -22,6 +24,7 @@ export const outputs = [
   },
   {
     slug: "focuspeed-sichi2025",
+    themeSlugs: ["neuroadaptive-hci"],
     projectSlug: "focuspeed",
     region: "domestic",
     title: "FocuSpeed: Adaptive Control of Speech Playback Speed Based on Concentration Level Estimated from Biosignals",
@@ -41,7 +44,7 @@ export const outputs = [
       conference: "https://sites.google.com/view/sichi/sichi2025",
       paper: "assets/documents/outputs/focuspeed-sichi2025-paper.pdf",
       poster: "assets/documents/outputs/focuspeed-sichi2025-poster.pdf",
-      projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
+      projectDetail: "work/focuspeed/?output=focuspeed-sichi2025",
       page: "outputs/#output-focuspeed-sichi2025",
     },
     detail: {

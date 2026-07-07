@@ -22,7 +22,7 @@ presentations, demos, posters, web apps, and similar work.
     conference: "https://example.com",
     paper: "assets/documents/outputs/example-paper.pdf",
     poster: "assets/documents/outputs/example-poster.pdf",
-    projectDetail: "projects/focuspeed/?output=focuspeed-sichi2025",
+    projectDetail: "work/focuspeed/?output=focuspeed-sichi2025",
     page: "outputs/#output-focuspeed-sichi2025",
   },
   detail: {

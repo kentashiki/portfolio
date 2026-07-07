@@ -759,7 +759,11 @@ footer {
 .research-tag[data-tag="event"],
 .update-tag[data-tag="event"],
 .tag[data-tag="event"],
-.hero-tag[data-tag="event"] {
+.hero-tag[data-tag="event"],
+.research-tag[data-tag="hackathon"],
+.update-tag[data-tag="hackathon"],
+.tag[data-tag="hackathon"],
+.hero-tag[data-tag="hackathon"] {
   --tag-bg: #e3e7f0;
   --tag-text: #405277;
   --tag-border: #cbd4e6;
@@ -772,27 +776,45 @@ footer {
 .research-tag[data-tag="demo"],
 .update-tag[data-tag="demo"],
 .tag[data-tag="demo"],
-.hero-tag[data-tag="demo"],
-.research-tag[data-tag="acceptance"],
-.update-tag[data-tag="acceptance"],
-.tag[data-tag="acceptance"],
-.hero-tag[data-tag="acceptance"] {
+.hero-tag[data-tag="demo"] {
   --tag-bg: #dce9ea;
   --tag-text: #2f5d62;
   --tag-border: #c2dcde;
 }
 
+.research-tag[data-tag="acceptance"],
+.update-tag[data-tag="acceptance"],
+.tag[data-tag="acceptance"],
+.hero-tag[data-tag="acceptance"] {
+  --tag-bg: #dce8f3;
+  --tag-text: #2f5875;
+  --tag-border: #bdd5e8;
+}
+
 .research-tag[data-tag="award"],
 .update-tag[data-tag="award"],
 .tag[data-tag="award"],
-.hero-tag[data-tag="award"],
-.research-tag[data-tag="student-contest"],
-.update-tag[data-tag="student-contest"],
-.tag[data-tag="student-contest"],
-.hero-tag[data-tag="student-contest"] {
+.hero-tag[data-tag="award"] {
   --tag-bg: #eee8d6;
   --tag-text: #6c5a22;
   --tag-border: #ded3ae;
+}
+
+.research-tag[data-tag="contest"],
+.update-tag[data-tag="contest"],
+.tag[data-tag="contest"],
+.hero-tag[data-tag="contest"],
+.research-tag[data-tag="student-contest"],
+.update-tag[data-tag="student-contest"],
+.tag[data-tag="student-contest"],
+.hero-tag[data-tag="student-contest"],
+.research-tag[data-tag="research-contest"],
+.update-tag[data-tag="research-contest"],
+.tag[data-tag="research-contest"],
+.hero-tag[data-tag="research-contest"] {
+  --tag-bg: #e8e3f0;
+  --tag-text: #55466d;
+  --tag-border: #d6cce5;
 }
 
 .research-tag[data-tag="international"],

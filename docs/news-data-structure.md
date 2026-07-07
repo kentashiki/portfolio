@@ -9,7 +9,6 @@ for scanning.
 ```js
 {
   date: "2026-03-18",
-  region: "international",
   title: "Presented a collaborative project at Augmented Humans 2026 Posters & Demos",
   summary: [
     "I presented a collaborative project at ",
@@ -29,7 +28,6 @@ for scanning.
 | Attribute | Required | Role | Notes |
 | --- | --- | --- | --- |
 | `date` | Yes | Timeline date and sort key. | Use ISO format: `YYYY-MM-DD`. The renderer displays it in a compact English format, such as `Jul 1, 2026`. |
-| `region` | No | Broad geographic context. | Current values should match other data files: `international`, `domestic`, `not-region-specific`. Currently stored but not rendered by the news component. |
 | `title` | Yes | Main timeline headline. | Keep it factual and specific. Prefer one event per item. |
 | `summary` | Recommended | Short supporting sentence or linked rich text. | Can be a plain string or an array of text/link parts. |
 | `tags` | Recommended | Display labels shown under full news items. | Use for event category, outcome, format, or milestone status. |
@@ -78,11 +76,11 @@ Good tag examples:
 
 - `Acceptance`
 - `Award`
+- `Contest`
 - `Demo`
 - `Education`
-- `Event`
+- `Hackathon`
 - `Internship`
-- `Launch`
 - `Milestone`
 - `Poster`
 - `Website`
@@ -92,22 +90,10 @@ Guidelines:
 - Use title case.
 - Prefer a small number of tags per item, usually one to three.
 - Use `Milestone` for important career or portfolio landmarks.
-- Use `Event` for participation-based updates when the specific event type is
-  less important than the fact of participation.
-- Use specific tags such as `Poster`, `Demo`, or `Award` when they help users
-  understand the event at a glance.
-
-## Region Values
-
-Use `region` only for broad geographic scope:
-
-| Value | Display Label | Use For |
-| --- | --- | --- |
-| `international` | International | International conferences, competitions, collaborations, or programs. |
-| `domestic` | Domestic (Japan) | Japan-based events, schools, labs, conferences, or internships. |
-| `not-region-specific` | Not region-specific | Website launches, online events, or internal updates without a clear location. |
-
-If `region` is omitted, the item still renders correctly.
+- Prefer specific participation tags such as `Hackathon` or `Contest` over the
+  broader `Event` tag when the format is clear.
+- Use specific tags such as `Poster`, `Demo`, `Acceptance`, or `Award` when they
+  help users understand the event at a glance.
 
 ## Writing Guidelines
 

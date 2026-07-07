@@ -1,7 +1,6 @@
 export const news = [
   {
     date: "2026-07-01",
-    region: "domestic",
     title: "Received an Excellence Award at LIGP 2026",
     summary: [
       "Our Amelab M2 team received an Excellence Award at ",
@@ -17,6 +16,19 @@ export const news = [
       ".",
     ],
     tags: ["Award"],
+  },
+  {
+    date: "2026-06-22",
+    title: "Selected for the UIST 2026 Student Innovation Contest",
+    summary: [
+      "A proposal led by Yen Juichun, an intern at the Amemiya Lab, was selected for the ",
+      {
+        text: "ACM Symposium on User Interface Software and Technology (UIST) 2026 Student Innovation Contest (SIC)",
+        href: "https://uist.acm.org/2026/cfp/#sic",
+      },
+      ". Yen and I applied as a two-person team, and we will participate in the contest in Detroit this November. As second author, I will contribute to implementing his idea and to constructive discussions as we prepare the demo presentation.",
+    ],
+    tags: ["Acceptance"],
   },
   {
     date: "2026-05-01",
@@ -47,11 +59,10 @@ export const news = [
       },
       " organized by g.tec medical engineering GmbH, where I collaborated with researchers from Portugal and Brazil on a neuromarketing project.",
     ],
-    tags: ["Event"],
+    tags: ["Hackathon"],
   },
   {
     date: "2026-03-18",
-    region: "international",
     title: "Presented a collaborative project at AHs 2026 Posters & Demos",
     summary: [
       "I presented a collaborative Human Augmentation Project in the Posters & Demos track of ",
@@ -65,7 +76,6 @@ export const news = [
   },
   {
     date: "2026-02-10",
-    region: "international",
     title: "Accepted for AHs 2026 Posters & Demos",
     summary: [
       "A collaborative Human Augmentation Project was accepted to the Posters & Demos track of ",
@@ -79,16 +89,14 @@ export const news = [
   },
   {
     date: "2025-12-01",
-    region: "domestic",
     title: "Launched this portfolio website",
     summary:
       "I launched this portfolio to bring together projects, outputs, and ongoing explorations in one place.",
-    tags: ["Launch", "Website"],
+    tags: ["Website"],
     link: "",
   },
   {
     date: "2025-09-12",
-    region: "domestic",
     title: "Received an Encouragement Award at SICHI2025",
     summary: [
       {
@@ -106,7 +114,6 @@ export const news = [
   },
   {
     date: "2025-09-10",
-    region: "domestic",
     title: "Presented a collaborative work at SICHI2025",
     summary: [
       "I presented a poster and demo of ",
@@ -125,7 +132,6 @@ export const news = [
   },
   {
     date: "2025-09-05",
-    region: "domestic",
     title: "Completed a summer internship at NTT R&D",
     summary:
       "I worked on decoding subjective impressions from EEG responses to sensory stimuli at NTT Human Informatics Laboratories.",
@@ -134,7 +140,6 @@ export const news = [
   },
   {
     date: "2025-04-01",
-    region: "domestic",
     title: "Started graduate study at the University of Tokyo",
     summary: [
       "I entered the master's program in the Graduate School of Arts and Sciences and began research in the ",
@@ -148,7 +153,6 @@ export const news = [
   },
   {
     date: "2025-03-31",
-    region: "domestic",
     title: "Completed a bachelor's degree at the University of Electro-Communications",
     summary:
       "I graduated from the School of Informatics and Engineering at the University of Electro-Communications.",

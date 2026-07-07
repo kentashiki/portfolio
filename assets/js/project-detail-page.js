@@ -1,7 +1,7 @@
-import projects from "../../data/projects.js?v=20260707c";
+import projects from "../../data/projects.js?v=20260708a";
 import outputs from "../../data/outputs.js?v=20260707c";
 import awards from "../../data/awards.js?v=20260707c";
-import { resolveUrl, toTagKey } from "./utils/content.js";
+import { formatProjectPeriod, resolveUrl, toTagKey } from "./utils/content.js";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
 import { renderOutputCard } from "./renderOutputs.js";
 import { renderAwardCard } from "./renderAwards.js";
@@ -138,7 +138,11 @@ function renderHero(detail) {
               ? `<p class="project-detail-hero__summary">${escapeHtml(detail.summary)}</p>`
               : ""
           }
-          ${detail.period ? `<p class="project-detail-hero__period">${escapeHtml(detail.period)}</p>` : ""}
+          ${
+            formatProjectPeriod(detail)
+              ? `<p class="project-detail-hero__period">${escapeHtml(formatProjectPeriod(detail))}</p>`
+              : ""
+          }
           ${detail.tags?.length ? renderTags(detail.tags) : ""}
           ${detailLinks.length ? renderLinks(detailLinks) : ""}
         </div>

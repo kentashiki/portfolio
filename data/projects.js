@@ -10,7 +10,7 @@ export const projects = [
       month: 4,
     },
     status: "active",
-    tags: ["Virtual Softness", "Haptics", "EEG", "Tactile Perception", "Haptic Devices"],
+    tags: ["Softness", "Haptics", "EEG", "Tactile Perception", "Haptic Devices"],
     featured: true,
     links: {
       page: "work/#project-virtual-softness-eeg",
@@ -30,7 +30,6 @@ export const projects = [
     status: "active",
     tags: ["EEG", "Auditory Learning", "Playback Control", "Real-Time Adaptation", "Passive BCI"],
     featured: true,
-    period: "Apr 2025 - Present",
     links: {
       page: "work/focuspeed/",
     },

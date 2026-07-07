@@ -24,7 +24,6 @@ class projects, and long-running explorations.
   status: "active",
   tags: ["Neuroadaptive System", "EEG", "Auditory Learning"],
   featured: true,
-  period: "Apr 2025 - Present",
   links: {
     page: "work/focuspeed/",
     demo: "",
@@ -77,7 +76,6 @@ class projects, and long-running explorations.
 | `status` | Recommended | Project lifecycle state. | Currently `active` shows an Active badge. Use `completed` for finished work. |
 | `tags` | Recommended | Display labels shown on cards and detail heroes. | Use research areas, technologies, methods, or topics. |
 | `featured` | Recommended | Whether the project appears in featured views. | Boolean. Used by `renderProjects` when `featuredOnly` is enabled. |
-| `period` | No | Manual period string for detail hero metadata. | Cards generate period from `start`, `end`, and `status`; detail pages currently use this field if present. |
 | `links` | Recommended | Related URLs and internal pages. | Used for project cards and detail hero buttons. |
 | `thumbnail` | Recommended | Project image path. | Used by cards, carousel, and detail hero media. |
 | `detail` | No | Extra fields for project detail pages. | Use when the project has a dedicated detail page. |
@@ -97,14 +95,11 @@ end: {
 },
 ```
 
-Card period behavior:
+Project period behavior:
 
 - `start` + `end` renders as `Apr 2025 - Mar 2026`.
 - `start` + `status: "active"` renders as `Apr 2025 - Present`.
 - `start` only renders as the start date.
-
-Use `period` only when the project detail hero needs a specific manual string.
-When possible, keep `period` aligned with `start`, `end`, and `status`.
 
 ## Status Values
 

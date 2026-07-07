@@ -1,9 +1,9 @@
-import projects from "../../data/projects.js?v=20260707c";
+import projects from "../../data/projects.js?v=20260708a";
 import workThemes from "../../data/workThemes.js?v=20260707c";
 import news from "../../data/news.js?v=20260707c";
 import outputs from "../../data/outputs.js?v=20260707c";
 import awards from "../../data/awards.js?v=20260707c";
-import { renderProjects } from "./renderProjects.js?v=20260707c";
+import { renderProjects } from "./renderProjects.js?v=20260708a";
 import { renderNews } from "./renderNews.js?v=20260707c";
 import { renderOutputs } from "./renderOutputs.js?v=20260707c";
 import { renderAwards } from "./renderAwards.js?v=20260707c";

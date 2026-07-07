@@ -50,6 +50,53 @@ export function humanizeSlug(value = "") {
     .join(" ");
 }
 
+export function formatPeriodPoint(point) {
+  if (!point || !point.year) {
+    return "";
+  }
+
+  const monthLabels = [
+    "",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  if (!point.month) {
+    return String(point.year);
+  }
+
+  return `${monthLabels[point.month] || point.month} ${point.year}`;
+}
+
+export function formatProjectPeriod(project = {}) {
+  const start = formatPeriodPoint(project.start);
+  const end = formatPeriodPoint(project.end);
+
+  if (start && end) {
+    return `${start} - ${end}`;
+  }
+
+  if (start && project.status === "active") {
+    return `${start} - Present`;
+  }
+
+  if (start) {
+    return start;
+  }
+
+  return "";
+}
+
 export function sortByYearThenTitle(
   items,
   getYear = (item) => item.year,

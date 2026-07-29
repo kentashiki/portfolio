@@ -13,9 +13,9 @@ export const workThemes = [
     slug: "neural-evaluation-of-subjective-experiences",
     title: "Neural Evaluation of Subjective Experiences",
     summary:
-      "Exploring brain activity-based methods for objectively evaluating subjective experiences, including tactile perception.",
+      "Exploring brain activity-based methods for objectively evaluating subjective experiences, including tactile and olfactory perception.",
     tags: ["Subjective Experience", "Neural Evaluation", "Human Perception", "Evaluation Metrics"],
-    projectSlugs: ["virtual-softness-eeg"],
+    projectSlugs: ["virtual-softness-eeg", "olfactory-subjective-impressions-eeg"],
     outputSlugs: [],
     awardSlugs: [],
   },

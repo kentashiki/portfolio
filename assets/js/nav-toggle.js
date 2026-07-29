@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = header ? header.querySelector('nav') : null;
   const navLinks = document.querySelectorAll('header nav a');
   const submenuGroups = header ? header.querySelectorAll('.nav-item--group') : [];
-  const desktopQuery = window.matchMedia('(min-width: 769px)');
+  const desktopQuery = window.matchMedia('(min-width: 1101px)');
 
   if (!header || !toggle || !nav) return;
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && header.classList.contains('nav-open')) {
+    if (window.innerWidth > 1100 && header.classList.contains('nav-open')) {
       closeMenu();
     }
 

@@ -7,56 +7,46 @@ import {
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js";
-import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
+import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 
-function formatTypeLabel(value) {
+function formatTypeLabel(value, locale = "en") {
   if (value === "publication") {
-    return "Publications";
+    return locale === "ja" ? "論文" : "Publications";
   }
 
   if (value === "presentation") {
-    return "Presentations";
+    return locale === "ja" ? "発表" : "Presentations";
   }
 
   if (value === "webapp") {
-    return "Web App";
+    return locale === "ja" ? "ウェブアプリ" : "Web App";
   }
 
   return humanizeSlug(value);
 }
 
-function getPrimaryLink(links = {}, root) {
-  const priority = ["projectDetail", "page", "paper", "pdf", "demo", "github", "doi"];
-
-  for (const key of priority) {
-    if (links[key]) {
-      return {
-        href: resolveUrl(root, links[key]),
-        external: /^https?:\/\//.test(links[key]),
-      };
-    }
-  }
-
-  return null;
-}
-
-function getOutputLinks(links = {}, root) {
+function getOutputLinks(links = {}, root, locale = "en", showProjectLink = false) {
   return Object.entries(links)
     .filter(([, href]) => href)
     .map(([key, href]) => {
       const resolvedHref = resolveUrl(root, href);
       const sameDocument = isSameDocumentUrl(resolvedHref);
-      const isPaper = key === "paper" || key === "pdf";
+      const isDocument = key === "paper" || key === "pdf" || key === "poster";
 
       return {
         key,
         href: resolvedHref,
-        label: getLinkActionLabel(key),
-        external: /^https?:\/\//.test(href) || isPaper,
+        label: getLinkActionLabel(key, locale),
+        external: /^https?:\/\//.test(href) || isDocument,
         sameDocument,
       };
     })
-    .filter((link) => !link.sameDocument && link.key !== "page" && link.key !== "projectDetail");
+    .filter(
+      (link) =>
+        !link.sameDocument &&
+        link.key !== "page" &&
+        (showProjectLink || link.key !== "projectDetail")
+    );
 }
 
 function renderAuthors(authors = [], equalContributionCount = 0) {
@@ -71,7 +61,7 @@ function renderAuthors(authors = [], equalContributionCount = 0) {
         ? '<span class="equal-contribution-marker" aria-hidden="true">*</span>'
         : "";
 
-      if (author === "Kenta Shiki") {
+      if (author === "Kenta Shiki" || author === "志貴 健太") {
         return `<span class="author-highlight">${escapeHtml(author)}${marker}</span>`;
       }
 
@@ -86,38 +76,41 @@ function renderAuthors(authors = [], equalContributionCount = 0) {
   return `<p class="output-card-authors">${markup}${note}</p>`;
 }
 
-export function renderOutputCard(output, root) {
+export function renderOutputCard(output, root, options = {}) {
+  const { locale = "en", showProjectLink = false } = options;
   const tags = (output.tags || [])
-    .map(
-      (tag) =>
-        `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`
-    )
+    .map((tag) => {
+      const label = typeof tag === "object" && tag !== null ? tag.label : tag;
+      const key = typeof tag === "object" && tag !== null ? tag.key : tag;
+
+      return `<span class="research-tag" data-tag="${escapeHtml(toTagKey(key))}">${escapeHtml(label)}</span>`;
+    })
     .join("");
   const venue = output.venue
     ? `<p class="output-card-venue">${escapeHtml(output.venue)}</p>`
     : "";
-  const primaryLink = getPrimaryLink(output.links, root);
-  const outputLinks = getOutputLinks(output.links, root);
-  const cardHref = primaryLink && !isSameDocumentUrl(primaryLink.href) ? primaryLink.href : "";
+  const description = output.description
+    ? `<p class="output-card-description">${escapeHtml(output.description)}</p>`
+    : "";
+  const outputLinks = getOutputLinks(output.links, root, locale, showProjectLink);
   const title = `<h3 class="output-card-title">${escapeHtml(output.title)}</h3>`;
 
   return `
     <article
       id="output-${escapeHtml(output.slug)}"
-      class="output-card${cardHref ? " output-card--interactive" : ""}"
-      ${cardHref ? `data-card-href="${escapeHtml(cardHref)}"` : ""}
-      ${cardHref ? 'tabindex="0" role="link"' : ""}
+      class="output-card"
     >
       ${title}
       ${renderAuthors(output.authors, output.equalContributionCount)}
       ${venue}
+      ${description}
       <div class="output-card-tags">${tags}</div>
       ${
         outputLinks.length
           ? `
             <div class="output-card-links">
               ${outputLinks
-                .map((link) => renderLinkAction({ ...link, external: true }))
+                .map((link) => renderLinkAction(link))
                 .join("")}
             </div>
           `
@@ -129,8 +122,14 @@ export function renderOutputCard(output, root) {
 
 const OUTPUT_AXES = [
   { key: "type", label: "Type" },
-  { key: "region", label: "Region" },
   { key: "year", label: "Year" },
+  { key: "region", label: "Region" },
+];
+
+const JA_OUTPUT_AXES = [
+  { key: "type", label: "種別" },
+  { key: "year", label: "年" },
+  { key: "region", label: "地域" },
 ];
 
 const TYPE_ORDER = [
@@ -157,29 +156,29 @@ function getAxisValues(output, axis) {
   return [];
 }
 
-function formatAxisValue(axis, value) {
+function formatAxisValue(axis, value, locale = "en") {
   if (axis === "type") {
-    return formatTypeLabel(value);
+    return formatTypeLabel(value, locale);
   }
 
   if (axis === "region") {
     if (value === "domestic") {
-      return "Domestic (Japan)";
+      return locale === "ja" ? "国内（日本）" : "Domestic (Japan)";
     }
 
     if (value === "international") {
-      return "International";
+      return locale === "ja" ? "国際" : "International";
     }
 
     if (value === "not-region-specific") {
-      return "Not region-specific";
+      return locale === "ja" ? "地域区分なし" : "Not region-specific";
     }
   }
 
   return value;
 }
 
-function sortGroupEntries(axis, entries) {
+function sortGroupEntries(axis, entries, locale = "en") {
   return entries.sort((a, b) => {
     if (axis === "year") {
       return Number(b.value) - Number(a.value);
@@ -205,11 +204,11 @@ function sortGroupEntries(axis, entries) {
       }
     }
 
-    return formatAxisValue(axis, a.value).localeCompare(formatAxisValue(axis, b.value));
+    return formatAxisValue(axis, a.value, locale).localeCompare(formatAxisValue(axis, b.value, locale));
   });
 }
 
-function renderOutputSection({ items, label }, { root }) {
+function renderOutputSection({ items, label }, { root, locale }) {
   return `
       <section class="output-subsection">
         <h2 class="output-subsection-title">${escapeHtml(label)}</h2>
@@ -217,7 +216,7 @@ function renderOutputSection({ items, label }, { root }) {
           ${items
             .slice()
             .sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || a.title.localeCompare(b.title))
-            .map((item) => renderOutputCard(item, root))
+            .map((item) => renderOutputCard(item, root, { locale, showProjectLink: true }))
             .join("")}
         </div>
       </section>
@@ -225,7 +224,7 @@ function renderOutputSection({ items, label }, { root }) {
 }
 
 export function renderOutputs(container, outputs, options = {}) {
-  const { root = "", defaultAxis = "type" } = options;
+  const { root = "", defaultAxis = "type", locale = "en" } = options;
   const sorted = sortByYearThenTitle([...outputs]);
 
   createGroupedAxisView({
@@ -233,42 +232,11 @@ export function renderOutputs(container, outputs, options = {}) {
     items: sorted,
     root,
     defaultAxis,
-    axes: OUTPUT_AXES,
-    toolbarLabel: "Choose how to organize outputs",
+    axes: locale === "ja" ? JA_OUTPUT_AXES : OUTPUT_AXES,
+    toolbarLabel: locale === "ja" ? "成果物の分類方法を選択" : "Choose how to organize outputs",
     getAxisValues,
-    sortEntries: sortGroupEntries,
-    formatAxisValue,
-    renderSection: renderOutputSection,
-  });
-
-  initClickableCards(container, ".output-card--interactive");
-}
-
-function initClickableCards(container, selector) {
-  const cards = container.querySelectorAll(selector);
-
-  cards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      if (event.target.closest("a, button")) {
-        return;
-      }
-
-      const href = card.dataset.cardHref;
-      if (href) {
-        window.location.href = href;
-      }
-    });
-
-    card.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") {
-        return;
-      }
-
-      event.preventDefault();
-      const href = card.dataset.cardHref;
-      if (href) {
-        window.location.href = href;
-      }
-    });
+    sortEntries: (axis, entries) => sortGroupEntries(axis, entries, locale),
+    formatAxisValue: (axis, value) => formatAxisValue(axis, value, locale),
+    renderSection: (entry, context) => renderOutputSection(entry, { ...context, locale }),
   });
 }

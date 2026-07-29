@@ -50,9 +50,13 @@ export function humanizeSlug(value = "") {
     .join(" ");
 }
 
-export function formatPeriodPoint(point) {
+export function formatPeriodPoint(point, locale = "en") {
   if (!point || !point.year) {
     return "";
+  }
+
+  if (locale === "ja") {
+    return point.month ? `${point.year}年${point.month}月` : `${point.year}年`;
   }
 
   const monthLabels = [
@@ -78,16 +82,17 @@ export function formatPeriodPoint(point) {
   return `${monthLabels[point.month] || point.month} ${point.year}`;
 }
 
-export function formatProjectPeriod(project = {}) {
-  const start = formatPeriodPoint(project.start);
-  const end = formatPeriodPoint(project.end);
+export function formatProjectPeriod(project = {}, locale = "en") {
+  const start = formatPeriodPoint(project.start, locale);
+  const end = formatPeriodPoint(project.end, locale);
+  const separator = locale === "ja" ? "〜" : " - ";
 
   if (start && end) {
-    return `${start} - ${end}`;
+    return `${start}${separator}${end}`;
   }
 
   if (start && project.status === "active") {
-    return `${start} - Present`;
+    return `${start}${separator}${locale === "ja" ? "現在" : "Present"}`;
   }
 
   if (start) {

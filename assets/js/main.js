@@ -1,45 +1,15 @@
-import projects from "../../data/projects.js?v=20260708a";
-import workThemes from "../../data/workThemes.js?v=20260707c";
-import news from "../../data/news.js?v=20260707c";
-import outputs from "../../data/outputs.js?v=20260707c";
-import awards from "../../data/awards.js?v=20260707c";
-import { renderProjects } from "./renderProjects.js?v=20260708a";
-import { renderNews } from "./renderNews.js?v=20260707c";
-import { renderOutputs } from "./renderOutputs.js?v=20260707c";
-import { renderAwards } from "./renderAwards.js?v=20260707c";
+import { loadLocalizedData } from "./localized-data.js?v=20260729w";
+import { renderProjects } from "./renderProjects.js?v=20260729f";
+import { renderNews } from "./renderNews.js?v=20260729c";
+import { renderOutputs } from "./renderOutputs.js?v=20260728d";
+import { renderAwards } from "./renderAwards.js?v=20260728g";
 
-const IDEA_WORDS = [
-  "interesting",
-  "exciting",
-  "challenging",
-  "meaningful",
-  "curious",
-  "unexpected",
-];
+const HOME_NEWS_TAG_LIMIT = 1;
 
-function initIdeaRotator() {
-  const ideaWord = document.querySelector("[data-idea-rotator]");
-  let ideaIndex = 0;
-
-  if (!ideaWord) {
-    return;
-  }
-
-  window.setInterval(() => {
-    ideaWord.classList.remove("is-entering");
-    ideaWord.classList.add("is-leaving");
-
-    window.setTimeout(() => {
-      ideaIndex = (ideaIndex + 1) % IDEA_WORDS.length;
-      ideaWord.textContent = IDEA_WORDS[ideaIndex];
-      ideaWord.classList.remove("is-leaving");
-      ideaWord.classList.add("is-entering");
-    }, 210);
-  }, 2400);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const root = document.body.dataset.root || "";
+  const locale = document.body.dataset.locale || "en";
+  const { projects, workThemes, news, outputs, awards } = await loadLocalizedData(locale);
   const pageRenderers = [
     {
       selector: "#home-news",
@@ -50,8 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
           root,
           title: "News",
           showViewAll: true,
+          viewAllHref: locale === "ja" ? "ja/news/" : "news/",
           detailed: false,
           summaryMode: "title-only",
+          showTags: true,
+          tagLimit: HOME_NEWS_TAG_LIMIT,
+          tagPlacement: "with-date",
+          locale,
+          itemHref: (item) =>
+            `${root}${locale === "ja" ? "ja/news/" : "news/"}#${item.id}`,
         }),
     },
     {
@@ -63,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
           title: "Featured Work",
           variant: "carousel",
           showViewAll: true,
+          viewAllHref: locale === "ja" ? "ja/work/" : "work/",
         }),
     },
     {
@@ -73,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           groupedByTheme: true,
           root,
           showHeader: false,
+          locale,
         }),
     },
     {
@@ -83,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
           detailed: true,
           showHeader: false,
           pageSize: 10,
+          locale,
         }),
     },
     {
@@ -91,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderOutputs(container, outputs, {
           root,
           defaultAxis: "type",
+          locale,
         }),
     },
     {
@@ -99,11 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
         renderAwards(container, awards, {
           root,
           defaultAxis: "type",
+          locale,
         }),
     },
   ];
-
-  initIdeaRotator();
 
   pageRenderers.forEach(({ selector, run }) => {
     const container = document.querySelector(selector);

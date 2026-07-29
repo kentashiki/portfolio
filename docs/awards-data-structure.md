@@ -143,14 +143,12 @@ Awards can connect to other data files through slugs:
 
 - `projectSlug` should match `data/projects.js` `slug`.
 - `outputSlug` should match `data/outputs.js` `slug`.
-- Output detail pages can refer back to awards through `relatedAwards`.
 
-When adding an award for an output, keep these three records aligned:
+When adding an award for an output:
 
 1. Add the award to `data/awards.js`.
 2. Add or confirm the related output in `data/outputs.js`.
-3. Add the award slug to the output detail's `relatedAwards` if it should appear
-   on the project/output detail page.
+3. Set the award's `outputSlug` to the related output slug.
 
 ## Current SICHI2025 Example
 

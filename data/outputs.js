@@ -48,34 +48,18 @@ export const outputs = [
       page: "outputs/#output-focuspeed-sichi2025",
     },
     detail: {
-      role: "Researcher & Engineer",
-      team: "Team Amelab M1 (Kenta Shiki, Tsukihi Sasao, Yuhi Hasegawa, Masatoshi Watanabe)",
-      outcome:
-        "Presented a poster and interactive demo at SICHI 2025, the student contest of the Human Interface Symposium 2025, where the project received an Encouragement Award.",
-      implementation: [
-        {
-          title: "Real-time Adaptive Pipeline",
-          body:
-            "Built a prototype that streams biosignals via Lab Streaming Layer (LSL), extracts EEG features, estimates comprehension, and updates speech playback speed in real time.",
-        },
-        {
-          title: "Evaluation Setup",
-          body:
-            "Prepared a comparison between fixed playback speeds and adaptive control to demonstrate the system concept in the SICHI 2025 poster and demo.",
-        },
-      ],
       myContributions: [
-        "Framed the concept through brainstorming and literature review on neuroadaptive interaction.",
-        "Designed and implemented the biosignal processing pipeline, adaptive playback logic, prototype UI, and demo system.",
-        "Managed project progress and prepared presentation materials including the poster, slides, and demo flow.",
+        "Conducted brainstorming and a literature review to develop a system using BITalino, the device specified for the contest, and contributed to the team’s initial concept development.",
+        "Designed and implemented the biosignal processing pipeline, including preprocessing and feature extraction, the adaptive playback logic, and the prototype UI for the demo presentation.",
+        "Managed project progress and sent reminders to team members as needed.",
+        "Prepared initial drafts of the poster and slides for the demo presentation.",
       ],
       lessonsLearned: [
         {
           body:
-            "Working with biosignals made clear how difficult it is to design around cognitive states that are noisy, indirect, and hard for users to perceive. The project reinforced the importance of making adaptive behavior both technically robust and understandable to users.",
+            "Measuring biosignals impressed upon me both the importance and difficulty of minimizing noise contamination. Because FocuSpeed deals with levels of concentration that users themselves may find difficult to recognize, I also struggled to communicate the system’s behavior clearly during the demo presentation. This experience taught me that technical polish alone is not enough; it is equally important to present the system in a way that makes its behavior and value understandable.",
         },
       ],
-      relatedAwards: ["sichi2025-encouragement-award"],
     },
   },
   {
@@ -85,6 +69,8 @@ export const outputs = [
     year: 2025,
     authors: [],
     venue: "",
+    description:
+      "A portfolio website bringing together my projects, outputs, and ongoing explorations, created with the assistance of GPT-5 (OpenAI) and Claude (Anthropic).",
     tags: ["Website"],
     links: {
       demo: "https://kentashiki.github.io/portfolio/",

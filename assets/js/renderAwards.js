@@ -7,7 +7,7 @@ import {
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js";
-import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js";
+import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 
 const AWARD_AXES = [
   { key: "type", label: "Type" },
@@ -15,12 +15,18 @@ const AWARD_AXES = [
   { key: "region", label: "Region" },
 ];
 
+const JA_AWARD_AXES = [
+  { key: "type", label: "種別" },
+  { key: "year", label: "年" },
+  { key: "region", label: "地域" },
+];
+
 const REGION_ORDER = ["international", "domestic", "not-region-specific"];
 const AWARD_TYPE_ORDER = ["competition-award"];
 
-function formatTypeLabel(value) {
+function formatTypeLabel(value, locale = "en") {
   if (value === "competition-award") {
-    return "Competition Award";
+    return locale === "ja" ? "コンテスト受賞" : "Competition Award";
   }
 
   return humanizeSlug(value);
@@ -37,7 +43,7 @@ function renderNames(names = [], equalContributionCount = 0, className = "award-
         ? '<span class="equal-contribution-marker" aria-hidden="true">*</span>'
         : "";
 
-      if (name === "Kenta Shiki") {
+      if (name === "Kenta Shiki" || name === "志貴 健太") {
         return `<span class="author-highlight">${escapeHtml(name)}${marker}</span>`;
       }
 
@@ -52,22 +58,7 @@ function renderNames(names = [], equalContributionCount = 0, className = "award-
   return `<p class="${escapeHtml(className)}">${markup}${note}</p>`;
 }
 
-function getAwardPrimaryLink(links = {}, root) {
-  const priority = ["projectDetail", "page", "conference", "officialSite", "pdf", "demo", "github", "doi"];
-
-  for (const key of priority) {
-    if (links[key]) {
-      return {
-        href: resolveUrl(root, links[key]),
-        external: /^https?:\/\//.test(links[key]),
-      };
-    }
-  }
-
-  return null;
-}
-
-function getAwardLinks(links = {}, root) {
+function getAwardLinks(links = {}, root, locale = "en", showProjectLink = false) {
   return Object.entries(links)
     .filter(([, href]) => href)
     .map(([key, href]) => {
@@ -78,32 +69,36 @@ function getAwardLinks(links = {}, root) {
       return {
         key,
         href: resolvedHref,
-        label: getLinkActionLabel(key),
+        label: getLinkActionLabel(key, locale),
         external: /^https?:\/\//.test(href) || isPdf,
         sameDocument,
       };
     })
-    .filter((link) => !link.sameDocument && link.key !== "page" && link.key !== "projectDetail");
+    .filter(
+      (link) =>
+        !link.sameDocument &&
+        link.key !== "page" &&
+        (showProjectLink || link.key !== "projectDetail")
+    );
 }
 
-export function renderAwardCard(award, root) {
+export function renderAwardCard(award, root, options = {}) {
+  const { locale = "en", showProjectLink = false } = options;
   const tags = (award.tags || [])
-    .map(
-      (tag) =>
-        `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`
-    )
+    .map((tag) => {
+      const label = typeof tag === "object" && tag !== null ? tag.label : tag;
+      const key = typeof tag === "object" && tag !== null ? tag.key : tag;
+
+      return `<span class="research-tag" data-tag="${escapeHtml(toTagKey(key))}">${escapeHtml(label)}</span>`;
+    })
     .join("");
-  const primaryLink = getAwardPrimaryLink(award.links, root);
-  const awardLinks = getAwardLinks(award.links, root);
-  const cardHref = primaryLink && !isSameDocumentUrl(primaryLink.href) ? primaryLink.href : "";
+  const awardLinks = getAwardLinks(award.links, root, locale, showProjectLink);
   const title = `<h3 class="output-card-title">${escapeHtml(award.title)}</h3>`;
 
   return `
     <article
       id="award-${escapeHtml(award.slug)}"
-      class="award-card${cardHref ? " output-card--interactive" : ""}"
-      ${cardHref ? `data-card-href="${escapeHtml(cardHref)}"` : ""}
-      ${cardHref ? 'tabindex="0" role="link"' : ""}
+      class="award-card"
     >
       ${title}
       <p class="award-card-issuer">${escapeHtml(award.issuer)}</p>
@@ -140,29 +135,29 @@ function getAxisValues(award, axis) {
   return [];
 }
 
-function formatAxisValue(axis, value) {
+function formatAxisValue(axis, value, locale = "en") {
   if (axis === "type") {
-    return formatTypeLabel(value);
+    return formatTypeLabel(value, locale);
   }
 
   if (axis === "region") {
     if (value === "domestic") {
-      return "Domestic (Japan)";
+      return locale === "ja" ? "国内（日本）" : "Domestic (Japan)";
     }
 
     if (value === "international") {
-      return "International";
+      return locale === "ja" ? "国際" : "International";
     }
 
     if (value === "not-region-specific") {
-      return "Not region-specific";
+      return locale === "ja" ? "地域区分なし" : "Not region-specific";
     }
   }
 
   return value;
 }
 
-function sortGroupEntries(axis, entries) {
+function sortGroupEntries(axis, entries, locale = "en") {
   return entries.sort((a, b) => {
     if (axis === "type") {
       const aIndex = AWARD_TYPE_ORDER.indexOf(a.value);
@@ -188,11 +183,11 @@ function sortGroupEntries(axis, entries) {
       }
     }
 
-    return formatAxisValue(axis, a.value).localeCompare(formatAxisValue(axis, b.value));
+    return formatAxisValue(axis, a.value, locale).localeCompare(formatAxisValue(axis, b.value, locale));
   });
 }
 
-function renderAwardSection({ label, items }, { root }) {
+function renderAwardSection({ label, items }, { root, locale }) {
   return `
     <section class="output-subsection">
       <h2 class="output-subsection-title">${escapeHtml(label)}</h2>
@@ -200,7 +195,7 @@ function renderAwardSection({ label, items }, { root }) {
         ${items
           .slice()
           .sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || a.title.localeCompare(b.title))
-          .map((award) => renderAwardCard(award, root))
+          .map((award) => renderAwardCard(award, root, { locale, showProjectLink: true }))
           .join("")}
       </div>
     </section>
@@ -208,50 +203,20 @@ function renderAwardSection({ label, items }, { root }) {
 }
 
 export function renderAwards(container, awards, options = {}) {
-  const { root = "", defaultAxis = "type" } = options;
+  const { root = "", defaultAxis = "type", locale = "en" } = options;
   const items = sortByYearThenTitle([...awards]);
 
   createGroupedAxisView({
     container,
     items,
     root,
+    locale,
     defaultAxis,
-    axes: AWARD_AXES,
-    toolbarLabel: "Choose how to organize awards",
+    axes: locale === "ja" ? JA_AWARD_AXES : AWARD_AXES,
+    toolbarLabel: locale === "ja" ? "受賞歴の分類方法を選択" : "Choose how to organize awards",
     getAxisValues,
-    sortEntries: sortGroupEntries,
-    formatAxisValue,
-    renderSection: renderAwardSection,
-  });
-
-  initClickableCards(container, ".output-card--interactive");
-}
-
-function initClickableCards(container, selector) {
-  const cards = container.querySelectorAll(selector);
-
-  cards.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      if (event.target.closest("a, button")) {
-        return;
-      }
-
-      const href = card.dataset.cardHref;
-      if (href) {
-        window.location.href = href;
-      }
-    });
-
-    card.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") {
-        return;
-      }
-
-      event.preventDefault();
-      const href = card.dataset.cardHref;
-      if (href) {
-        window.location.href = href;
-      }
-    });
+    sortEntries: (axis, entries) => sortGroupEntries(axis, entries, locale),
+    formatAxisValue: (axis, value) => formatAxisValue(axis, value, locale),
+    renderSection: (entry, context) => renderAwardSection(entry, { ...context, locale }),
   });
 }

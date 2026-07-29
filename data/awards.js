@@ -30,7 +30,7 @@ export const awards = [
     projectSlug: "focuspeed",
     region: "domestic",
     type: "competition-award",
-    title: "Excellence Award",
+    title: "Excellence Learning Innovation Award",
     year: 2026,
     issuer: "Learning Innovation Grand Prix (LIGP) 2026",
     recipients: [

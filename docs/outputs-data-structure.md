@@ -29,12 +29,6 @@ presentations, demos, posters, web apps, and similar work.
     role: "Researcher & Engineer",
     team: "Team name or collaborator summary",
     outcome: "Short result or public-facing outcome.",
-    implementation: [
-      {
-        title: "System Structure",
-        body: "Short explanation.",
-      },
-    ],
     visuals: [
       {
         type: "image",
@@ -57,7 +51,6 @@ presentations, demos, posters, web apps, and similar work.
         items: ["Python", "JavaScript"],
       },
     ],
-    relatedAwards: ["sichi2025-encouragement-award"],
   },
 }
 ```
@@ -171,18 +164,15 @@ inside a project detail page. It is optional for simple outputs.
 | `role` | Your role for this output. Rendered in the output detail meta area. |
 | `team` | Team or collaborator summary. Rendered in the output detail meta area. |
 | `outcome` | Short result summary. Rendered in the output detail meta area. |
-| `implementation` | Array of `{ title, body }` sections. |
 | `visuals` | Array of visual assets. Currently supports image/video/embed-style records in the renderer. |
 | `myContributions` | Array of strings shown as bullet points. |
 | `lessonsLearned` | Array of `{ title, body }` reflection sections. |
 | `techStack` | Array of `{ title, items }` groups. |
-| `relatedAwards` | Array of award slugs from `data/awards.js`. |
 
 ## Relationship To Other Data
 
 - `projectSlug` should match a `data/projects.js` `slug`.
 - Awards can point to outputs through `outputSlug`.
-- Output detail panels can show awards through `detail.relatedAwards`.
 - Projects can explicitly select outputs through `project.detail.outputSlugs`.
 
 When adding an output connected to a project:
@@ -191,6 +181,3 @@ When adding an output connected to a project:
 2. Set `projectSlug` to the matching project slug.
 3. Add the output slug to `data/projects.js` `detail.outputSlugs` if the project
    detail page should control output order explicitly.
-4. Add `detail.relatedAwards` if awards should appear in the expanded output
-   panel.
-

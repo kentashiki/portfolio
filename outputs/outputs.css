@@ -189,6 +189,13 @@
   font-weight: 600;
 }
 
+.output-card-description {
+  margin: 0.7rem 0 0;
+  color: var(--color-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
 .output-card-tags {
   display: flex;
   flex-wrap: wrap;

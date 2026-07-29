@@ -1,7 +1,7 @@
 import { escapeHtml, humanizeSlug } from "./content.js";
 
 const LINK_LABELS = {
-  conference: "Conference",
+  conference: "Official Site",
   officialSite: "Official Site",
   paper: "Paper",
   pdf: "Paper",
@@ -12,6 +12,20 @@ const LINK_LABELS = {
   doi: "DOI",
   page: "Details",
   projectDetail: "Project",
+};
+
+const JA_LINK_LABELS = {
+  conference: "公式サイト",
+  officialSite: "公式サイト",
+  paper: "論文",
+  pdf: "論文",
+  poster: "ポスター",
+  video: "動画",
+  demo: "デモ",
+  github: "GitHub",
+  doi: "DOI",
+  page: "詳細",
+  projectDetail: "プロジェクト",
 };
 
 const LINK_ICONS = {
@@ -39,8 +53,10 @@ const ICON_SVGS = {
   play: `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m10 9 5 3-5 3z"></path></svg>`,
 };
 
-export function getLinkActionLabel(key) {
-  return LINK_LABELS[key] || humanizeSlug(key);
+export function getLinkActionLabel(key, locale = "en") {
+  const labels = locale === "ja" ? JA_LINK_LABELS : LINK_LABELS;
+
+  return labels[key] || LINK_LABELS[key] || humanizeSlug(key);
 }
 
 export function renderLinkAction({ className = "output-link", href, key, label, external = false }) {

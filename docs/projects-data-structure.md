@@ -47,10 +47,8 @@ class projects, and long-running explorations.
         title: "Background",
         body: "Short explanation.",
       },
-    ],
-    useCase: [
       {
-        title: "Scenario",
+        title: "Use Case",
         body: "Short explanation.",
       },
     ],
@@ -186,8 +184,7 @@ pages.
 | --- | --- |
 | `heroImage` | Metadata for the hero image, mainly `alt` and optional `caption`. |
 | `featuredVideo` | Optional project-level video rendered after Overview. Supports local files, YouTube URLs, and embed URLs. |
-| `overview` | Array of `{ title, body }` sections rendered under Overview. |
-| `useCase` | Array of `{ title, body }` sections rendered under Use Case. |
+| `overview` | Array of `{ title, body }` sections rendered under Overview, including any use-case content. |
 | `outputSlugs` | Ordered list of output slugs to show in the Outputs explorer. |
 | `primaryOutput` | Legacy/single-output alternative to `outputSlugs`. Prefer `outputSlugs`. |
 | `footer` | Detail page footer config with `backHref` and `backLabel`. |
@@ -207,7 +204,7 @@ overview: [
 ## Featured Video
 
 Use `detail.featuredVideo` when a project has one representative demo or concept
-video. It renders as a standalone section after Overview, before Use Case.
+video. It renders as a standalone section after Overview, before Tech Stack.
 
 For a video stored in the repository, put the file under a stable asset
 directory such as `assets/videos/`:
@@ -243,7 +240,7 @@ Projects connect to outputs and awards through slugs:
 - Outputs can point to a project with `projectSlug`.
 - A project detail page can choose and order outputs with `detail.outputSlugs`.
 - Awards can point to a project with `projectSlug`.
-- Output detail panels can show related awards with `output.detail.relatedAwards`.
+- Awards can point to a specific output with `outputSlug`.
 
 When adding a project with a detail page:
 
@@ -252,5 +249,5 @@ When adding a project with a detail page:
    points to a dedicated detail page.
 3. Add related outputs to `data/outputs.js`.
 4. Add output slugs to `detail.outputSlugs` in the order they should appear.
-5. Add related awards to `data/awards.js` and link them through output details
-   when applicable.
+5. Add related awards to `data/awards.js` and set their `projectSlug` or
+   `outputSlug`.

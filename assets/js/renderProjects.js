@@ -4,13 +4,15 @@ import {
   isSameDocumentUrl,
   resolveUrl,
   toTagKey,
-} from "./utils/content.js";
+} from "./utils/content.js?v=20260728a";
 
 const PROJECT_DISPLAY_ORDER = [
   "focuspeed",
   "virtual-softness-eeg",
+  "olfactory-subjective-impressions-eeg",
   "ai-agent-response-selection",
   "biosword",
+  "complirole",
   "visual-attention",
 ];
 
@@ -32,9 +34,9 @@ function sortProjects(items) {
   });
 }
 
-function renderProjectLinks(links = {}, root) {
+function renderProjectLinks(links = {}, root, locale = "en") {
   const items = [
-    ["page", "View details"],
+    ["page", locale === "ja" ? "詳細を見る" : "View details"],
     ["demo", "Live demo"],
     ["github", "GitHub"],
   ]
@@ -63,48 +65,60 @@ function renderProjectLinks(links = {}, root) {
   return `<div class="project-links">${items.join("")}</div>`;
 }
 
-function renderProjectCard(project, root, compact = false) {
+function renderProjectCard(project, root, compact = false, locale = "en") {
   const status = project.status === "active" ? '<span class="project-status">Active</span>' : "";
   const thumbnail = resolveUrl(root, project.thumbnail);
   const tags = project.tags
     .map((tag) => `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`)
     .join("");
-  const period = formatProjectPeriod(project);
+  const period = formatProjectPeriod(project, locale);
   const image = thumbnail
     ? `
       <div class="project-image">
         <img src="${escapeHtml(thumbnail)}" alt="${escapeHtml(project.title)} project image" />
       </div>
     `
-    : "";
-  const cardClass = compact ? "project-card project-card--compact" : "project-card";
+    : `
+      <div class="project-image project-image--placeholder" role="img" aria-label="No image available">
+        <span>No Image</span>
+      </div>
+    `;
+  const cardClass = [
+    "project-card",
+    compact ? "project-card--compact" : "",
+    thumbnail ? "" : "project-card--no-image",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return `
     <article id="project-${escapeHtml(project.slug)}" class="${cardClass}">
+      <div class="project-heading">
+        <h3 class="project-title">${escapeHtml(project.title)}</h3>
+        <div class="project-header">
+          <p class="project-year">${escapeHtml(period)}</p>
+          ${status}
+        </div>
+      </div>
       <div class="project-content">
         ${image}
         <div class="project-details">
-          <div class="project-header">
-            <p class="project-year">${escapeHtml(period)}</p>
-            ${status}
-          </div>
-          <h3 class="project-title">${escapeHtml(project.title)}</h3>
           <p class="project-description">${escapeHtml(project.summary)}</p>
           <div class="project-meta">${tags}</div>
-          ${renderProjectLinks(project.links, root)}
+          ${renderProjectLinks(project.links, root, locale)}
         </div>
       </div>
     </article>
   `;
 }
 
-function renderThemeProjectGroup(theme, projects, root, compact) {
+function renderThemeProjectGroup(theme, projects, root, compact, locale) {
   if (!projects.length) {
     return "";
   }
 
-  const tags = (theme.tags || [])
-    .map((tag) => `<span class="research-tag" data-tag="${escapeHtml(toTagKey(tag))}">${escapeHtml(tag)}</span>`)
+  const keywords = (theme.tags || [])
+    .map((tag) => `<li class="work-theme__keyword">${escapeHtml(tag)}</li>`)
     .join("");
 
   return `
@@ -115,15 +129,21 @@ function renderThemeProjectGroup(theme, projects, root, compact) {
         </div>
       </div>
       ${theme.summary ? `<p class="work-theme__summary">${escapeHtml(theme.summary)}</p>` : ""}
-      ${tags ? `<div class="work-theme__tags">${tags}</div>` : ""}
+      ${
+        keywords
+          ? `<ul class="work-theme__keywords" aria-label="${
+              locale === "ja" ? "テーマのキーワード" : "Theme keywords"
+            }">${keywords}</ul>`
+          : ""
+      }
       <div class="work-theme__projects">
-        ${projects.map((project) => renderProjectCard(project, root, compact)).join("")}
+        ${projects.map((project) => renderProjectCard(project, root, compact, locale)).join("")}
       </div>
     </section>
   `;
 }
 
-function renderGroupedProjects(items, themes, root, compact) {
+function renderGroupedProjects(items, themes, root, compact, locale) {
   const groupedProjectSlugs = new Set();
   const themeSections = themes
     .map((theme) => {
@@ -139,7 +159,7 @@ function renderGroupedProjects(items, themes, root, compact) {
         })
       );
 
-      return renderThemeProjectGroup(theme, themeProjects, root, compact);
+      return renderThemeProjectGroup(theme, themeProjects, root, compact, locale);
     })
     .filter(Boolean)
     .join("");
@@ -149,13 +169,13 @@ function renderGroupedProjects(items, themes, root, compact) {
     ? renderThemeProjectGroup(
         {
           slug: "other-work",
-          title: "Other Work",
-          summary: "Projects and explorations that are not currently grouped under a public work theme.",
+          title: locale === "ja" ? "その他のプロジェクト" : "Other Work",
           tags: [],
         },
         ungroupedProjects,
         root,
-        compact
+        compact,
+        locale
       )
     : "";
 
@@ -299,10 +319,12 @@ export function renderProjects(container, projects, options = {}) {
     description = "",
     compact = false,
     showViewAll = false,
+    viewAllHref = "work/",
     variant = "list",
     showHeader = true,
     groupedByTheme = false,
     themes = [],
+    locale = "en",
   } = options;
 
   let items = featuredOnly ? projects.filter((project) => project.featured) : [...projects];
@@ -316,12 +338,12 @@ export function renderProjects(container, projects, options = {}) {
     variant === "carousel"
       ? renderCarousel(items, root)
       : groupedByTheme
-        ? renderGroupedProjects(items, themes, root, compact)
+        ? renderGroupedProjects(items, themes, root, compact, locale)
       : `<div class="projects-container">${items
-          .map((project) => renderProjectCard(project, root, compact))
+          .map((project) => renderProjectCard(project, root, compact, locale))
           .join("")}</div>`;
   const viewAll = showViewAll
-    ? `<a href="${escapeHtml(resolveUrl(root, "work/"))}" class="section-inline-link">View all work →</a>`
+    ? `<a href="${escapeHtml(resolveUrl(root, viewAllHref))}" class="section-inline-link">View all work →</a>`
     : "";
 
   container.innerHTML = `

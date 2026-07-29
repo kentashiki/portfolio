@@ -26,24 +26,83 @@ function buildAssetPath(root, href) {
   return `${root}${href}`;
 }
 
-function buildHomePath(root) {
+function buildHomePath(root, locale) {
+  if (locale === "ja") {
+    return `${root}ja/`;
+  }
+
   return root || "./";
 }
 
-function buildContactPath(root) {
+function buildContactPath(root, locale) {
+  if (locale === "ja") {
+    return `${root}ja/index.html#contact`;
+  }
+
   return root ? `${root}index.html#contact` : "#contact";
 }
 
-function resolveNavHref(root, href) {
+function getLanguagePath(root, locale) {
+  const { pathname, search, hash } = window.location;
+  const siteRootPath = new URL(root || "./", window.location.href).pathname;
+  const relativePath = pathname.startsWith(siteRootPath)
+    ? pathname.slice(siteRootPath.length)
+    : pathname.replace(/^\//, "");
+  const targetRelativePath = locale === "ja"
+    ? relativePath.replace(/^ja\/?/, "")
+    : `ja/${relativePath}`;
+  const targetPath = `${siteRootPath}${targetRelativePath}`.replace(/\/\/{2,}/g, "/");
+
+  return `${targetPath}${search}${hash}`;
+}
+
+function renderLanguageSwitch(locale, variant = "desktop") {
+  const isJapanese = locale === "ja";
+  const mobileTargetLabel = isJapanese ? "English" : "日本語";
+  const targetLocale = isJapanese ? "en" : "ja";
+  const targetPath = getLanguagePath(document.body.dataset.root || "", locale);
+
+  if (variant === "mobile") {
+    const ariaLabel = isJapanese
+      ? "言語を英語に切り替える"
+      : "Switch language to Japanese";
+
+    return `
+      <a
+        class="language-switch language-switch--mobile"
+        href="${targetPath}"
+        lang="${targetLocale}"
+        aria-label="${ariaLabel}"
+      >${mobileTargetLabel}</a>
+    `;
+  }
+
+  const englishOption = isJapanese
+    ? `<a href="${targetPath}" lang="en">English</a>`
+    : `<span class="language-switch__current" lang="en" aria-current="true">English</span>`;
+  const japaneseOption = isJapanese
+    ? `<span class="language-switch__current" lang="ja" aria-current="true">日本語</span>`
+    : `<a href="${targetPath}" lang="ja">日本語</a>`;
+
+  return `
+    <div class="language-switch language-switch--desktop" aria-label="Language selector">
+      ${englishOption}
+      <span class="language-switch__separator" aria-hidden="true">/</span>
+      ${japaneseOption}
+    </div>
+  `;
+}
+
+function resolveNavHref(root, href, locale) {
   if (href === "#contact") {
-    return buildContactPath(root);
+    return buildContactPath(root, locale);
   }
 
   if (!href) {
-    return buildHomePath(root);
+    return buildHomePath(root, locale);
   }
 
-  return buildSectionPath(root, href);
+  return buildSectionPath(root, locale === "ja" ? `ja/${href}` : href);
 }
 
 function getActiveNavKeys(currentSection, pageKey, hash) {
@@ -84,21 +143,18 @@ function renderHeader(root, currentSection, locale, pageKey, hash) {
     .map((item) => {
       const currentAttr = activeKeys.has(item.key) ? ' aria-current="page"' : "";
 
-      return `<li class="nav-item"><a href="${resolveNavHref(root, item.href)}"${currentAttr}>${item.label}</a></li>`;
+      return `<li class="nav-item"><a href="${resolveNavHref(root, item.href, locale)}"${currentAttr}>${item.label}</a></li>`;
     })
     .join("");
 
   return `
     <header class="site-header">
       <div class="logo">
-        <a href="${buildHomePath(root)}">
-          <img
-            src="${buildAssetPath(root, "assets/images/favicon.png")}"
-            alt="Kenta Shiki Logo"
-          />
+        <a href="${buildHomePath(root, locale)}">
           <span class="logo-name">Kenta Shiki</span>
         </a>
       </div>
+      ${renderLanguageSwitch(locale, "mobile")}
       <button
         class="nav-toggle"
         aria-label="${menuLabel}"
@@ -112,6 +168,7 @@ function renderHeader(root, currentSection, locale, pageKey, hash) {
         <nav>
           <ul class="nav-list">${navMarkup}</ul>
         </nav>
+        ${renderLanguageSwitch(locale, "desktop")}
       </div>
     </header>
   `;
@@ -124,7 +181,7 @@ function renderFooter(root, currentSection, locale, pageKey, hash) {
     .map(({ key, label, href }) => {
       const currentAttr = activeKeys.has(key) ? ' aria-current="page"' : "";
 
-      return `<a href="${resolveNavHref(root, href)}"${currentAttr}>${label}</a>`;
+      return `<a href="${resolveNavHref(root, href, locale)}"${currentAttr}>${label}</a>`;
     })
     .join("");
 
@@ -132,9 +189,6 @@ function renderFooter(root, currentSection, locale, pageKey, hash) {
     <footer>
       <div class="footer-left">
         <div>&copy; ${year} Kenta Shiki. All rights reserved.</div>
-        <div class="footer-credit">
-          Website created with the assistance of GPT-5 (OpenAI) and Claude (Anthropic)
-        </div>
       </div>
       <div class="footer-links">${footerMarkup}</div>
     </footer>

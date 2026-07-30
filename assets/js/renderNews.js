@@ -107,12 +107,16 @@ function renderNewsImages(images, root, itemId, locale) {
         previous: "前の画像",
         next: "次の画像",
         show: (index) => `${index + 1}枚目の画像を表示`,
+        pause: "自動切り替えを一時停止",
+        play: "自動切り替えを再生",
       }
     : {
         gallery: "Image gallery",
         previous: "Previous image",
         next: "Next image",
         show: (index) => `Show image ${index + 1}`,
+        pause: "Pause automatic slideshow",
+        play: "Play automatic slideshow",
       };
 
   return `
@@ -126,10 +130,19 @@ function renderNewsImages(images, root, itemId, locale) {
       <div class="update-gallery-stage">
         <figure class="update-gallery-main">
           <img
-            class="update-gallery-image update-gallery-image--${orientation}"
+            class="update-gallery-image update-gallery-image--${orientation} is-active"
             data-gallery-main-image
             src="${escapeHtml(resolveUrl(root, initialImage.src))}"
             alt="${escapeHtml(initialImage.alt || "")}"
+            loading="lazy"
+            decoding="async"${dimensions}
+          />
+          <img
+            class="update-gallery-image update-gallery-image--${orientation}"
+            data-gallery-transition-image
+            src="${escapeHtml(resolveUrl(root, initialImage.src))}"
+            alt=""
+            aria-hidden="true"
             loading="lazy"
             decoding="async"${dimensions}
           />
@@ -168,8 +181,19 @@ function renderNewsImages(images, root, itemId, locale) {
             `)
             .join("")}
         </div>
-        <div class="update-gallery-counter" data-gallery-counter aria-live="polite">
-          1 / ${validImages.length}
+        <div class="update-gallery-status">
+          <div class="update-gallery-counter" data-gallery-counter aria-live="off">
+            1 / ${validImages.length}
+          </div>
+          <button
+            class="update-gallery-autoplay"
+            type="button"
+            data-gallery-autoplay
+            data-pause-label="${escapeHtml(labels.pause)}"
+            data-play-label="${escapeHtml(labels.play)}"
+            aria-label="${escapeHtml(labels.pause)}"
+            title="${escapeHtml(labels.pause)}"
+          ></button>
         </div>
       </div>
     </div>
@@ -178,6 +202,8 @@ function renderNewsImages(images, root, itemId, locale) {
 
 function bindNewsGalleries(container, items, root) {
   const itemsById = new Map(items.map((item) => [item.id, item]));
+  const autoSlideDelay = 6500;
+  const crossfadeDuration = 280;
 
   container.querySelectorAll("[data-news-gallery]").forEach((gallery) => {
     const item = itemsById.get(gallery.dataset.newsGallery);
@@ -189,60 +215,199 @@ function bindNewsGalleries(container, items, root) {
       return;
     }
 
-    const mainImage = gallery.querySelector("[data-gallery-main-image]");
+    let activeImage = gallery.querySelector("[data-gallery-main-image]");
+    let transitionImage = gallery.querySelector("[data-gallery-transition-image]");
     const counter = gallery.querySelector("[data-gallery-counter]");
     const thumbnails = [...gallery.querySelectorAll("[data-gallery-thumbnail]")];
+    const autoplayButton = gallery.querySelector("[data-gallery-autoplay]");
     let currentIndex = 0;
+    let displayedIndex = 0;
+    let queuedIndex = null;
     let touchStartX = null;
+    let autoSlideTimer = null;
+    let isTransitioning = false;
+    let autoplayEnabled = true;
+    let isHovered = false;
+    let isFocusWithin = false;
+    let isTouching = false;
+    let isInViewport = false;
 
-    const showImage = (requestedIndex) => {
-      currentIndex = (requestedIndex + images.length) % images.length;
-      const image = images[currentIndex];
+    const preloadImage = (src) =>
+      new Promise((resolve) => {
+        const preload = new Image();
+        preload.addEventListener("load", resolve, { once: true });
+        preload.addEventListener("error", resolve, { once: true });
+        preload.src = src;
+      });
+
+    const configureImage = (element, index, accessible = true) => {
+      const image = images[index];
       const { width, height, orientation } = getImageRenderData(image);
 
-      mainImage.setAttribute("src", resolveUrl(root, image.src));
-      mainImage.setAttribute("alt", image.alt || "");
-      mainImage.classList.toggle("update-gallery-image--portrait", orientation === "portrait");
-      mainImage.classList.toggle("update-gallery-image--landscape", orientation === "landscape");
+      element.setAttribute("src", resolveUrl(root, image.src));
+      element.setAttribute("alt", accessible ? image.alt || "" : "");
+      element.classList.toggle("update-gallery-image--portrait", orientation === "portrait");
+      element.classList.toggle("update-gallery-image--landscape", orientation === "landscape");
+      element.toggleAttribute("aria-hidden", !accessible);
 
       if (Number.isFinite(width) && Number.isFinite(height)) {
-        mainImage.setAttribute("width", width);
-        mainImage.setAttribute("height", height);
+        element.setAttribute("width", width);
+        element.setAttribute("height", height);
       } else {
-        mainImage.removeAttribute("width");
-        mainImage.removeAttribute("height");
+        element.removeAttribute("width");
+        element.removeAttribute("height");
       }
+    };
 
-      counter.textContent = `${currentIndex + 1} / ${images.length}`;
-      thumbnails.forEach((thumbnail, index) => {
-        const active = index === currentIndex;
+    const updateControls = (index) => {
+      counter.textContent = `${index + 1} / ${images.length}`;
+      thumbnails.forEach((thumbnail, thumbnailIndex) => {
+        const active = thumbnailIndex === index;
         thumbnail.classList.toggle("is-active", active);
         thumbnail.setAttribute("aria-pressed", String(active));
       });
     };
 
+    const transitionTo = async (nextIndex) => {
+      isTransitioning = true;
+      await preloadImage(resolveUrl(root, images[nextIndex].src));
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        configureImage(activeImage, nextIndex);
+        updateControls(nextIndex);
+      } else {
+        configureImage(transitionImage, nextIndex, false);
+        transitionImage.classList.remove("is-active", "is-entering", "is-leaving");
+        activeImage.classList.remove("is-leaving");
+
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        activeImage.classList.add("is-leaving");
+        transitionImage.classList.add("is-entering");
+        updateControls(nextIndex);
+
+        await new Promise((resolve) => window.setTimeout(resolve, crossfadeDuration));
+
+        activeImage.classList.remove("is-active", "is-leaving");
+        activeImage.setAttribute("alt", "");
+        activeImage.setAttribute("aria-hidden", "true");
+        transitionImage.classList.remove("is-entering");
+        transitionImage.classList.add("is-active");
+        transitionImage.removeAttribute("aria-hidden");
+        transitionImage.setAttribute("alt", images[nextIndex].alt || "");
+
+        const previousImage = activeImage;
+        activeImage = transitionImage;
+        transitionImage = previousImage;
+      }
+
+      displayedIndex = nextIndex;
+      isTransitioning = false;
+
+      if (queuedIndex !== null && queuedIndex !== displayedIndex) {
+        const pendingIndex = queuedIndex;
+        queuedIndex = null;
+        await transitionTo(pendingIndex);
+      } else {
+        queuedIndex = null;
+      }
+    };
+
+    const showImage = (requestedIndex) => {
+      const nextIndex = (requestedIndex + images.length) % images.length;
+
+      if (nextIndex === currentIndex) {
+        return;
+      }
+
+      currentIndex = nextIndex;
+
+      if (isTransitioning) {
+        queuedIndex = nextIndex;
+        return;
+      }
+
+      return transitionTo(nextIndex);
+    };
+
+    const stopAutoSlide = () => {
+      if (autoSlideTimer !== null) {
+        window.clearTimeout(autoSlideTimer);
+        autoSlideTimer = null;
+      }
+    };
+
+    const canAutoSlide = () =>
+      autoplayEnabled &&
+      isInViewport &&
+      !isHovered &&
+      !isFocusWithin &&
+      !isTouching &&
+      !document.hidden;
+
+    const scheduleAutoSlide = () => {
+      stopAutoSlide();
+
+      if (!canAutoSlide()) {
+        return;
+      }
+
+      autoSlideTimer = window.setTimeout(async () => {
+        autoSlideTimer = null;
+        await showImage(currentIndex + 1);
+        scheduleAutoSlide();
+      }, autoSlideDelay);
+    };
+
+    const resetAutoSlide = () => {
+      stopAutoSlide();
+      scheduleAutoSlide();
+    };
+
+    const updateAutoplayButton = () => {
+      const labelKey = autoplayEnabled ? "pauseLabel" : "playLabel";
+      const label = autoplayButton.dataset[labelKey];
+      autoplayButton.setAttribute("aria-label", label);
+      autoplayButton.setAttribute("title", label);
+      autoplayButton.classList.toggle("is-paused", !autoplayEnabled);
+      counter.setAttribute("aria-live", autoplayEnabled ? "off" : "polite");
+    };
+
     gallery.querySelector("[data-gallery-previous]").addEventListener("click", () => {
       showImage(currentIndex - 1);
+      resetAutoSlide();
     });
     gallery.querySelector("[data-gallery-next]").addEventListener("click", () => {
       showImage(currentIndex + 1);
+      resetAutoSlide();
     });
     thumbnails.forEach((thumbnail) => {
       thumbnail.addEventListener("click", () => {
         showImage(Number.parseInt(thumbnail.dataset.galleryThumbnail, 10));
+        resetAutoSlide();
       });
+    });
+    autoplayButton.addEventListener("click", () => {
+      autoplayEnabled = !autoplayEnabled;
+      updateAutoplayButton();
+      resetAutoSlide();
     });
     gallery.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
         event.preventDefault();
         showImage(currentIndex + (event.key === "ArrowLeft" ? -1 : 1));
+        resetAutoSlide();
       }
     });
     gallery.addEventListener("touchstart", (event) => {
       touchStartX = event.changedTouches[0]?.clientX ?? null;
+      isTouching = true;
+      stopAutoSlide();
     }, { passive: true });
     gallery.addEventListener("touchend", (event) => {
+      isTouching = false;
+
       if (touchStartX === null) {
+        scheduleAutoSlide();
         return;
       }
 
@@ -253,7 +418,54 @@ function bindNewsGalleries(container, items, root) {
       if (Math.abs(distance) >= 50) {
         showImage(currentIndex + (distance < 0 ? 1 : -1));
       }
+      resetAutoSlide();
     }, { passive: true });
+    gallery.addEventListener("touchcancel", () => {
+      touchStartX = null;
+      isTouching = false;
+      resetAutoSlide();
+    }, { passive: true });
+
+    const handleMouseEnter = () => {
+      isHovered = true;
+      stopAutoSlide();
+    };
+    const handleMouseLeave = () => {
+      isHovered = false;
+      scheduleAutoSlide();
+    };
+    const handleFocusChange = () => {
+      isFocusWithin =
+        gallery.contains(document.activeElement) &&
+        document.activeElement !== autoplayButton;
+      resetAutoSlide();
+    };
+    const handleVisibilityChange = () => {
+      resetAutoSlide();
+    };
+
+    gallery.addEventListener("mouseenter", handleMouseEnter);
+    gallery.addEventListener("mouseleave", handleMouseLeave);
+    gallery.addEventListener("focusin", handleFocusChange);
+    gallery.addEventListener("focusout", () => requestAnimationFrame(handleFocusChange));
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInViewport = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+        resetAutoSlide();
+      },
+      { threshold: [0, 0.35] },
+    );
+    visibilityObserver.observe(gallery);
+
+    gallery.newsGalleryCleanup = () => {
+      stopAutoSlide();
+      visibilityObserver.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+
+    updateAutoplayButton();
   });
 }
 
@@ -395,6 +607,10 @@ export function renderNews(container, newsItems, options = {}) {
   const viewAll = showViewAll
     ? `<a href="${escapeHtml(resolveUrl(root, viewAllHref))}" class="section-inline-link">View all news →</a>`
     : "";
+
+  container.querySelectorAll("[data-news-gallery]").forEach((gallery) => {
+    gallery.newsGalleryCleanup?.();
+  });
 
   container.innerHTML = `
     ${showHeader ? `

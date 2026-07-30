@@ -237,11 +237,18 @@ section {
   overflow: hidden;
   border-radius: 10px;
   position: relative;
+  touch-action: pan-y pinch-zoom;
 }
 
 .carousel-track {
   display: flex;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-track.is-dragging {
+  transition: none;
+  user-select: none;
 }
 
 .carousel-card {
@@ -279,6 +286,7 @@ section {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  -webkit-user-drag: none;
   transition: transform 0.3s ease;
 }
 

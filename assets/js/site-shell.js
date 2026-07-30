@@ -187,10 +187,10 @@ function renderFooter(root, currentSection, locale, pageKey, hash) {
 
   return `
     <footer>
+      <div class="footer-links">${footerMarkup}</div>
       <div class="footer-left">
         <div>&copy; ${year} Kenta Shiki. All rights reserved.</div>
       </div>
-      <div class="footer-links">${footerMarkup}</div>
     </footer>
   `;
 }

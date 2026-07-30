@@ -65,7 +65,87 @@ function renderProjectLinks(links = {}, root, locale = "en") {
   return `<div class="project-links">${items.join("")}</div>`;
 }
 
-function renderProjectCard(project, root, compact = false, locale = "en") {
+function renderRelatedProjectResults(project, outputs, awards, root, locale) {
+  const relatedOutputs = outputs
+    .filter((output) => output.projectSlug === project.slug)
+    .sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
+  const relatedAwards = awards
+    .filter((award) => award.projectSlug === project.slug)
+    .sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
+
+  if (!relatedOutputs.length && !relatedAwards.length) {
+    return "";
+  }
+
+  const formatContext = (context, year) => {
+    const contextText = String(context || "");
+    const yearText = String(year || "");
+
+    if (contextText && yearText && !contextText.includes(yearText)) {
+      return `${contextText} · ${yearText}`;
+    }
+
+    return contextText || yearText;
+  };
+
+  const renderGroup = (items, type) => {
+    if (!items.length) {
+      return "";
+    }
+
+    const isOutput = type === "output";
+    const label = isOutput
+      ? locale === "ja" ? "関連する成果" : "Related Outputs"
+      : locale === "ja" ? "受賞" : "Awards";
+    const fallbackHref = isOutput
+      ? locale === "ja" ? "ja/outputs/" : "outputs/"
+      : locale === "ja" ? "ja/awards/" : "awards/";
+    const listItems = items
+      .map((item) => {
+        const title = isOutput
+          ? formatContext(item.venue, item.year) || item.title
+          : item.title;
+        const meta = isOutput ? "" : formatContext(item.issuer, item.year);
+        const href = resolveUrl(root, item.links?.page || fallbackHref);
+
+        return `
+          <li class="project-related__item">
+            <a class="project-related__link" href="${escapeHtml(href)}">
+              <span class="project-related__title">${escapeHtml(title)}</span>
+              ${meta ? `<span class="project-related__meta">${escapeHtml(meta)}</span>` : ""}
+            </a>
+          </li>
+        `;
+      })
+      .join("");
+
+    return `
+      <div class="project-related__group">
+        <h4 class="project-related__heading">${label}</h4>
+        <ul class="project-related__list">${listItems}</ul>
+      </div>
+    `;
+  };
+
+  return `
+    <div
+      class="project-related"
+      aria-label="${locale === "ja" ? "関連する成果と受賞" : "Related outputs and awards"}"
+    >
+      ${renderGroup(relatedOutputs, "output")}
+      ${renderGroup(relatedAwards, "award")}
+    </div>
+  `;
+}
+
+function renderProjectCard(
+  project,
+  root,
+  compact = false,
+  locale = "en",
+  outputs = [],
+  awards = [],
+) {
   const status = project.status === "active" ? '<span class="project-status">Active</span>' : "";
   const thumbnail = resolveUrl(root, project.thumbnail);
   const tags = project.tags
@@ -105,6 +185,7 @@ function renderProjectCard(project, root, compact = false, locale = "en") {
         <div class="project-details">
           <p class="project-description">${escapeHtml(project.summary)}</p>
           <div class="project-meta">${tags}</div>
+          ${renderRelatedProjectResults(project, outputs, awards, root, locale)}
           ${renderProjectLinks(project.links, root, locale)}
         </div>
       </div>
@@ -112,7 +193,7 @@ function renderProjectCard(project, root, compact = false, locale = "en") {
   `;
 }
 
-function renderThemeProjectGroup(theme, projects, root, compact, locale) {
+function renderThemeProjectGroup(theme, projects, root, compact, locale, outputs, awards) {
   if (!projects.length) {
     return "";
   }
@@ -137,13 +218,15 @@ function renderThemeProjectGroup(theme, projects, root, compact, locale) {
           : ""
       }
       <div class="work-theme__projects">
-        ${projects.map((project) => renderProjectCard(project, root, compact, locale)).join("")}
+        ${projects
+          .map((project) => renderProjectCard(project, root, compact, locale, outputs, awards))
+          .join("")}
       </div>
     </section>
   `;
 }
 
-function renderGroupedProjects(items, themes, root, compact, locale) {
+function renderGroupedProjects(items, themes, root, compact, locale, outputs, awards) {
   const groupedProjectSlugs = new Set();
   const themeSections = themes
     .map((theme) => {
@@ -159,7 +242,15 @@ function renderGroupedProjects(items, themes, root, compact, locale) {
         })
       );
 
-      return renderThemeProjectGroup(theme, themeProjects, root, compact, locale);
+      return renderThemeProjectGroup(
+        theme,
+        themeProjects,
+        root,
+        compact,
+        locale,
+        outputs,
+        awards,
+      );
     })
     .filter(Boolean)
     .join("");
@@ -175,7 +266,9 @@ function renderGroupedProjects(items, themes, root, compact, locale) {
         ungroupedProjects,
         root,
         compact,
-        locale
+        locale,
+        outputs,
+        awards,
       )
     : "";
 
@@ -234,6 +327,12 @@ function initCarousel(container) {
   const next = carousel.querySelector("[data-carousel-next]");
   let currentIndex = 0;
   let autoSlideInterval = null;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+  let touchDeltaX = 0;
+  let isHorizontalSwipe = false;
+  let ignoreClicksUntil = 0;
   const autoSlideDelay = 7000;
 
   if (!track || !cards.length) {
@@ -289,8 +388,93 @@ function initCarousel(container) {
 
   carousel.addEventListener("mouseenter", stopAutoSlide);
   carousel.addEventListener("mouseleave", startAutoSlide);
-  carousel.addEventListener("touchstart", stopAutoSlide, { passive: true });
-  carousel.addEventListener("touchend", startAutoSlide, { passive: true });
+
+  track.addEventListener(
+    "touchstart",
+    (event) => {
+      if (event.touches.length !== 1) {
+        return;
+      }
+
+      const touch = event.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchStartTime = performance.now();
+      touchDeltaX = 0;
+      isHorizontalSwipe = false;
+      stopAutoSlide();
+      track.classList.add("is-dragging");
+    },
+    { passive: true }
+  );
+
+  track.addEventListener(
+    "touchmove",
+    (event) => {
+      if (event.touches.length !== 1) {
+        return;
+      }
+
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (!isHorizontalSwipe && Math.abs(deltaX) < 8) {
+        return;
+      }
+
+      if (!isHorizontalSwipe && Math.abs(deltaY) > Math.abs(deltaX)) {
+        return;
+      }
+
+      isHorizontalSwipe = true;
+      touchDeltaX = deltaX;
+      track.style.transform = `translateX(calc(-${currentIndex * 100}% + ${touchDeltaX}px))`;
+    },
+    { passive: true }
+  );
+
+  const finishSwipe = (cancelled = false) => {
+    track.classList.remove("is-dragging");
+
+    if (cancelled || !isHorizontalSwipe) {
+      update(currentIndex);
+      touchDeltaX = 0;
+      isHorizontalSwipe = false;
+      startAutoSlide();
+      return;
+    }
+
+    const elapsed = Math.max(performance.now() - touchStartTime, 1);
+    const velocity = Math.abs(touchDeltaX) / elapsed;
+    const distanceThreshold = Math.min(track.clientWidth * 0.18, 72);
+    const shouldChangeSlide =
+      Math.abs(touchDeltaX) >= distanceThreshold ||
+      (Math.abs(touchDeltaX) >= 18 && velocity >= 0.35);
+
+    if (shouldChangeSlide) {
+      update(currentIndex + (touchDeltaX < 0 ? 1 : -1));
+      ignoreClicksUntil = performance.now() + 400;
+    } else {
+      update(currentIndex);
+    }
+
+    touchDeltaX = 0;
+    isHorizontalSwipe = false;
+    startAutoSlide();
+  };
+
+  track.addEventListener("touchend", () => finishSwipe(), { passive: true });
+  track.addEventListener("touchcancel", () => finishSwipe(true), { passive: true });
+  track.addEventListener(
+    "click",
+    (event) => {
+      if (performance.now() < ignoreClicksUntil) {
+        event.preventDefault();
+      }
+    },
+    true
+  );
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
@@ -325,6 +509,8 @@ export function renderProjects(container, projects, options = {}) {
     groupedByTheme = false,
     themes = [],
     locale = "en",
+    outputs = [],
+    awards = [],
   } = options;
 
   let items = featuredOnly ? projects.filter((project) => project.featured) : [...projects];
@@ -338,9 +524,11 @@ export function renderProjects(container, projects, options = {}) {
     variant === "carousel"
       ? renderCarousel(items, root)
       : groupedByTheme
-        ? renderGroupedProjects(items, themes, root, compact, locale)
+        ? renderGroupedProjects(items, themes, root, compact, locale, outputs, awards)
       : `<div class="projects-container">${items
-          .map((project) => renderProjectCard(project, root, compact, locale))
+          .map((project) =>
+            renderProjectCard(project, root, compact, locale, outputs, awards)
+          )
           .join("")}</div>`;
   const viewAll = showViewAll
     ? `<a href="${escapeHtml(resolveUrl(root, viewAllHref))}" class="section-inline-link">View all work →</a>`

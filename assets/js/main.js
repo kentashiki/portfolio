@@ -1,6 +1,6 @@
 import { loadLocalizedData } from "./localized-data.js?v=20260729w";
-import { renderProjects } from "./renderProjects.js?v=20260729f";
-import { renderNews } from "./renderNews.js?v=20260729c";
+import { renderProjects } from "./renderProjects.js?v=20260730i";
+import { renderNews } from "./renderNews.js?v=20260730f";
 import { renderOutputs } from "./renderOutputs.js?v=20260728d";
 import { renderAwards } from "./renderAwards.js?v=20260728g";
 
@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           root,
           showHeader: false,
           locale,
+          outputs,
+          awards,
         }),
     },
     {

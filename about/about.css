@@ -12,6 +12,11 @@
   align-items: flex-start;
 }
 
+.profile-detail-media {
+  flex: 0 0 320px;
+  width: 320px;
+}
+
 .profile-detail-image {
   flex-shrink: 0;
   width: 320px;
@@ -54,6 +59,72 @@
   color: var(--color-body);
   line-height: 1.8;
   font-size: 1.05rem;
+}
+
+.profile-avatar {
+  margin-top: 2rem;
+}
+
+.profile-avatar-viewer-shell {
+  position: relative;
+  height: 430px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.profile-avatar-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s ease, transform 0.7s ease;
+  cursor: grab;
+  --poster-color: transparent;
+  --progress-bar-color: var(--color-accent);
+  --progress-bar-height: 0;
+}
+
+.profile-avatar-viewer:active {
+  cursor: grabbing;
+}
+
+.profile-avatar-viewer-shell.is-loaded .profile-avatar-viewer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile-avatar-viewer:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -4px;
+}
+
+.profile-avatar-status {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  margin: 0;
+  color: transparent;
+  font-size: 0.76rem;
+  white-space: nowrap;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.profile-avatar-viewer-shell.is-loaded .profile-avatar-status {
+  opacity: 0;
+}
+
+.profile-avatar-viewer-shell.has-error .profile-avatar-status {
+  color: var(--color-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-avatar-viewer {
+    transform: none;
+    transition: none;
+  }
 }
 
 .cv-download-section {
@@ -444,6 +515,13 @@
   }
 
   .profile-detail-image {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .profile-detail-media {
+    flex-basis: auto;
     width: 100%;
     max-width: 320px;
     margin: 0 auto;

@@ -7,7 +7,7 @@
     <link rel="alternate" hreflang="en" href="../../about/" />
     <link rel="alternate" hreflang="ja" href="./" />
     <link rel="stylesheet" href="../../assets/css/global.css?v=20260730d" />
-    <link rel="stylesheet" href="../../about/about.css?v=20260821a" />
+    <link rel="stylesheet" href="../../about/about.css?v=20260903c" />
     <link rel="icon" href="../../assets/images/favicon.ico" />
   </head>
   <body
@@ -28,11 +28,39 @@
 
     <section class="profile-detail-section">
       <div class="profile-detail-container">
-        <div class="profile-detail-image">
-          <img
-            src="../../assets/images/kentashiki.jpg"
-            alt="Kenta Shikiのポートレート"
-          />
+        <div class="profile-detail-media">
+          <div class="profile-detail-image">
+            <img
+              src="../../assets/images/kentashiki.jpg"
+              alt="Kenta Shikiのポートレート"
+            />
+          </div>
+          <div class="profile-avatar">
+            <div class="profile-avatar-viewer-shell">
+              <model-viewer
+                class="profile-avatar-viewer"
+                src="../../assets/models/avatar/kenta-shiki.vrm?v=20260903a"
+                alt="志貴健太のフォトリアルな全身3Dアバター"
+                camera-controls
+                touch-action="pan-y"
+                auto-rotate
+                auto-rotate-delay="1800"
+                rotation-per-second="18deg"
+                camera-orbit="180deg 82deg 105%"
+                min-camera-orbit="auto 55deg 70%"
+                max-camera-orbit="auto 105deg 180%"
+                shadow-intensity="0.7"
+                shadow-softness="0.9"
+                exposure="1"
+                loading="lazy"
+                reveal="auto"
+                interaction-prompt="none"
+              ></model-viewer>
+              <p class="profile-avatar-status" aria-live="polite">
+                3Dアバターを読み込んでいます…
+              </p>
+            </div>
+          </div>
         </div>
         <div class="profile-detail-text">
           <h2>Kenta Shiki / 志貴 健太</h2>
@@ -293,6 +321,14 @@
                 <div class="eduexpqual-detail">学生会員</div>
               </div>
             </div>
+            <div class="eduexpqual-item">
+              <div class="eduexpqual-content">
+                <div class="eduexpqual-title">
+                  Society for Neuroscience（SfN）
+                </div>
+                <div class="eduexpqual-detail">学生会員</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -302,5 +338,6 @@
     <script src="../../assets/js/site-shell.js?v=20260730e"></script>
     <script src="../../assets/js/nav-toggle.js"></script>
     <script src="../../assets/js/network-animation.js"></script>
+    <script src="../../assets/js/avatar-viewer.js"></script>
   </body>
 </html>

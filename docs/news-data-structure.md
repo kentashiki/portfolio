@@ -23,7 +23,7 @@ for scanning.
     "I presented a collaborative project at ",
     {
       text: "Augmented Humans 2026",
-      href: "https://augmented-humans.org/",
+      href: "https://2026.augmented-humans.org/",
     },
     ".",
   ],

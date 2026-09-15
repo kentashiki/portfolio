@@ -113,7 +113,7 @@ export const news = [
       ",” developed collaboratively with students from other laboratories, in the Posters & Demos track of ",
       {
         text: "Augmented Humans (AHs) 2026",
-        href: "https://augmented-humans.org/",
+        href: "https://2026.augmented-humans.org/",
       },
       ". This was my first international conference presentation.",
     ],
@@ -132,7 +132,7 @@ export const news = [
       ",” developed collaboratively with students from other laboratories, was accepted to the Posters & Demos track of ",
       {
         text: "Augmented Humans (AHs) 2026",
-        href: "https://augmented-humans.org/",
+        href: "https://2026.augmented-humans.org/",
       },
       ".",
     ],

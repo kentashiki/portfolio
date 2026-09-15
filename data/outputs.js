@@ -17,7 +17,7 @@ export const outputs = [
     venue: "Augmented Humans (AHs) 2026 Posters & Demos",
     tags: ["Poster", "Demo", "International"],
     links: {
-      conference: "https://augmented-humans.org/",
+      conference: "https://2026.augmented-humans.org/",
       paper: "https://dl.acm.org/doi/10.1145/3795011.3797418",
       page: "outputs/#output-selecting-verbal-responses-head-gestures",
     },

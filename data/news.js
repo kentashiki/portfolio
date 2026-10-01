@@ -1,5 +1,19 @@
 export const news = [
   {
+    id: "news-sfn-2026-late-breaking-abstract",
+    date: "2026-09-29",
+    title: "Research Accepted to SfN 2026 Late-Breaking Abstract",
+    summary: [
+      "My work “Temporal EEG dynamics of tactile softness perception during passive touch” was accepted as a Late-Breaking Abstract for presentation at ",
+      {
+        text: "Neuroscience 2026 (SfN 2026)",
+        href: "https://www.sfn.org/meetings/neuroscience-2026/",
+      },
+      ". The conference will take place in Washington, D.C., from November 14–18. I will present on November 16 from 1:00 to 5:00 p.m.",
+    ],
+    tags: ["Acceptance"],
+  },
+  {
     id: "news-ligp-2026-excellence-award",
     date: "2026-07-14",
     title: "Received the Excellence Learning Innovation Award at LIGP 2026",

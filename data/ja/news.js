@@ -2,6 +2,14 @@ import news from "../news.js?v=20260729f";
 import { localizeNewsTags } from "./tags.js?v=20260728g";
 
 const translations = {
+  "news-sfn-2026-late-breaking-abstract": {
+    title: "SfN 2026 Late-Breaking Abstractに採択",
+    summary: [
+      "研究成果「Temporal EEG dynamics of tactile softness perception during passive touch」が、",
+      { text: "Neuroscience 2026（SfN 2026）", href: "https://www.sfn.org/meetings/neuroscience-2026/" },
+      "のLate-Breaking Abstractに採択されました。学会は11月14日から18日にワシントンD.C.で開催されます。私は11月16日 13:00〜17:00に発表する予定です。",
+    ],
+  },
   "news-ligp-2026-excellence-award": {
     title: "LIGP 2026で優秀ラーニングイノベーション賞を受賞",
     images: [

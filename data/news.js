@@ -1,7 +1,7 @@
 export const news = [
   {
     id: "news-sfn-2026-late-breaking-abstract",
-    date: "2026-09-29",
+    date: "2026-09-30",
     title: "Research Accepted to SfN 2026 Late-Breaking Abstract",
     summary: [
       "My work “Temporal EEG dynamics of tactile softness perception during passive touch” was accepted as a Late-Breaking Abstract for presentation at ",

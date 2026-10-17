@@ -1,4 +1,4 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261017a";
+import { loadLocalizedData } from "./localized-data.js?v=20261017c";
 import { escapeHtml, resolveUrl } from "./utils/content.js";
 
 const locale = document.body.dataset.locale || "en";

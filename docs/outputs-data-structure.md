@@ -13,6 +13,7 @@ presentations, demos, posters, web apps, and similar work.
   region: "domestic",
   title: "FocuSpeed: Adaptive Control of Speech Playback Speed Based on Concentration Level Estimated from Biosignals",
   type: "presentation",
+  date: "2025-09-10",
   year: 2025,
   authors: ["Kenta Shiki"],
   equalContributionCount: 0,
@@ -64,7 +65,8 @@ presentations, demos, posters, web apps, and similar work.
 | `region` | Recommended | Geographic scope for grouping. | Current values: `international`, `domestic`, `not-region-specific`. |
 | `title` | Yes | Public title shown on cards. | Use the official title for publications and presentations. |
 | `type` | Yes | Primary output category used for Type grouping. | Keep broad and structural. See Type Values below. |
-| `year` | Yes | Output year used for sorting and grouping. | Use a number. |
+| `date` | Recommended | Presentation, publication, or release date; shown on cards and used for newest-first sorting within every group. | Use `YYYY-MM-DD`. For conference presentations, use the presentation date even if the record is categorized as a publication. For standalone papers, use the publication date; for software, use the release date. Upcoming presentations use their scheduled date. |
+| `year` | Yes | Output year used for grouping and as a sorting fallback when `date` is unknown. | Use a number matching the year in `date`. |
 | `authors` | Recommended | Ordered author list. | Use the official author order. `Kenta Shiki` is highlighted by the renderer. |
 | `equalContributionCount` | No | Marks the first N authors as equal contribution. | Use only when needed. Omit or use `0` otherwise. |
 | `venue` | Recommended | Publication venue, conference track, event, or platform. | Shown on output cards when present. |

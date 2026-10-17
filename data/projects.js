@@ -138,9 +138,9 @@ export const projects = [
   {
     slug: "biosword",
     themeSlugs: ["athletic-biofeedback-interfaces"],
-    title: "Biosword",
+    title: "Bio-Sword",
     summary:
-      "Biosword is a biofeedback system for kendo, a Japanese budo (martial way). Using biosignals and motion data from IMU sensors, it helps practitioners reflect on their mental and physical states during training and improve mental-state regulation.",
+      "Bio-Sword is a biofeedback system for kendo, a Japanese budo (martial way). Using biosignals and motion data from IMU sensors, it helps practitioners reflect on their mental and physical states during training and improve mental-state regulation.",
     start: {
       year: 2026,
       month: 7,

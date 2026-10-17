@@ -3,10 +3,10 @@ import {
   humanizeSlug,
   isSameDocumentUrl,
   resolveUrl,
-  sortByYearThenTitle,
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js?v=20261017a";
+import { compareOutputDates, formatOutputDate } from "./utils/output-date.js";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 
 function formatTypeLabel(value, locale = "en") {
@@ -78,6 +78,9 @@ function renderAuthors(authors = [], equalContributionCount = 0) {
 
 export function renderOutputCard(output, root, options = {}) {
   const { locale = "en", showProjectLink = false } = options;
+  const status = output.status === "upcoming"
+    ? `<span class="research-tag" data-tag="upcoming">${locale === "ja" ? "発表予定" : "Presentation scheduled"}</span>`
+    : "";
   const tags = (output.tags || [])
     .map((tag) => {
       const label = typeof tag === "object" && tag !== null ? tag.label : tag;
@@ -94,17 +97,21 @@ export function renderOutputCard(output, root, options = {}) {
     : "";
   const outputLinks = getOutputLinks(output.links, root, locale, showProjectLink);
   const title = `<h3 class="output-card-title">${escapeHtml(output.title)}</h3>`;
+  const date = output.date
+    ? `<time class="output-card-venue" datetime="${escapeHtml(output.date)}">${escapeHtml(formatOutputDate(output.date, locale))}</time>`
+    : "";
 
   return `
     <article
       id="output-${escapeHtml(output.slug)}"
       class="output-card"
     >
+      ${date}
       ${title}
       ${renderAuthors(output.authors, output.equalContributionCount)}
       ${venue}
       ${description}
-      <div class="output-card-tags">${tags}</div>
+      <div class="output-card-tags">${status}${tags}</div>
       ${
         outputLinks.length
           ? `
@@ -215,7 +222,7 @@ function renderOutputSection({ items, label }, { root, locale }) {
         <div class="outputs-grid">
           ${items
             .slice()
-            .sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || a.title.localeCompare(b.title))
+            .sort(compareOutputDates)
             .map((item) => renderOutputCard(item, root, { locale, showProjectLink: true }))
             .join("")}
         </div>
@@ -225,7 +232,7 @@ function renderOutputSection({ items, label }, { root, locale }) {
 
 export function renderOutputs(container, outputs, options = {}) {
   const { root = "", defaultAxis = "type", locale = "en" } = options;
-  const sorted = sortByYearThenTitle([...outputs]);
+  const sorted = [...outputs].sort(compareOutputDates);
 
   createGroupedAxisView({
     container,

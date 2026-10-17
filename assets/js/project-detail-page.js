@@ -1,7 +1,7 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261017a";
+import { loadLocalizedData } from "./localized-data.js?v=20261017c";
 import { formatProjectPeriod, resolveUrl, toTagKey } from "./utils/content.js?v=20260728a";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
-import { renderOutputCard } from "./renderOutputs.js?v=20261017a";
+import { renderOutputCard } from "./renderOutputs.js?v=20261017c";
 import { renderAwardCard } from "./renderAwards.js?v=20261017a";
 
 const root = document.querySelector("[data-project-detail-root]");

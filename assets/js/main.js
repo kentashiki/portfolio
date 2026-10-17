@@ -1,7 +1,7 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261017a";
-import { renderProjects } from "./renderProjects.js?v=20260730i";
+import { loadLocalizedData } from "./localized-data.js?v=20261017c";
+import { renderProjects } from "./renderProjects.js?v=20261017c";
 import { renderNews } from "./renderNews.js?v=20260730f";
-import { renderOutputs } from "./renderOutputs.js?v=20261017a";
+import { renderOutputs } from "./renderOutputs.js?v=20261017c";
 import { renderAwards } from "./renderAwards.js?v=20261017a";
 
 const HOME_NEWS_TAG_LIMIT = 1;

@@ -1,4 +1,4 @@
-import projects from "../projects.js?v=20260729m";
+import projects from "../projects.js?v=20261017b";
 
 const translations = {
   "virtual-softness-eeg": {
@@ -77,7 +77,7 @@ const translations = {
     tags: ["頭部動作", "IMUセンサ", "AIエージェント", "言語応答", "リモート会議"]
   },
   biosword: {
-    summary: "Bioswordは、剣道における精神状態のコントロールを訓練するため、生体信号とIMUセンサから得られる動作情報を活用し、競技者が練習中の心身状態を振り返れるようにするバイオフィードバックシステムです。",
+    summary: "Bio-Swordは、剣道における精神状態のコントロールを訓練するため、生体信号とIMUセンサから得られる動作情報を活用し、競技者が練習中の心身状態を振り返れるようにするバイオフィードバックシステムです。",
     tags: ["VR", "剣道", "皮膚電位", "脈波", "IMUセンサ"],
   },
   complirole: {

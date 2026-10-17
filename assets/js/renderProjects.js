@@ -5,6 +5,7 @@ import {
   resolveUrl,
   toTagKey,
 } from "./utils/content.js?v=20260728a";
+import { compareOutputDates } from "./utils/output-date.js";
 
 const PROJECT_DISPLAY_ORDER = [
   "focuspeed",
@@ -68,7 +69,7 @@ function renderProjectLinks(links = {}, root, locale = "en") {
 function renderRelatedProjectResults(project, outputs, awards, root, locale) {
   const relatedOutputs = outputs
     .filter((output) => output.projectSlug === project.slug)
-    .sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
+    .sort(compareOutputDates);
   const relatedAwards = awards
     .filter((award) => award.projectSlug === project.slug)
     .sort((a, b) => Number(b.year || 0) - Number(a.year || 0));

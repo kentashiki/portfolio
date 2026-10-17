@@ -1,4 +1,4 @@
-import outputs from "../outputs.js";
+import outputs from "../outputs.js?v=20261017c";
 import { localizeTagsWithKeys } from "./tags.js";
 
 const translations = {

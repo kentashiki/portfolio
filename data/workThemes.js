@@ -16,7 +16,7 @@ export const workThemes = [
       "Exploring brain activity-based methods for objectively evaluating subjective experiences, including tactile and olfactory perception.",
     tags: ["Subjective Experience", "Neural Evaluation", "Human Perception", "Evaluation Metrics"],
     projectSlugs: ["virtual-softness-eeg", "olfactory-subjective-impressions-eeg"],
-    outputSlugs: [],
+    outputSlugs: ["temporal-eeg-softness-sfn2026"],
     awardSlugs: [],
   },
   {
@@ -36,7 +36,7 @@ export const workThemes = [
       "Investigating how physiological signals can help users understand and improve the mental aspects of sports training through real-time biofeedback.",
     tags: ["Biofeedback", "Mental Training", "Sports Performance", "Self-Regulation"],
     projectSlugs: ["biosword"],
-    outputSlugs: [],
+    outputSlugs: ["bio-sword-uist2026"],
     awardSlugs: [],
   },
 ];

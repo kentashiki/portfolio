@@ -1,4 +1,4 @@
-import workThemes from "../workThemes.js";
+import workThemes from "../workThemes.js?v=20261017b";
 
 const translations = {
   "neuroadaptive-hci": {

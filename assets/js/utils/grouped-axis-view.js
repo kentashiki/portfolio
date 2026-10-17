@@ -66,7 +66,7 @@ export function createGroupedAxisView({
             ({ key, label }) =>
               `<button type="button" class="outputs-axis-button${
                 key === defaultAxis ? " is-active" : ""
-              }" data-axis="${escapeHtml(key)}">${escapeHtml(label)}</button>`
+              }" data-axis="${escapeHtml(key)}" aria-pressed="${key === defaultAxis}">${escapeHtml(label)}</button>`
           )
           .join("")}
       </div>
@@ -87,6 +87,7 @@ export function createGroupedAxisView({
       .join("");
     buttons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.axis === axis);
+      button.setAttribute("aria-pressed", String(button.dataset.axis === axis));
     });
   };
 

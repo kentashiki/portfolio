@@ -6,7 +6,7 @@ import {
   sortByYearThenTitle,
   toTagKey,
 } from "./utils/content.js";
-import { createGroupedAxisView } from "./utils/grouped-axis-view.js";
+import { createGroupedAxisView } from "./utils/grouped-axis-view.js?v=20261017a";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 
 const AWARD_AXES = [

@@ -31,7 +31,7 @@ export const news = [
         text: "FocuSpeed",
         href: "work/focuspeed/",
       },
-      ", developed collaboratively with my Amemiya Lab peers as Team Amelab M2, received the Excellence Learning Innovation Award at ",
+      ", developed collaboratively with my AME Lab peers as Team Amelab M2, received the Excellence Learning Innovation Award at ",
       {
         text: "Learning Innovation Grand Prix (LIGP) 2026",
         href: "https://ligp.gingerapp.co.jp/",
@@ -45,7 +45,7 @@ export const news = [
     date: "2026-06-22",
     title: "Selected for the UIST 2026 Student Innovation Contest",
     summary: [
-      "A proposal submitted under the leadership of Yen Juichun, an intern at the Amemiya Lab, was selected for the ",
+      "A proposal submitted under the leadership of Yen Juichun, an intern at the AME Lab, was selected for the ",
       {
         text: "ACM Symposium on User Interface Software and Technology (UIST) 2026 Student Innovation Contest (SIC)",
         href: "https://uist.acm.org/2026/cfp/#sic",
@@ -190,7 +190,7 @@ export const news = [
         text: "FocuSpeed: Adaptive Control of Speech Playback Speed Based on Concentration Level Estimated from Biosignals",
         href: "outputs/#output-focuspeed-sichi2025",
       },
-      ",” developed collaboratively with my Amemiya Lab peers as Team Amelab M1, received an Encouragement Award at ",
+      ",” developed collaboratively with my AME Lab peers as Team Amelab M1, received an Encouragement Award at ",
       {
         text: "Student Innovation Contest at Human Interface Symposium (SICHI) 2025",
         href: "https://sites.google.com/view/sichi/sichi2025",
@@ -223,7 +223,7 @@ export const news = [
         text: "FocuSpeed: Adaptive Control of Speech Playback Speed Based on Concentration Level Estimated from Biosignals",
         href: "outputs/#output-focuspeed-sichi2025",
       },
-      ",” developed collaboratively with my Amemiya Lab peers as Team Amelab M1, as a poster and demo at ",
+      ",” developed collaboratively with my AME Lab peers as Team Amelab M1, as a poster and demo at ",
       {
         text: "Student Innovation Contest at Human Interface Symposium (SICHI) 2025",
         href: "https://sites.google.com/view/sichi/sichi2025",
@@ -247,7 +247,7 @@ export const news = [
     summary: [
       "I began a master's program at the University of Tokyo and started research in the ",
       {
-        text: "Amemiya Lab",
+        text: "AME Lab",
         href: "https://www.amelab.vr.u-tokyo.ac.jp/home",
       },
       ".",

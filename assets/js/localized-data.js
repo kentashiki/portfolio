@@ -1,11 +1,11 @@
 import projects from "../../data/projects.js?v=20260729o";
 import workThemes from "../../data/workThemes.js?v=20260729a";
-import news from "../../data/news.js?v=20260729f";
+import news from "../../data/news.js?v=20261017a";
 import outputs from "../../data/outputs.js?v=20260729a";
 import awards from "../../data/awards.js?v=20260728f";
 import jaProjects from "../../data/ja/projects.js?v=20260729n";
 import jaWorkThemes from "../../data/ja/workThemes.js?v=20260729c";
-import jaNews from "../../data/ja/news.js?v=20260729f";
+import jaNews from "../../data/ja/news.js?v=20261017a";
 import jaOutputs from "../../data/ja/outputs.js?v=20260729b";
 import jaAwards from "../../data/ja/awards.js?v=20260728g";
 

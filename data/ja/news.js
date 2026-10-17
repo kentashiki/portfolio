@@ -1,4 +1,4 @@
-import news from "../news.js?v=20260729f";
+import news from "../news.js?v=20261017a";
 import { localizeNewsTags } from "./tags.js?v=20260728g";
 
 const translations = {

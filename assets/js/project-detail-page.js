@@ -1,8 +1,8 @@
-import { loadLocalizedData } from "./localized-data.js?v=20260729s";
+import { loadLocalizedData } from "./localized-data.js?v=20261017a";
 import { formatProjectPeriod, resolveUrl, toTagKey } from "./utils/content.js?v=20260728a";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
-import { renderOutputCard } from "./renderOutputs.js?v=20260728d";
-import { renderAwardCard } from "./renderAwards.js?v=20260728g";
+import { renderOutputCard } from "./renderOutputs.js?v=20261017a";
+import { renderAwardCard } from "./renderAwards.js?v=20261017a";
 
 const root = document.querySelector("[data-project-detail-root]");
 const rootPath = document.body?.dataset.root || "";
@@ -123,15 +123,9 @@ function renderHero(detail) {
 
   return `
     <section class="project-detail-hero page-hero">
-      <canvas id="network-canvas"></canvas>
       <div class="project-detail-hero__content page-hero-content">
         <div>
           <h1>${escapeHtml(detail.title)}</h1>
-          ${
-            detail.summary
-              ? `<p class="project-detail-hero__summary">${escapeHtml(detail.summary)}</p>`
-              : ""
-          }
           ${
             formatProjectPeriod(detail, locale)
               ? `<p class="project-detail-hero__period">${escapeHtml(formatProjectPeriod(detail, locale))}</p>`

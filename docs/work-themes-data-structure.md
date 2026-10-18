@@ -1,6 +1,6 @@
 # Work Themes Data Structure
 
-This document defines how work theme records in `data/workThemes.js` should be
+This document defines how work theme records in `public/data/workThemes.js` should be
 structured. Work themes are higher-level areas of inquiry, craft, or practice
 that group concrete projects, systems, outputs, and awards.
 
@@ -27,9 +27,9 @@ that group concrete projects, systems, outputs, and awards.
 | `title` | Yes | Public-facing work theme title. | Use an abstract theme title rather than a system or experiment name. |
 | `summary` | Recommended | Short explanation of the central question, area, or practice. | Useful for future theme pages and grouped views. |
 | `tags` | Recommended | Broader areas, questions, or intellectual directions. | Keep tags abstract and reusable across projects. See `docs/tagging-guidelines.md`. |
-| `projectSlugs` | Recommended | Concrete projects or systems under this theme. | Values should match `data/projects.js` `slug` values. |
-| `outputSlugs` | Recommended | Publications, posters, demos, or other outputs under this theme. | Values should match `data/outputs.js` `slug` values. |
-| `awardSlugs` | Recommended | Awards connected to this theme. | Values should match `data/awards.js` `slug` values. |
+| `projectSlugs` | Recommended | Concrete projects or systems under this theme. | Values should match `public/data/projects.js` `slug` values. |
+| `outputSlugs` | Recommended | Publications, posters, demos, or other outputs under this theme. | Values should match `public/data/outputs.js` `slug` values. |
+| `awardSlugs` | Recommended | Awards connected to this theme. | Values should match `public/data/awards.js` `slug` values. |
 
 ## Relationship To Projects
 

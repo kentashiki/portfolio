@@ -1,6 +1,6 @@
 # Awards Data Structure
 
-This document defines how award records in `data/awards.js` should be structured.
+This document defines how award records in `public/data/awards.js` should be structured.
 The goal is to keep each attribute's role clear, especially the boundary between
 primary classification fields such as `type` and flexible display labels such as
 `tags`.
@@ -34,8 +34,8 @@ primary classification fields such as `type` and flexible display labels such as
 | Attribute | Required | Role | Notes |
 | --- | --- | --- | --- |
 | `slug` | Yes | Stable unique identifier for the award. | Use lowercase kebab-case. This is used for anchors and cross-references. Avoid changing it after publishing. |
-| `projectSlug` | No | Connects the award to a project in `data/projects.js`. | Use when the award belongs to a specific project. The value should match a project `slug`. |
-| `outputSlug` | No | Connects the award to an output in `data/outputs.js`. | Use when the award was received for a specific paper, presentation, demo, or other output. The value should match an output `slug`. |
+| `projectSlug` | No | Connects the award to a project in `public/data/projects.js`. | Use when the award belongs to a specific project. The value should match a project `slug`. |
+| `outputSlug` | No | Connects the award to an output in `public/data/outputs.js`. | Use when the award was received for a specific paper, presentation, demo, or other output. The value should match an output `slug`. |
 | `region` | Recommended | Geographic scope used for grouping/filtering. | Current values: `international`, `domestic`, `not-region-specific`. Use `domestic` for Japan-specific awards. |
 | `type` | Yes | Primary award category used for the Type grouping. | Keep this broad and structural. Do not use event-specific labels such as `student-contest` here. |
 | `title` | Yes | Actual award name shown on the card. | Example: `Encouragement Award`, `Best Paper Award`, `Poster Award`. |
@@ -133,7 +133,7 @@ Supported award link keys:
 | `github` | Repository link. |
 | `doi` | DOI or publisher link. |
 
-Primary link priority in `assets/js/renderAwards.js`:
+Primary link priority in `public/assets/js/renderAwards.js`:
 
 ```txt
 projectDetail -> page -> conference -> officialSite -> pdf -> demo -> github -> doi
@@ -143,13 +143,13 @@ projectDetail -> page -> conference -> officialSite -> pdf -> demo -> github -> 
 
 Awards can connect to other data files through slugs:
 
-- `projectSlug` should match `data/projects.js` `slug`.
-- `outputSlug` should match `data/outputs.js` `slug`.
+- `projectSlug` should match `public/data/projects.js` `slug`.
+- `outputSlug` should match `public/data/outputs.js` `slug`.
 
 When adding an award for an output:
 
-1. Add the award to `data/awards.js`.
-2. Add or confirm the related output in `data/outputs.js`.
+1. Add the award to `public/data/awards.js`.
+2. Add or confirm the related output in `public/data/outputs.js`.
 3. Set the award's `outputSlug` to the related output slug.
 
 ## Current SICHI2025 Example

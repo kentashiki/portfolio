@@ -23,3 +23,7 @@ build/
 # others
 notes/
 archive/
+
+# local verification artifacts (store new captures outside this repository)
+/output/
+/.playwright-cli/

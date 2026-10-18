@@ -1,0 +1,17 @@
+# サイトの管理資料
+
+現在の公開ファイルは、リポジトリ直下の `public/` にあります。
+
+| 資料 | 内容 |
+| --- | --- |
+| [deployment.md](deployment.md) | GitHub Pages・XServerへの公開手順 |
+| [projects-data-structure.md](projects-data-structure.md) | プロジェクト・研究詳細のデータ |
+| [work-themes-data-structure.md](work-themes-data-structure.md) | Workのテーマ分類 |
+| [news-data-structure.md](news-data-structure.md) | Newsのデータ |
+| [outputs-data-structure.md](outputs-data-structure.md) | Outputsのデータ |
+| [awards-data-structure.md](awards-data-structure.md) | Awardsのデータ |
+| [tagging-guidelines.md](tagging-guidelines.md) | タグの付け方 |
+
+データのURL例にある `assets/...` や `work/...` は、公開されるサイトの起点からのパスです。
+実際のファイルは `public/assets/` や `public/work/` に置きます。
+URLへ `public/` を追加しないでください。

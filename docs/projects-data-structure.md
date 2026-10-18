@@ -1,6 +1,6 @@
 # Projects Data Structure
 
-This document defines how project records in `data/projects.js` should be
+This document defines how project records in `public/data/projects.js` should be
 structured. Projects are the main portfolio units: research projects, prototypes,
 class projects, and long-running explorations.
 
@@ -66,7 +66,7 @@ class projects, and long-running explorations.
 | Attribute | Required | Role | Notes |
 | --- | --- | --- | --- |
 | `slug` | Yes | Stable unique identifier for the project. | Use lowercase kebab-case when possible. This is used for anchors, detail page lookup, and cross-references. |
-| `themeSlugs` | Recommended | Connects the project to one or more work themes. | Values should match `data/workThemes.js` `slug` values. Use an empty array if the project is intentionally ungrouped. |
+| `themeSlugs` | Recommended | Connects the project to one or more work themes. | Values should match `public/data/workThemes.js` `slug` values. Use an empty array if the project is intentionally ungrouped. |
 | `title` | Yes | Project name shown on cards and detail pages. | Use the public-facing project title. |
 | `summary` | Yes | Short project description. | Shown on cards, carousel items, and detail hero sections. |
 | `start` | Recommended | Structured start date used for sorting and period generation. | Object with `year` and optional `month`. |
@@ -177,7 +177,7 @@ not have an image source to render.
 
 ## Detail Object
 
-`detail` is used by `assets/js/project-detail-page.js` for dedicated project
+`detail` is used by `public/assets/js/project-detail-page.js` for dedicated project
 pages.
 
 | Attribute | Role |
@@ -228,7 +228,7 @@ Use `detail.featuredVideo` when a project has one representative demo or concept
 video. It renders as a standalone section after Overview, before Tech Stack.
 
 For a video stored in the repository, put the file under a stable asset
-directory such as `assets/videos/`:
+directory such as `public/assets/videos/`:
 
 ```js
 featuredVideo: {
@@ -265,10 +265,10 @@ Projects connect to outputs and awards through slugs:
 
 When adding a project with a detail page:
 
-1. Add the project to `data/projects.js`.
-2. Add or confirm a matching HTML page under `work/<slug>/` if `links.page`
+1. Add the project to `public/data/projects.js`.
+2. Add or confirm a matching HTML page under `public/work/<slug>/` if `links.page`
    points to a dedicated detail page.
-3. Add related outputs to `data/outputs.js`.
+3. Add related outputs to `public/data/outputs.js`.
 4. Add output slugs to `detail.outputSlugs` in the order they should appear.
-5. Add related awards to `data/awards.js` and set their `projectSlug` or
+5. Add related awards to `public/data/awards.js` and set their `projectSlug` or
    `outputSlug`.

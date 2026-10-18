@@ -1,6 +1,6 @@
 # Outputs Data Structure
 
-This document defines how output records in `data/outputs.js` should be
+This document defines how output records in `public/data/outputs.js` should be
 structured. Outputs are public artifacts or deliverables: publications,
 presentations, demos, posters, web apps, and similar work.
 
@@ -61,7 +61,7 @@ presentations, demos, posters, web apps, and similar work.
 | Attribute | Required | Role | Notes |
 | --- | --- | --- | --- |
 | `slug` | Yes | Stable unique identifier for the output. | Use lowercase kebab-case. This is used for anchors, links, and project detail routing. |
-| `projectSlug` | No | Connects the output to a project in `data/projects.js`. | Use when the output belongs to a specific project. |
+| `projectSlug` | No | Connects the output to a project in `public/data/projects.js`. | Use when the output belongs to a specific project. |
 | `region` | Recommended | Geographic scope for grouping. | Current values: `international`, `domestic`, `not-region-specific`. |
 | `title` | Yes | Public title shown on cards. | Use the official title for publications and presentations. |
 | `type` | Yes | Primary output category used for Type grouping. | Keep broad and structural. See Type Values below. |
@@ -150,7 +150,7 @@ Supported output link keys:
 | `github` | Repository link. |
 | `doi` | DOI or publisher link. |
 
-Primary link priority in `assets/js/renderOutputs.js`:
+Primary link priority in `public/assets/js/renderOutputs.js`:
 
 ```txt
 projectDetail -> page -> paper -> pdf -> demo -> github -> doi
@@ -158,7 +158,7 @@ projectDetail -> page -> paper -> pdf -> demo -> github -> doi
 
 ## Detail Object
 
-`detail` is used by `assets/js/project-detail-page.js` when the output appears
+`detail` is used by `public/assets/js/project-detail-page.js` when the output appears
 inside a project detail page. It is optional for simple outputs.
 
 | Attribute | Role |
@@ -174,13 +174,13 @@ inside a project detail page. It is optional for simple outputs.
 
 ## Relationship To Other Data
 
-- `projectSlug` should match a `data/projects.js` `slug`.
+- `projectSlug` should match a `public/data/projects.js` `slug`.
 - Awards can point to outputs through `outputSlug`.
 - Projects can explicitly select outputs through `project.detail.outputSlugs`.
 
 When adding an output connected to a project:
 
-1. Add the output to `data/outputs.js`.
+1. Add the output to `public/data/outputs.js`.
 2. Set `projectSlug` to the matching project slug.
-3. Add the output slug to `data/projects.js` `detail.outputSlugs` if the project
+3. Add the output slug to `public/data/projects.js` `detail.outputSlugs` if the project
    detail page should control output order explicitly.

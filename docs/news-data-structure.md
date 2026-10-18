@@ -1,6 +1,6 @@
 # News Data Structure
 
-This document defines how news records in `data/news.js` should be structured.
+This document defines how news records in `public/data/news.js` should be structured.
 News records are timeline items: they should be concise, date-driven, and written
 for scanning.
 
@@ -38,7 +38,7 @@ for scanning.
 | `id` | Yes | Stable identifier and page anchor. | Use a unique, descriptive kebab-case value prefixed with `news-`. Do not change it after publication. |
 | `date` | Yes | Timeline date and sort key. | Use ISO format: `YYYY-MM-DD`. The renderer displays it in a compact English format, such as `Jul 1, 2026`. |
 | `title` | Yes | Main timeline headline. | Keep it factual and specific. Prefer one event per item. |
-| `images` | No | Ordered photos shown only on the full News page. | Store photos under `assets/images/news/YYYY/`. Each entry includes `src`, descriptive `alt`, and intrinsic `width` and `height`. |
+| `images` | No | Ordered photos shown only on the full News page. | Store photos under `public/assets/images/news/YYYY/`. Each entry includes `src`, descriptive `alt`, and intrinsic `width` and `height`. |
 | `summary` | Recommended | Short supporting sentence or linked rich text. | Can be a plain string or an array of text/link parts. |
 | `tags` | Recommended | Primary event or outcome category. | Use one tag in most cases. Put the primary tag first if an exceptional item needs a second tag. |
 
@@ -82,10 +82,10 @@ Rules:
 News photos are optional and appear only in detailed items on the full News page.
 The home page intentionally does not render them.
 
-- Store files in `assets/images/news/YYYY/`.
+- Store files in `public/assets/images/news/YYYY/`.
 - Use a descriptive kebab-case filename based on the event or news item.
 - Put images in display order; the first entry is shown first.
-- Use a content-specific `alt` description. Localize it in `data/ja/news.js`.
+- Use a content-specific `alt` description. Localize it in `public/data/ja/news.js`.
 - Include the source image dimensions to reserve layout space while loading.
 - A single image is displayed directly. Two or more images use a fixed-height
   main viewer with previous/next controls, a position counter, and selectable
@@ -129,7 +129,7 @@ readers can recognize related kinds of News at a glance. The canonical tag key,
 not its localized display label, determines the design.
 
 The current groups follow the styles defined for `.update-tag[data-tag]` in
-`assets/css/global.css`:
+`public/assets/css/global.css`:
 
 | Design group | News tags | Visual treatment |
 | --- | --- | --- |
@@ -156,7 +156,7 @@ When adding a News tag:
   fit any existing group and that distinction will be useful across multiple
   News items.
 - Update both this table and the corresponding selectors in
-  `assets/css/global.css` whenever group membership changes.
+  `public/assets/css/global.css` whenever group membership changes.
 - Preserve the canonical English key during localization. Japanese News tags
   should change only the displayed label so the English and Japanese versions
   receive the same design.
@@ -174,7 +174,7 @@ When adding a News tag:
   title in `summary` and link it to the corresponding item on the Outputs page.
   Keep the News `title` concise; do not repeat the formal output title there.
 - If a news item corresponds to an output or award, keep the wording aligned with
-  `data/outputs.js` or `data/awards.js`.
+  `public/data/outputs.js` or `public/data/awards.js`.
 
 ## Title Patterns
 
@@ -189,7 +189,7 @@ Use these patterns to keep similar events easy to scan:
 
 ## Localization
 
-`data/news.js` owns the shared structure. `data/ja/news.js` overrides only
+`public/data/news.js` owns the shared structure. `public/data/ja/news.js` overrides only
 localized content and inherits `id`, `date`, and `tags`.
 
 - Treat the Japanese `title` and `summary` as the content source of truth unless

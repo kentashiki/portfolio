@@ -14,7 +14,7 @@
 
 .project-detail-hero__summary {
   margin: 1.5rem 0 0;
-  max-width: 720px;
+  max-width: none;
   color: var(--color-body);
   font-size: 1.08rem;
   line-height: 1.9;
@@ -338,7 +338,7 @@
 .project-detail-award-record__issuer,
 .project-detail-award-record__recipients {
   margin: 0;
-  max-width: 980px;
+  max-width: none;
   color: var(--color-body);
   line-height: 1.75;
 }
@@ -413,7 +413,7 @@
 
 .project-detail-output-record__title {
   margin: 0;
-  max-width: 980px;
+  max-width: none;
   color: var(--color-heading);
   font-size: 1.35rem;
   line-height: 1.45;
@@ -422,7 +422,7 @@
 .project-detail-output-record__authors,
 .project-detail-output-record__venue {
   margin: 0;
-  max-width: 980px;
+  max-width: none;
   color: var(--color-body);
   line-height: 1.75;
 }

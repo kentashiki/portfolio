@@ -131,7 +131,7 @@
 .update-images {
   display: grid;
   gap: 20px;
-  max-width: 760px;
+  max-width: none;
   margin: 22px 0 4px;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .update-gallery {
-  max-width: 760px;
+  max-width: none;
   margin: 22px 0 4px;
   outline: none;
 }

@@ -304,7 +304,7 @@ html {
 }
 
 .editorial-page :is(.mission-section, .vision-section) p {
-  max-width: 960px;
+  max-width: none;
   margin: 0;
   color: var(--color-heading);
   font-size: clamp(20px, 2vw, 27px);
@@ -400,7 +400,7 @@ html {
   background: transparent;
 }
 
-.editorial-page :is(.work-themes, .works-container, .updates-container, .history-container) {
+.editorial-page :is(.work-themes, .projects-container, .works-container, .updates-container, .history-container) {
   max-width: none;
 }
 .editorial-page .work-theme {
@@ -566,7 +566,7 @@ html {
   border-bottom: 0;
 }
 .editorial-page .output-card-title {
-  max-width: 1000px;
+  max-width: none;
   font-size: 23px;
   line-height: 1.4;
 }
@@ -578,7 +578,7 @@ html {
   font-weight: 400;
 }
 .editorial-page .output-card-description {
-  max-width: 1000px;
+  max-width: none;
   font-size: 14px;
 }
 .editorial-page :is(.output-card-links, .award-card-links) {
@@ -622,9 +622,10 @@ html {
   margin-bottom: 18px;
   font-size: 23px;
   line-height: 1.4;
+  text-wrap: balance;
 }
 .editorial-page .update-description {
-  max-width: 850px;
+  max-width: none;
   font-size: 14px;
   line-height: 1.85;
 }

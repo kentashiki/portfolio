@@ -6,6 +6,7 @@
 | --- | --- |
 | [deployment.md](deployment.md) | GitHub Pages・XServerへの公開手順 |
 | [contact-form.md](contact-form.md) | Formspreeの設定・フォーム更新・旧PHPファイルの削除 |
+| [branding.md](branding.md) | テキストでの名前表示・KSアイコンと使用方法 |
 | [projects-data-structure.md](projects-data-structure.md) | プロジェクト・研究詳細のデータ |
 | [work-themes-data-structure.md](work-themes-data-structure.md) | Workのテーマ分類 |
 | [news-data-structure.md](news-data-structure.md) | Newsのデータ |

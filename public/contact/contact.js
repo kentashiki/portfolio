@@ -2,118 +2,91 @@
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
 
+  const endpoint = window.portfolioContactEndpoint;
+  // Until configured, keep the fields hidden and prevent any same-page POST.
+  const ready = typeof endpoint === 'string'
+    && /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(endpoint);
+  if (!ready) {
+    form.addEventListener('submit', (event) => event.preventDefault());
+    return;
+  }
+
   const ja = document.body.dataset.locale === 'ja';
-  const text = ja ? {
-    ready: '共同研究やプロダクト開発について、こちらのフォームからお問い合わせください。',
-    sending: '送信しています…',
-    sent: 'お問い合わせを送信しました。ご連絡ありがとうございます。',
-    button: '送信する',
-    sentButton: '送信しました',
-    validation: '入力内容をご確認ください。文字数やメールアドレスの形式に誤りがあります。',
-    rate: '送信回数の上限に達しました。時間をおいてからお試しください。',
-    too_fast: '少し時間をおいてから、もう一度送信してください。',
-    session: '送信の準備を更新しました。入力内容を確認し、もう一度送信してください。',
-    unavailable: '現在フォームを利用できません。下のSNSからご連絡ください。',
-    error: '送信を完了できませんでした。入力内容は残っています。時間をおいて再度お試しください。',
-    uncertain: '送信結果を確認できませんでした。入力内容は残っています。時間をおいて、もう一度送信してください。',
-  } : {
-    ready: 'Use this form to get in touch about research or product development.',
-    sending: 'Sending…',
-    sent: 'Your message has been sent. Thank you for getting in touch.',
-    button: 'Send message',
-    sentButton: 'Message sent',
-    validation: 'Please check the fields, character limits, and email address.',
-    rate: 'The submission limit has been reached. Please try again later.',
-    too_fast: 'Please wait a moment, then try sending again.',
-    session: 'The form session has been refreshed. Please review your message and send again.',
-    unavailable: 'This form is currently unavailable. Please use the social links below.',
-    error: 'Your message could not be sent. Your text has been kept. Please try again later.',
-    uncertain: 'We could not confirm the result. Your text has been kept. Please wait and try sending again.',
-  };
-  const notice = document.getElementById('contact-form-notice');
-  const button = form.querySelector('[type="submit"]');
-  let token = '';
-  let busy = false;
-  let sent = false;
+  const labels = ja
+    ? { name: 'お名前', email: 'メールアドレス', subject: '件名', message: 'お問い合わせ内容' }
+    : { name: 'name', email: 'email address', subject: 'subject', message: 'message' };
+  const fields = [...form.querySelectorAll('input, textarea')];
+  const errors = new Map();
+  let submitted = false;
+  const summary = document.createElement('p');
+  summary.className = 'contact-form-error';
+  summary.setAttribute('role', 'alert');
+  summary.hidden = true;
+  form.querySelector('[type="submit"]').before(summary);
 
-  function show(message, state = '') {
-    notice.textContent = message;
-    notice.dataset.state = state;
-  }
-
-  async function request(options = {}) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), options.method === 'POST' ? 45000 : 10000);
-    try {
-      const response = await fetch(form.action, {
-        credentials: 'same-origin',
-        cache: 'no-store',
-        ...options,
-        headers: { Accept: 'application/json', ...options.headers },
-        signal: controller.signal,
-      });
-      return { response, data: await response.json() };
-    } finally {
-      clearTimeout(timeout);
+  function messageFor(field) {
+    if (field.required && !field.value.trim()) {
+      return ja ? `${labels[field.name]}を入力してください。` : `Please enter your ${labels[field.name]}.`;
     }
-  }
-
-  async function connect() {
-    const { response, data } = await request();
-    if (!response.ok || !data.ok || typeof data.token !== 'string' || !/^[a-f0-9]{64}$/.test(data.token)) {
-      throw new Error('Form unavailable');
+    if (field.validity.typeMismatch) {
+      return ja ? 'メールアドレスの形式をご確認ください。' : 'Please enter a valid email address.';
     }
-    token = data.token;
-    button.disabled = false;
+    if (field.maxLength > 0 && field.value.length > field.maxLength) {
+      return ja ? `${field.maxLength}文字以内で入力してください。` : `Please use ${field.maxLength} characters or fewer.`;
+    }
+    return field.validity.valid ? '' : (ja ? '入力内容をご確認ください。' : 'Please check this field.');
   }
 
-  // Keep Enter and scripted submit events inert until the PHP handshake succeeds.
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!token || busy || sent || !form.reportValidity()) return;
-    busy = true;
-    button.disabled = true;
-    button.textContent = text.sending;
-    form.setAttribute('aria-busy', 'true');
-    show(text.sending);
-    const values = Object.fromEntries(new FormData(form));
-    const fields = [...form.querySelectorAll('input, textarea')];
-    fields.forEach((field) => { field.readOnly = true; });
-    try {
-      const { response, data } = await request({
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...values, token }),
-      });
-      if (response.ok && data.ok) {
-        sent = true;
-        form.reset();
-        show(text.sent, 'success');
-      } else if (data.code === 'session') {
-        token = '';
-        await connect();
-        show(text.session, 'error');
-      } else {
-        show(text[data.code] || text.error, 'error');
-      }
-    } catch {
-      // Retrying the same challenge and payload is idempotent on the server.
-      show(text.uncertain, 'error');
-    } finally {
-      busy = false;
-      form.removeAttribute('aria-busy');
-      fields.forEach((field) => { field.readOnly = false; });
-      button.disabled = sent || !token;
-      button.textContent = sent ? text.sentButton : text.button;
+  function validate(field) {
+    const message = messageFor(field);
+    const error = errors.get(field);
+    error.textContent = message;
+    error.hidden = !message;
+    if (message) field.setAttribute('aria-invalid', 'true');
+    else field.removeAttribute('aria-invalid');
+    return !message;
+  }
+
+  function updateSummary() {
+    const count = fields.filter((field) => field.getAttribute('aria-invalid') === 'true').length;
+    summary.hidden = count === 0;
+    summary.textContent = count
+      ? (ja ? `${count}項目の入力内容をご確認ください。` : `Please check ${count} ${count === 1 ? 'field' : 'fields'}.`)
+      : '';
+  }
+
+  fields.forEach((field) => {
+    const error = document.createElement('p');
+    error.id = `${field.id}-error`;
+    error.className = 'contact-field-error';
+    error.hidden = true;
+    field.after(error);
+    field.setAttribute('aria-describedby', error.id);
+    errors.set(field, error);
+    field.addEventListener('input', () => {
+      if (!submitted) return;
+      validate(field);
+      updateSummary();
+    });
+  });
+
+  // Show concise inline errors instead of the browser's validation popover.
+  form.noValidate = true;
+  form.addEventListener('submit', (event) => {
+    submitted = true;
+    const invalid = fields.filter((field) => !validate(field));
+    updateSummary();
+    if (invalid.length) {
+      event.preventDefault();
+      invalid[0].focus();
     }
   });
 
-  const local = ['localhost', '127.0.0.1'].includes(location.hostname);
-  const production = ['kentashiki.com', 'www.kentashiki.com'].includes(location.hostname)
-    && location.protocol === 'https:';
-  // GitHub Pages never calls a PHP endpoint or enables this form.
-  if (!local && !production) return;
-  connect().then(() => show(text.ready)).catch(() => {
-    // Leave the existing preparation notice and disabled button in place.
-  });
+  // Use native POST so Formspree can handle CAPTCHA and its confirmation page.
+  form.action = endpoint;
+  form.querySelector('[type="submit"]').disabled = false;
+  form.hidden = false;
+  document.getElementById('contact-form-notice').textContent = ja
+    ? '送信にはFormspreeを利用しています。送信するとFormspreeの確認画面に移動します。'
+    : 'Messages are sent via Formspree. Submitting this form takes you to its confirmation page.';
 })();

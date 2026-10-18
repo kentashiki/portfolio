@@ -30,7 +30,7 @@ HTML・CSS・JavaScriptをそのまま使用するため、ビルドは不要で
 **Run workflow → Branch: main → Run workflow** を選びます。
 設定変更前の実行が失敗している場合も、設定変更後にこの方法で実行できます。
 
-ワークフローは `public/` からPHPを除いたファイルだけを公開用データとしてアップロードするため、
+ワークフローは `public/` だけを公開用データとしてアップロードするため、
 `docs/`、個人メモ、アーカイブ、デザイン案はPagesには含まれません。
 ただし、公開リポジトリにコミットしたファイルはGitHub上では閲覧できます。
 
@@ -51,7 +51,6 @@ HTML・CSS・JavaScriptをそのまま使用するため、ビルドは不要で
 ├── assets/
 ├── awards/
 ├── contact/
-├── api/contact.php       XServer用フォームの送信先
 ├── data/
 ├── ja/
 ├── news/
@@ -63,7 +62,7 @@ HTML・CSS・JavaScriptをそのまま使用するため、ビルドは不要で
 GitHub Pages用の `/portfolio/` フォルダを作る必要はありません。
 独自ドメイン直下で英語、日本語は `/ja/` で表示されます。
 `docs/`、`notes/`、`archive/`、`design-proposals/`、`.git/`、`.github/`、
-`.codex/`、`.DS_Store`、SMTP認証情報はアップロードしません。
+`.codex/`、`.DS_Store`、認証情報はアップロードしません。
 
 初回アップロード後は、日英ページ、画像、PDF、3Dモデル、言語切り替え、
 スマートフォンのメニュー、HTTPSの表示と転送を確認します。
@@ -74,11 +73,13 @@ GitHubへのpushだけではXServerには反映されません。
 
 [XServer公式: 公開ファイルのアップロード先](https://www.xserver.ne.jp/support/faq/service_ftp_setting_upload.php)
 
-## PHPフォームの有効化
+## Formspreeフォームの有効化
 
-PHPの送信処理は実装済みです。XServerへの配置と設定が必要です。
-[お問い合わせフォームの設定手順](contact-form.md) に沿って、
-`private/contact/` をドメインの `public_html/` と同じ階層に配置し、パスワードと受信先を設定してください。
-フォーム更新用のアップロードZIPは `python3 scripts/package-xserver.py` で作成できます。
+[お問い合わせフォームの設定手順](contact-form.md) に沿って、Formspreeのアカウントとフォームを作成し、
+`public/contact/config.js` に公開用の送信先URLを設定します。
+PHPファイル、メールのSMTPパスワード、サーバー側の設定ファイルは不要です。
+GitHub PagesとXServerの両方で利用できます。
 
-GitHub PagesではPHPを公開せず、フォームも準備中のまま維持します。
+フォーム更新用ZIPは `python3 scripts/package-xserver.py` で作成できます。
+ZIP内の `public_html/` の中身を、サーバーの `kentashiki.com/public_html/` に上書きします。
+以前のPHP処理は上書きだけでは消えないので、設定手順にある削除対象も確認してください。

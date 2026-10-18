@@ -1,157 +1,95 @@
-# XServerでお問い合わせフォームを有効にする
+# お問い合わせフォームの設定（Formspree）
 
-実装済みのフォームは、XServer側の設定が整うと自動的に送信可能になります。
-パスワードと受信先はサーバー上で入力します。GitHubに登録する必要はありません。
+ContactフォームはFormspreeへ通常のHTMLフォームとしてPOSTします。
+入力項目は名前・返信用メールアドレス・件名（任意）・本文です。
+受信先のメールアドレスやSMTPパスワードはサイト内に置きません。
+送信後の認証や完了表示はFormspreeの画面で行います。
+サイト側では送信成功を先に表示しません。
 
-## 1. アップロード
+## 1. Formspreeでフォームを作る
 
-アップロード用ZIPは、リポジトリの外にある `../portfolio-deploy/xserver-contact.zip` です。
-作り直す場合は、リポジトリ直下で実行します。
+1. [Formspree](https://formspree.io/) でアカウントを作成し、確認メールでメールアドレスを認証します。
+2. ダッシュボードの **New Form** でフォームを作成します。
+3. お問い合わせを受け取る **Target Email** を確認・認証します。
+   `form@kentashiki.com` を使っても、普段確認している別のメールアドレスを使っても構いません。
+4. **Integration** にある `https://formspree.io/f/…` 形式の送信先URLをコピーします。
+   必要なのは公開用の送信先URLです。APIキーやパスワードは使用しません。
+5. Formspree側の迷惑送信対策を有効にします。通常のHTML送信なので、必要な認証はFormspreeの画面で行われます。
+   公開元ドメインを制限する場合は、利用する `kentashiki.com`、`www.kentashiki.com`、
+   `kentashiki.github.io` を許可してください。ローカルの動作確認時には制限の影響にも注意します。
+
+受信先はFormspreeの管理画面で変更できます。XServerのSMTP設定とは独立しています。
+料金・送信上限・利用できる機能は [公式プラン](https://formspree.io/plans) を確認してください。
+
+## 2. サイトに送信先URLを設定する
+
+`public/contact/config.js` の1か所を変更します。
+
+```js
+window.portfolioContactEndpoint = 'https://formspree.io/f/取得したフォームID';
+```
+
+日英でこの設定を共有します。空欄または不正なURLの場合、入力欄を非表示にしてSNSをご案内します。
+JavaScriptを無効にした場合も同様です。未設定のまま同じページや旧PHPへ送信することはありません。
+公開用の送信先URLはHTMLの送信先と同じく公開されます。ここには秘密のキーを記載しません。
+
+## 3. XServerのファイルを更新する
+
+リポジトリのルートで実行すると、`../portfolio-deploy/xserver-formspree-contact.zip` を作成します。
 
 ```sh
 python3 scripts/package-xserver.py
 ```
 
-ZIPを手元で展開し、次の配置になるように、XServerのファイルマネージャ等でアップロードします。
-ZIPにある `SETUP.md` はこの手順のコピーです。サーバーへのアップロードは不要です。
+ZIPを手元で展開し、次の5ファイルをサーバーへ上書きしてください。
+`public_html` を二重に作らず、既存の同名フォルダへ中身を置きます。
 
-```text
-kentashiki.com/
-├── private/                       ← public_htmlと同じ階層へ新規追加
-│   └── contact/
-│       ├── app.php
-│       ├── config.example.php
-│       └── phpmailer/             ← フォルダごと追加
-└── public_html/
-    ├── api/contact.php            ← 新規追加
-    ├── contact/                   ← フォルダの中身を上書き
-    ├── ja/contact/index.html      ← 上書き
-    └── …                         ← その他の既存ファイルはそのまま
-```
-
-**`private/` は `public_html/` の中には置きません。**
-ZIPの `public_html/` は既存フォルダに中身を追加・上書きします。
-ZIPにはフォーム関連の更新だけをまとめており、サイト全体をアップロードし直す必要はありません。
-サーバー側の `.htaccess` や既存のSSL設定は残します。
-アップロードするZIPには、個人メモ、デザイン案、実際の認証情報は含めていません。
-
-XServerの「PHPバージョン切替」で、対象ドメインにサポート中のPHP 8.3以降を選んでください。
-[公式: PHPバージョン切替](https://www.xserver.ne.jp/manual/man_program_php_ver.php)
-
-## 2. サーバー上で設定ファイルを作る
-
-`kentashiki.com/private/contact/config.example.php` をコピーし、同じ場所に `config.php` を作ります。
-ファイルマネージャの編集機能などで、次の3項目を変更します。
-
-| 項目 | 入力内容 |
+| ローカル | XServerの配置先（`kentashiki.com/` 以下） |
 | --- | --- |
-| `smtp_password` | `form@kentashiki.com` 作成時に設定したメールアカウントのパスワード |
-| `recipient_email` | お問い合わせを受け取るメールアドレス（普段のGmail等） |
-| `enabled` | `false` を `true` に変更 |
+| `public/contact/index.html` | `public_html/contact/index.html` |
+| `public/contact/contact.css` | `public_html/contact/contact.css` |
+| `public/contact/contact.js` | `public_html/contact/contact.js` |
+| `public/contact/config.js` | `public_html/contact/config.js` |
+| `public/ja/contact/index.html` | `public_html/ja/contact/index.html` |
 
-設定例の該当箇所は次の形です。既存の配列の該当行を編集し、引用符・カンマは残してください。
+ZIPの `SETUP.md` は手順書なので、サーバーにはアップロードしません。
+旧 `xserver-contact.zip`、`contact-diagnostics.zip` はPHP版です。以後は使用しません。
 
-```php
-'enabled' => true,
-'smtp_password' => 'ここにメールアカウントのパスワードを入力',
-'recipient_email' => 'ここに受信先メールアドレスを入力',
-```
+GitHub Pagesにも反映する場合は、変更を `main` にpushします。
+XServerへのアップロードとは別の操作です。
 
-PHPの単一引用符で囲んだ値では、パスワード中の `\` は `\\`、`'` は `\'` と記述します。
-実際のパスワードをチャットやGitHubへ貼り付けないでください。
+## 4. 旧PHPファイルをサーバーから削除する
 
-以下は設定済みなので、変更不要です。
+このサイトのお問い合わせフォーム用に配置した次のファイルは不要です。
+上書きアップロードだけでは削除されないので、ファイルマネージャーで個別に削除します。
 
-| 項目 | 設定 |
+| 削除対象（`kentashiki.com/` 以下） | 内容 |
 | --- | --- |
-| SMTPサーバー | `sv17275.xserver.jp` |
-| SMTP認証ユーザー | `form@kentashiki.com` |
-| 送信元 | `form@kentashiki.com` |
-| ポート・暗号化 | `465`・`ssl` |
-| 利用するサイト | `https://kentashiki.com`、`https://www.kentashiki.com` |
+| `public_html/api/contact.php` | 旧PHPの送信窓口 |
+| `private/contact/` フォルダ全体 | 旧処理、`config.php` 内のSMTP設定、PHPMailer、`runtime/` |
+| `public_html/php-check.php` | PHP動作確認用の一時ファイル（配置した場合） |
 
-パスワードにはXServerアカウント全体のパスワードではなく、メールアカウントのものを使います。
-`config.php` のパーミッションは、XServer上でPHPから読める `600` を推奨します。
-`private/contact/` はPHPが書き込める状態にします。実行時に `runtime/` が自動作成されます。
-`runtime/` はセッションと連投制限用です。お問い合わせ本文は保存しません。
+`public_html/api/` は空になった場合だけ削除できます。
+アップロードしていた場合は、このフォーム用のZIPや `SETUP.md` などの作業用ファイルも公開フォルダから削除できます。
 
-## 3. 設定確認と送信テスト
+**残すもの:** `public_html/contact/`、`public_html/ja/contact/`、`.htaccess`、他ページのファイル。
+`notes/` などのメモも削除しません。メールアカウント `form@kentashiki.com` はそのまま利用できます。
 
-1. <https://kentashiki.com/api/contact.php> を開きます。
-   正常に準備できていれば `"ok":true` とランダムなトークンが表示されます。
-   `"code":"unavailable"` の場合は、配置と `config.php` の3項目を確認します。
-   一緒に表示される `setup` は下表の原因を示します。`fields` があれば該当する項目名だけが表示されます。
-   この確認ではSMTPへ接続しないため、パスワードの正しさは次の送信テストで確認します。
-2. <https://kentashiki.com/ja/contact/> を再読み込みします。
-   準備中の案内が通常の案内に変わり、送信ボタンが使えることを確認します。
-3. 名前・返信先メール・テスト本文を入力して、1通送信します。
-4. 指定した受信先の受信トレイと迷惑メールフォルダを確認します。
-5. 届いたメールの返信操作で、フォームに入力したメールアドレスが返信先になることを確認します。
-6. 英語版 <https://kentashiki.com/contact/> も、1分以上あけて確認します。
+## 5. 公開後の確認
 
-フォームは、PHP側でSMTPへの送信が完了したときだけ成功表示に変わります。
-受信トレイへの到着は、受信側の処理もあるため、必ず実際のメールで確認します。
-送信中は二重操作を防ぎ、失敗時は入力内容を残します。
+1. `https://kentashiki.com/contact/` と `https://kentashiki.com/ja/contact/` を再読み込みします。
+2. 入力欄と送信ボタンが表示されることを確認します。
+3. 必須項目の未入力やメールアドレスの形式誤りがある場合、送信が止まり、該当欄の下に短い説明が表示されることを確認します。修正すると説明が消えます。
+4. ご自身でテストメッセージを1通送信し、必要な認証と完了画面を確認します。
+5. Formspree管理画面の送信記録と受信メールを確認します。迷惑メールフォルダも確認してください。
+6. 名前・件名・本文が届き、返信先がフォームに入力したメールアドレスになることを確認します。
+7. GitHub Pagesにも公開した場合は、そちらでも同じ設定が反映されていることを確認します。
 
-## 送信できないとき
+Formspreeの送信先URLをまだ設定していない間は、送信を有効化しません。
+サイト側の模擬送信テストだけでは、実際のメール到達やFormspree側の認証・ドメイン制限までは確認できません。
 
-確認用APIは、準備不足の場合もHTTP 200で `"ok":false` と原因コードを返します。
-XServerの汎用503ページに応答を置き換えられずに状況を確認するための仕様です。
-実際の設定値・パスワード・サーバー内の絶対パスは返しません。
+## 公式資料
 
-| `setup` | 確認すること |
-| --- | --- |
-| `application_missing` | `private/contact/app.php` が `public_html` と同じ階層にあるか・PHPから読み取れるか |
-| `config_missing` | 同じ場所に `config.php` があるか・読み取れるか（`config.example.php` のままでは不可） |
-| `config_fields` | `fields` に表示された項目。`enabled` は引用符なしの `true`、ポートは引用符なしの `465` |
-| `config_format` | `config.php` の先頭の `<?php` と `return [ … ];` を残しているか |
-| `php_syntax` | 編集したPHPの引用符・カンマ・パスワード中の記号のエスケープ |
-| `mailer_missing` | `private/contact/phpmailer/` の3つのPHPファイルが揃っていて読めるか |
-| `storage` | `private/contact/` へのPHPの書き込み権限と `runtime/` の作成可否 |
-| `php_version` | 実際に動いている対象ドメインのPHPが8.3以上か |
-
-APIがJSONではなく汎用エラーページを返す場合は、サーバーパネルのエラーログも確認します。
-
-| 状況 | 確認すること |
-| --- | --- |
-| 準備中のまま | `config.php` の配置、`enabled`、空のパスワード・受信先、PHPバージョン、ファイルの権限 |
-| APIにPHPコードがそのまま表示される | PHPが実行されていません。フォームを有効にせず、XServerのPHP設定を確認 |
-| 送信時に失敗する | メールアカウントのパスワード、SMTPホスト名・ポート、`phpmailer/` のアップロード漏れ |
-| 送信回数の制限 | 同じIPからは1分間隔・1時間に5回まで。サイト全体では1時間に50回まで。時間をあけて再試行 |
-| 内容の確認を求められる | 名前100文字、件名150文字、本文5000文字以内。メールアドレスの形式を確認 |
-| 送信成功だが届かない | 受信先の誤記、迷惑メール、XServerのSPF・DKIM設定を確認 |
-
-最初にフォームを開いてから2秒未満の機械的な送信も拒否します。
-ブラウザーのCookieが無効だと送信できません。
-長時間開いたフォームは、送信操作時にセッションを更新し、再度送信するよう案内します。
-サーバーのエラーログには、処理失敗を示す `[portfolio-contact]` の記録だけを残します。
-SMTPの応答詳細やパスワードは画面へ出しません。
-
-## GitHub Pagesと以後の更新
-
-GitHub Pages用ワークフローでは `.php` ファイルを除外し、`private/` も公開しません。
-GitHub Pagesのフォームは無効のままで、XServerへの送信リクエストも行いません。
-`kentashiki.com` と `www.kentashiki.com` のHTTPSページのみ、本番の送信処理へ接続します。
-
-更新時は `public/` の変更を `public_html/` へ、必要な `private/contact/` のコードだけを同じ場所へ反映します。
-パッケージ作成処理は `config.php` と `runtime/` を読み込まず、ZIPにも含めません。
-**サーバー上の `config.php` と `runtime/` は上書き・削除しないでください。**
-停止したい場合は、サーバーの `config.php` で `enabled` を `false` に戻します。
-
-## 実装の確認（開発用）
-
-PHP CLIがある環境では、リポジトリ直下で実行できます。実際のメールは送信しません。
-
-```sh
-php tests/contact.php
-php -l private/contact/app.php
-php -l public/api/contact.php
-```
-
-ライブラリはPHPMailer 7.1.1を同梱しています。ComposerをXServerへインストールする必要はありません。
-
-公式資料:
-[メールアカウント設定](https://www.xserver.ne.jp/manual/man_mail_setting.php)、
-[SPF設定](https://www.xserver.ne.jp/manual/man_mail_spf.php)、
-[DKIM設定](https://www.xserver.ne.jp/manual/man_mail_dkim.php)、
-[PHPMailer](https://github.com/PHPMailer/PHPMailer)
+- [HTMLフォームの作成と送信先URLの取得](https://help.formspree.io/articles/building-your-form/building-an-html-form)
+- [件名フィールド](https://help.formspree.io/articles/building-your-form/email-subject-line)
+- [reCAPTCHA設定](https://help.formspree.io/articles/form-and-project-settings/recaptcha-settings)

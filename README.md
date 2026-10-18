@@ -20,9 +20,7 @@ portfolio/
 │   ├── assets/            CSS・JavaScript・画像・PDF・3Dモデル
 │   └── data/              ページに表示するデータ
 ├── docs/                  データ構造・公開手順
-├── private/contact/       XServer用メール処理（public_htmlの外に配置）
 ├── scripts/               フォーム更新用ZIPの作成
-├── tests/                 メールを送らないPHPの動作確認
 ├── notes/                 個人のメモ（Git管理対象外）
 ├── archive/               過去のサイト・元画像（公開対象外）
 ├── design-proposals/      デザイン案・検討用素材（公開対象外）
@@ -63,17 +61,18 @@ URLの文字列へ `public/` を付け足す必要はありません。
 
 手順は [docs/deployment.md](docs/deployment.md) にまとめています。
 
-- **GitHub Pages:** `main` の `public/` を更新してpushすると、PHPを除いた静的ファイルを自動公開します。
+- **GitHub Pages:** `main` の `public/` を更新してpushすると、静的ファイルを自動公開します。
 - **XServer:** `public/` の中身を、対象ドメインの `public_html/` 直下へ配置します。
 
 `docs/`、`notes/`、`archive/`、デザイン案、作業記録はアップロードしません。
 公開フォルダの外に置くことと、GitHubのリポジトリ内で非公開になることは別です。
-個人用メモと秘密情報はGitに追加せず、SMTP認証情報はサーバー側で管理します。
+個人用メモ、パスワード、秘密のAPIキーはGitに追加しません。
 
-ContactフォームのPHP処理を `private/contact/` に用意しています。
-XServerへの配置とパスワード・受信先の設定が済むまでは「準備中」です。
-有効化は [お問い合わせフォームの設定手順](docs/contact-form.md) を参照してください。
-GitHub Pagesではフォームは準備中のままです。
+ContactフォームはFormspreeを使用します。PHPやSMTP認証情報は不要です。
+`public/contact/config.js` に公開用の送信先URLを設定すると、日英両ページでフォームが表示されます。
+未設定の間はフォームを非表示にし、SNSをご案内します。
+GitHub Pages・XServerのどちらでも同じ構成で動作します。
+設定と旧PHPファイルの削除は [お問い合わせフォームの設定手順](docs/contact-form.md) を参照してください。
 
 ## デザイン案・確認記録
 

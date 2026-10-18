@@ -4,7 +4,7 @@ const PRIMARY_NAV_ITEMS = [
   { key: "work", label: "Work", href: "work/" },
   { key: "outputs", label: "Outputs", href: "outputs/" },
   { key: "awards", label: "Awards", href: "awards/" },
-  { key: "contact", label: "Contact", href: "#contact" },
+  { key: "contact", label: "Contact", href: "contact/" },
 ];
 
 function buildSectionPath(root, href) {
@@ -17,14 +17,6 @@ function buildHomePath(root, locale) {
   }
 
   return root || "./";
-}
-
-function buildContactPath(root, locale) {
-  if (locale === "ja") {
-    return `${root}ja/index.html#contact`;
-  }
-
-  return root ? `${root}index.html#contact` : "#contact";
 }
 
 function getLanguagePath(root, locale) {
@@ -82,10 +74,6 @@ function renderLanguageSwitch(locale, variant = "desktop") {
 }
 
 function resolveNavHref(root, href, locale) {
-  if (href === "#contact") {
-    return buildContactPath(root, locale);
-  }
-
   if (!href) {
     return buildHomePath(root, locale);
   }
@@ -93,11 +81,11 @@ function resolveNavHref(root, href, locale) {
   return buildSectionPath(root, locale === "ja" ? `ja/${href}` : href);
 }
 
-function getActiveNavKeys(currentSection, pageKey, hash) {
+function getActiveNavKeys(currentSection, pageKey) {
   const activeKeys = new Set();
 
   if (currentSection === "home") {
-    activeKeys.add(hash === "#contact" ? "contact" : "home");
+    activeKeys.add("home");
   }
 
   if (currentSection === "about" || pageKey === "history") {
@@ -120,11 +108,15 @@ function getActiveNavKeys(currentSection, pageKey, hash) {
     activeKeys.add("awards");
   }
 
+  if (currentSection === "contact") {
+    activeKeys.add("contact");
+  }
+
   return activeKeys;
 }
 
-function renderHeader(root, currentSection, locale, pageKey, hash) {
-  const activeKeys = getActiveNavKeys(currentSection, pageKey, hash);
+function renderHeader(root, currentSection, locale, pageKey) {
+  const activeKeys = getActiveNavKeys(currentSection, pageKey);
   const menuLabel = locale === "ja" ? "ナビゲーションメニューを開閉" : "Toggle navigation menu";
 
   const navMarkup = PRIMARY_NAV_ITEMS
@@ -180,12 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentSection = body.dataset.section || "";
   const locale = body.dataset.locale || "en";
   const pageKey = body.dataset.page || currentSection || "home";
-  const hash = window.location.hash;
   const headerMount = document.querySelector("[data-site-header]");
   const footerMount = document.querySelector("[data-site-footer]");
 
   if (headerMount) {
-    headerMount.outerHTML = renderHeader(root, currentSection, locale, pageKey, hash);
+    headerMount.outerHTML = renderHeader(root, currentSection, locale, pageKey);
   }
 
   if (footerMount) {

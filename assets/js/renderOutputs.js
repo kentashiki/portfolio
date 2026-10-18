@@ -6,7 +6,7 @@ import {
   toTagKey,
 } from "./utils/content.js";
 import { createGroupedAxisView } from "./utils/grouped-axis-view.js?v=20261017a";
-import { compareOutputDates, formatOutputDate } from "./utils/output-date.js";
+import { compareOutputDates } from "./utils/output-date.js";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 
 function formatTypeLabel(value, locale = "en") {
@@ -97,16 +97,11 @@ export function renderOutputCard(output, root, options = {}) {
     : "";
   const outputLinks = getOutputLinks(output.links, root, locale, showProjectLink);
   const title = `<h3 class="output-card-title">${escapeHtml(output.title)}</h3>`;
-  const date = output.date
-    ? `<time class="output-card-venue" datetime="${escapeHtml(output.date)}">${escapeHtml(formatOutputDate(output.date, locale))}</time>`
-    : "";
-
   return `
     <article
       id="output-${escapeHtml(output.slug)}"
       class="output-card"
     >
-      ${date}
       ${title}
       ${renderAuthors(output.authors, output.equalContributionCount)}
       ${venue}

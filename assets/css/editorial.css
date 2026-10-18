@@ -14,6 +14,7 @@
   --color-accent-strong: #192f3a;
   --color-accent-soft: #9bafb9;
   --color-accent-muted: #657b88;
+  --section-heading-gradient: linear-gradient(110deg, #192f3a, #426778);
   --shadow-soft: none;
   --shadow-lift: none;
 }
@@ -108,7 +109,6 @@ html {
   margin: 96px auto 0;
   padding: 25px 0 29px;
   border: 0;
-  border-top: 1px solid var(--color-border-soft);
   background: transparent;
   color: var(--color-heading);
   display: flex;
@@ -146,8 +146,8 @@ html {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 24px;
+  border-bottom: 0;
 }
 
 .editorial-page .page-hero h1 {
@@ -237,6 +237,11 @@ html {
 .editorial-page .profile-detail-section {
   padding-top: 48px;
 }
+.editorial-page[data-page="about"] main > section + section {
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid var(--color-border-soft);
+}
 .editorial-page .profile-detail-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -293,8 +298,8 @@ html {
 
 .editorial-page :is(.mission-section, .vision-section, .principles-section, .interest-section, .eduexpqual-section) > h2 {
   margin: 0 0 30px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0;
+  border-bottom: 0;
   text-align: left;
 }
 
@@ -318,15 +323,14 @@ html {
 .editorial-page :is(.principles-grid, .interest-grid) {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 38px 36px;
+  gap: 48px 36px;
   max-width: none;
   margin: 0;
 }
 .editorial-page :is(.principles-card, .interest-card) {
   min-height: 0;
-  padding: 0 0 26px;
+  padding: 0;
   border: 0;
-  border-bottom: 1px solid var(--color-border-soft);
   border-radius: 0;
   background: transparent;
   box-shadow: none;
@@ -350,24 +354,14 @@ html {
   font-size: 14px;
   line-height: 1.8;
 }
-.editorial-page .interest-cloud {
-  max-width: 760px;
-  margin: 40px 0 0;
-}
-.editorial-page .interest-cloud img {
-  border-radius: 0;
-  box-shadow: none;
-  /* Hide the export's white margin against the page without changing the words. */
-  mix-blend-mode: darken;
-}
 .editorial-page .eduexpqual-container {
   max-width: none;
   gap: 64px;
 }
 .editorial-page .eduexpqual-column h3 {
   margin: 0 0 26px;
-  padding: 0 0 14px;
-  border-bottom: 1px solid var(--color-border-soft);
+  padding: 0;
+  border-bottom: 0;
   font-size: 20px;
 }
 .editorial-page .eduexpqual-list {
@@ -417,9 +411,8 @@ html {
   border-top: 1px solid var(--color-border-soft);
 }
 .editorial-page .work-theme__heading {
-  padding: 0 0 18px;
+  padding: 0;
   border: 0;
-  border-bottom: 1px solid var(--color-border-soft);
 }
 .editorial-page .work-theme__title {
   max-width: 940px;
@@ -471,6 +464,11 @@ html {
 .editorial-page .project-meta {
   gap: 7px;
 }
+.editorial-page .project-related {
+  margin-top: 24px;
+  padding-top: 0;
+  border-top: 0;
+}
 .editorial-page .project-related__title {
   font-size: 13px;
   font-weight: 400;
@@ -487,7 +485,7 @@ html {
 .editorial-page .outputs-axis-switch {
   gap: 28px;
   margin: 0 0 36px;
-  border-bottom: 1px solid var(--color-border-soft);
+  border-bottom: 0;
 }
 .editorial-page .outputs-axis-button {
   margin-bottom: -1px;
@@ -514,13 +512,12 @@ html {
 }
 .editorial-page .metric-card {
   border: 0;
-  border-bottom: 1px solid var(--color-border-soft);
   border-radius: 0;
   background: transparent;
   box-shadow: none;
 }
 .editorial-page .metric-main {
-  padding: 0 0 22px;
+  padding: 0;
   background: transparent;
   color: var(--color-heading);
 }
@@ -542,12 +539,14 @@ html {
   padding: 0;
 }
 .editorial-page .output-subsection + .output-subsection {
-  margin-top: 64px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border-soft);
 }
 .editorial-page .output-subsection-title {
   margin: 0;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 .editorial-page :is(.outputs-grid, .awards-list) {
   gap: 0;
@@ -561,6 +560,10 @@ html {
   background: transparent;
   box-shadow: none;
   gap: 12px;
+}
+.editorial-page :is(.output-card, .award-card):last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 .editorial-page .output-card-title {
   max-width: 1000px;
@@ -589,12 +592,18 @@ html {
 }
 
 /* News keeps its gallery controls and pagination. */
+.editorial-page .updates-timeline {
+  border-top: 0;
+}
 .editorial-page .update-item {
   display: grid;
   grid-template-columns: 155px minmax(0, 1fr);
   align-items: start;
   gap: 40px;
   padding: 36px 0;
+}
+.editorial-page .update-item:last-child {
+  border-bottom: 0;
 }
 .editorial-page .update-meta {
   flex-direction: column;
@@ -668,6 +677,11 @@ html {
   margin: 0 auto;
   padding: 64px 0 0;
 }
+.editorial-page .project-detail-section + .project-detail-section {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border-soft);
+}
 .editorial-page .project-detail-section__inner {
   max-width: none;
   padding: 0;
@@ -675,8 +689,8 @@ html {
 }
 .editorial-page .project-detail-section__heading {
   margin-bottom: 30px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 .editorial-page .project-detail-section__title {
   margin: 0;
@@ -723,7 +737,8 @@ html {
 }
 .editorial-page .project-detail-footer__inner {
   max-width: none;
-  padding-top: 24px;
+  padding-top: 0;
+  border-top: 0;
 }
 
 /* History becomes a dated record, with no alternating cards or side bands. */
@@ -830,7 +845,7 @@ html {
     padding: 123px 6% 0;
   }
   .editorial-page .page-hero-content {
-    padding-bottom: 28px;
+    padding-bottom: 16px;
   }
   .editorial-page .page-hero h1 {
     font-size: 48px;
@@ -843,6 +858,11 @@ html {
   }
   .editorial-page :is(.mission-section, .vision-section, .principles-section, .interest-section, .eduexpqual-section, .project-detail-section, .project-detail-footer) {
     padding-top: 56px;
+  }
+  .editorial-page[data-page="about"] main > section + section,
+  .editorial-page .project-detail-section + .project-detail-section {
+    margin-top: 28px;
+    padding-top: 28px;
   }
   .editorial-page .site-footer {
     margin-top: 64px;
@@ -878,9 +898,6 @@ html {
   .editorial-page :is(.mission-section, .vision-section) p {
     font-size: 21px;
     line-height: 1.75;
-  }
-  .editorial-page .interest-cloud {
-    margin-top: 28px;
   }
   .editorial-page .eduexpqual-item {
     flex-direction: column;
@@ -967,6 +984,33 @@ html {
     font-size: 25px;
     line-height: 1.5;
     letter-spacing: 0;
+  }
+}
+
+/* Fit the gradient to section titles instead of the full content column. */
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .editorial-page main h2:not(.profile-detail-text h2) {
+    width: fit-content;
+    max-width: 100%;
+    background-image: var(--section-heading-gradient);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@media print, (forced-colors: active) {
+  .editorial-page main h2:not(.profile-detail-text h2) {
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+@media (forced-colors: active) {
+  .editorial-page main h2:not(.profile-detail-text h2) {
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
   }
 }
 

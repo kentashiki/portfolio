@@ -7,6 +7,7 @@ export const awards = [
     region: "domestic",
     type: "competition-award",
     title: "Encouragement Award",
+    date: "2025-09-12",
     year: 2025,
     issuer: "Student Innovation Contest at Human Interface Symposium (SICHI) 2025",
     recipients: [
@@ -31,6 +32,7 @@ export const awards = [
     region: "domestic",
     type: "competition-award",
     title: "Excellence Learning Innovation Award",
+    date: "2026-07-14",
     year: 2026,
     issuer: "Learning Innovation Grand Prix (LIGP) 2026",
     recipients: [

@@ -65,7 +65,7 @@ presentations, demos, posters, web apps, and similar work.
 | `region` | Recommended | Geographic scope for grouping. | Current values: `international`, `domestic`, `not-region-specific`. |
 | `title` | Yes | Public title shown on cards. | Use the official title for publications and presentations. |
 | `type` | Yes | Primary output category used for Type grouping. | Keep broad and structural. See Type Values below. |
-| `date` | Recommended | Presentation, publication, or release date; shown on cards and used for newest-first sorting within every group. | Use `YYYY-MM-DD`. For conference presentations, use the presentation date even if the record is categorized as a publication. For standalone papers, use the publication date; for software, use the release date. Upcoming presentations use their scheduled date. |
+| `date` | Recommended | Presentation, publication, or release date; retained for newest-first sorting within every group, without displaying the full date on cards. | Use `YYYY-MM-DD`. For conference presentations, use the presentation date even if the record is categorized as a publication. For standalone papers, use the publication date; for software, use the release date. Upcoming presentations use their scheduled date. Exact dates can be communicated in News. |
 | `year` | Yes | Output year used for grouping and as a sorting fallback when `date` is unknown. | Use a number matching the year in `date`. |
 | `authors` | Recommended | Ordered author list. | Use the official author order. `Kenta Shiki` is highlighted by the renderer. |
 | `equalContributionCount` | No | Marks the first N authors as equal contribution. | Use only when needed. Omit or use `0` otherwise. |
@@ -165,10 +165,11 @@ inside a project detail page. It is optional for simple outputs.
 | --- | --- |
 | `role` | Your role for this output. Rendered in the output detail meta area. |
 | `team` | Team or collaborator summary. Rendered in the output detail meta area. |
-| `outcome` | Short result summary. Rendered in the output detail meta area. |
+| `outcome` | Result summary rendered as an Outcome subsection within the output record. |
 | `visuals` | Array of visual assets. Currently supports image/video/embed-style records in the renderer. |
 | `myContributions` | Array of strings shown as bullet points. |
 | `lessonsLearned` | Array of `{ title, body }` reflection sections. |
+| `placeholderContent` | Set to `true` while Outcome, My Contributions, and Reflection await author review. Each subsection shows only “In preparation” (or “準備中”). Keep AI-generated draft prose commented out in the data source. Remove or set to `false` when verified copy replaces the placeholders. |
 | `techStack` | Array of `{ title, items }` groups. |
 
 ## Relationship To Other Data

@@ -185,6 +185,7 @@ pages.
 | `heroImage` | Metadata for the hero image, mainly `alt` and optional `caption`. |
 | `featuredVideo` | Optional project-level video rendered after Overview. Supports local files, YouTube URLs, and embed URLs. |
 | `overview` | Array of `{ title, body }` sections rendered under Overview, including any use-case content. |
+| `techStack` | Array of `{ title, items }` groups for confirmed languages, libraries, or hardware. Omit categories whose details are not available. |
 | `outputSlugs` | Ordered list of output slugs to show in the Outputs explorer. |
 | `primaryOutput` | Legacy/single-output alternative to `outputSlugs`. Prefer `outputSlugs`. |
 | `footer` | Detail page footer config with `backHref` and `backLabel`. |
@@ -200,6 +201,26 @@ overview: [
   },
 ],
 ```
+
+## Shared Project Page Template
+
+All dedicated project pages follow the FocuSpeed structure:
+
+1. Hero: title, period, summary, tags, and related links.
+2. Overview: Background, Problem, Approach, Significance, and Use Case, followed by the project image.
+3. Featured Video, when a representative video is available.
+4. Tech Stack, when confirmed technology information is available.
+5. Outputs: publication or presentation records, with Outcome, My Contributions, and Reflection inside each record when available.
+6. Awards, when related awards are available.
+7. Back to Work.
+
+Use the same overview labels and order in both languages. Keep findings,
+contributions, and reflections in the related output's `detail` object rather
+than adding separate project-level sections. Mark draft output detail with
+`placeholderContent: true` so it remains clearly labeled as in preparation.
+Keep AI-generated overview and technology drafts commented out in the data
+source until reviewed, with “In preparation” (or “準備中”) as the active copy.
+Unavailable videos and awards are omitted rather than replaced by empty sections.
 
 ## Featured Video
 

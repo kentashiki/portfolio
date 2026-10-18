@@ -338,3 +338,39 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+/* Use the available width for theme copy and give project text more room. */
+.editorial-page[data-page="work"] .work-theme__title {
+  max-width: none;
+  text-wrap: balance;
+}
+
+.editorial-page[data-page="work"] .work-theme__summary {
+  max-width: none;
+  text-wrap: pretty;
+}
+
+.editorial-page[data-page="work"]:lang(ja) :is(.work-theme__title, .work-theme__summary) {
+  word-break: auto-phrase;
+}
+
+.editorial-page[data-page="work"] .project-content {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(24px, 3vw, 48px);
+}
+
+@media (max-width: 700px) {
+  .editorial-page[data-page="work"] .work-theme__title {
+    font-size: clamp(20px, 5.65vw, 24px);
+  }
+
+  .editorial-page[data-page="work"] .project-content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .editorial-page[data-page="work"] .project-image {
+    max-width: 480px;
+    aspect-ratio: 2 / 1;
+  }
+}

@@ -1,4 +1,4 @@
-import awards from "../awards.js?v=20260728f";
+import awards from "../awards.js?v=20261018a";
 import { localizeTagsWithKeys } from "./tags.js";
 
 const translations = {

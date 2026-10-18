@@ -322,27 +322,6 @@
   font-size: 1.02rem;
 }
 
-.interest-section img {
-  display: block;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 10px;
-  box-shadow: var(--shadow-soft);
-}
-
-.interest-cloud {
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.interest-cloud img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-}
-
 /* 学歴・経歴セクション */
 .eduexpqual-section {
   padding: 100px 7.5%;
@@ -580,17 +559,8 @@
     margin-bottom: 3rem;
   }
 
-  .interest-cloud {
-    padding: 0;
-  }
-
   .interest-card {
     padding: 2rem;
-  }
-
-  .interest-section img {
-    max-width: 100%;
-    border-radius: 12px;
   }
 
   .eduexpqual-container {

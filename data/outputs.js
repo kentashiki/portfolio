@@ -39,6 +39,21 @@ export const outputs = [
     links: {
       conference: "https://www.sfn.org/meetings/neuroscience-2026/",
       page: "outputs/#output-temporal-eeg-softness-sfn2026",
+      projectDetail: "work/virtual-softness-eeg/",
+    },
+    detail: {
+      // AI-generated draft text is commented out pending author review.
+      // outcome: "This research is ongoing. The work has been accepted as a Late-Breaking Abstract at Neuroscience 2026, with a poster presentation scheduled for November 2026.\nA summary of the research findings will be added here, including the evaluation conditions, key observations, and their implications.",
+      outcome: "In preparation",
+      // myContributions: [
+        // "A description of my role and contributions will be added here, covering the research question, study design, data collection, analysis, and presentation as applicable.",
+      // ],
+      myContributions: ["In preparation"],
+      // lessonsLearned: [
+        // { body: "Reflections on the research process, lessons learned, and future directions will be added here." },
+      // ],
+      lessonsLearned: [{ body: "In preparation" }],
+      placeholderContent: true,
     },
   },
   {
@@ -63,6 +78,21 @@ export const outputs = [
       conference: "https://2026.augmented-humans.org/",
       paper: "https://dl.acm.org/doi/10.1145/3795011.3797418",
       page: "outputs/#output-selecting-verbal-responses-head-gestures",
+      projectDetail: "work/ai-agent-response-selection/",
+    },
+    detail: {
+      // AI-generated draft text is commented out pending author review.
+      // outcome: "The work was presented in the Posters & Demos track at Augmented Humans 2026 and published in the conference proceedings. The project ran from October 2025 to July 2026 and is now complete.\nA summary of the evaluation results will be added here, including the study conditions, psychological measures, key observations, and limitations.",
+      outcome: "In preparation",
+      // myContributions: [
+        // "A description of my role and contributions will be added here, including the parts of the concept, system development, evaluation, and presentation that I was responsible for.",
+      // ],
+      myContributions: ["In preparation"],
+      // lessonsLearned: [
+        // { body: "Reflections on the project, lessons learned, and considerations for future communication support will be added here." },
+      // ],
+      lessonsLearned: [{ body: "In preparation" }],
+      placeholderContent: true,
     },
   },
   {

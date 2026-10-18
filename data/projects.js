@@ -13,9 +13,55 @@ export const projects = [
     tags: ["Softness", "Haptics", "EEG", "Tactile Perception", "Haptic Devices"],
     featured: true,
     links: {
-      page: "work/#project-virtual-softness-eeg",
+      page: "work/virtual-softness-eeg/",
     },
     thumbnail: "assets/images/project_virtual-softness-eeg.png",
+    detail: {
+      // AI-generated draft text is commented out pending author review.
+      heroImage: {
+        // alt: "Physical and virtual softness stimuli, an EEG recording setup, and neural analysis of tactile perception",
+        alt: "EEG Characteristics of Virtual Softness Perception",
+      },
+      overview: [
+        {
+          title: "Background",
+          // body: "Virtual tactile experiences require ways to understand how users perceive the stimuli presented by a haptic device. This project focuses on softness perception and its relationship with EEG responses.",
+          body: "In preparation",
+        },
+        {
+          title: "Problem",
+          // body: "How can we evaluate the experience of touching a virtual object? This project investigates EEG responses to softness as a step toward understanding and objectively evaluating subjective tactile experiences.",
+          body: "In preparation",
+        },
+        {
+          title: "Approach",
+          // body: "We compare EEG responses to physical softness stimuli and virtual softness stimuli presented through a haptic device. The aim is to examine neural characteristics related to softness perception and the perceived realism of virtual stimuli.",
+          body: "In preparation",
+        },
+        {
+          title: "Significance",
+          // body: "The broader goal is to connect our understanding of human perception with the design and evaluation of haptic experiences, supporting the development of virtual environments that feel more convincing to users.",
+          body: "In preparation",
+        },
+        {
+          title: "Use Case",
+          // body: "The project aims to inform the evaluation of virtual softness presented by haptic devices, including the perceived realism of the resulting tactile experience.",
+          body: "In preparation",
+        },
+      ],
+      techStack: [
+        {
+          title: "Hardware",
+          // items: ["EEG recording equipment", "Haptic device"],
+          items: ["In preparation"],
+        },
+      ],
+      outputSlugs: ["temporal-eeg-softness-sfn2026"],
+      footer: {
+        backHref: "../../work/",
+        backLabel: "Back to Work",
+      },
+    },
   },
   {
     slug: "olfactory-subjective-impressions-eeg",
@@ -127,13 +173,64 @@ export const projects = [
       year: 2025,
       month: 10,
     },
-    status: "active",
+    end: {
+      year: 2026,
+      month: 7,
+    },
+    status: "completed",
     tags: ["Head Gestures", "IMU", "AI Agents", "Verbal Responses", "Remote Meetings"],
     featured: true,
     links: {
-      page: "work/#project-ai-agent-response-selection",
+      page: "work/ai-agent-response-selection/",
+      paper: "https://dl.acm.org/doi/10.1145/3795011.3797418",
     },
     thumbnail: "assets/images/project_ai-agent-response-selection.png",
+    detail: {
+      // AI-generated draft text is commented out pending author review.
+      heroImage: {
+        // alt: "An AI agent conveys a listener’s IMU-sensed head gestures to a remote speaker through verbal responses",
+        alt: "AI-Agent Response Selection from IMU-Sensed Head Gestures",
+      },
+      overview: [
+        {
+          title: "Background",
+          // body: "Remote communication involves both spoken content and nonverbal reactions from listeners. This project focused on head gestures as a signal that an AI agent could convey through verbal responses.",
+          body: "In preparation",
+        },
+        {
+          title: "Problem",
+          // body: "How can an AI agent convey a listener’s nonverbal reactions to a remote speaker? This project explored a form of communication support that connects head gestures with verbal responses.",
+          body: "In preparation",
+        },
+        {
+          title: "Approach",
+          // body: "We developed a system that detects the listener’s head gestures using an IMU sensor and selects verbal responses for an AI agent to deliver to the speaker. We also evaluated the system’s psychological effects.",
+          body: "In preparation",
+        },
+        {
+          title: "Significance",
+          // body: "The project explored how AI can mediate between nonverbal behavior and spoken feedback, with the aim of supporting communication in remote meetings.",
+          body: "In preparation",
+        },
+        {
+          title: "Use Case",
+          // body: "The system was designed for remote meetings, where an AI agent delivers verbal responses to a speaker based on head gestures detected from the listener.",
+          body: "In preparation",
+        },
+      ],
+      techStack: [
+        {
+          title: "Hardware",
+          // items: ["IMU sensor"],
+          items: ["In preparation"],
+        },
+      ],
+      outputSlugs: ["selecting-verbal-responses-head-gestures"],
+      footer: {
+        backHref: "../../work/",
+        backLabel: "Back to Work",
+      },
+    },
   },
   {
     slug: "biosword",
@@ -163,7 +260,11 @@ export const projects = [
       year: 2026,
       month: 6,
     },
-    status: "active",
+    end: {
+      year: 2026,
+      month: 9,
+    },
+    status: "completed",
     tags: [
       "Role-Play",
       "RAG",

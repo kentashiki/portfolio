@@ -164,8 +164,7 @@ a:hover .link-arrow {
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 28px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--home-rule);
+  padding-bottom: 0;
 }
 
 .home-page h2 {
@@ -235,7 +234,9 @@ a:hover .link-arrow {
 }
 
 #featured-projects {
-  padding-top: 91px;
+  margin-top: 45px;
+  padding-top: 46px;
+  border-top: 1px solid var(--home-rule);
 }
 
 .home-about-grid {
@@ -288,7 +289,9 @@ a:hover .link-arrow {
 }
 
 #home-news {
-  padding-top: 84px;
+  margin-top: 42px;
+  padding-top: 42px;
+  border-top: 1px solid var(--home-rule);
 }
 
 .home-news-list {
@@ -299,6 +302,10 @@ a:hover .link-arrow {
 
 .home-news-list li {
   border-bottom: 1px solid var(--home-rule);
+}
+
+.home-news-list li:last-child {
+  border-bottom: 0;
 }
 
 .home-news-link {
@@ -326,9 +333,14 @@ a:hover .link-arrow {
 
 .home-contact {
   position: relative;
-  margin-top: 98px;
+  margin-top: 49px;
   padding: 0 0 106px;
   overflow: hidden;
+}
+
+.home-contact > .home-container {
+  padding-top: 49px;
+  border-top: 1px solid var(--home-rule);
 }
 
 .home-contact-grid {
@@ -359,7 +371,7 @@ a:hover .link-arrow {
   align-items: center;
   column-gap: 22px;
   row-gap: 14px;
-  margin-top: 0;
+  margin-top: 24px;
 }
 
 .home-social-links a {
@@ -498,7 +510,7 @@ a:hover .link-arrow {
   .home-section-heading {
     gap: 16px;
     margin-bottom: 24px;
-    padding-bottom: 15px;
+    padding-bottom: 0;
   }
 
   .home-page h2 {
@@ -531,7 +543,8 @@ a:hover .link-arrow {
   }
 
   #featured-projects {
-    padding-top: 65px;
+    margin-top: 32px;
+    padding-top: 33px;
   }
 
   .home-about-grid {
@@ -558,7 +571,8 @@ a:hover .link-arrow {
   }
 
   #home-news {
-    padding-top: 64px;
+    margin-top: 32px;
+    padding-top: 32px;
   }
 
   .home-news-link {
@@ -583,8 +597,12 @@ a:hover .link-arrow {
   }
 
   .home-contact {
-    margin-top: 68px;
+    margin-top: 34px;
     padding-bottom: 64px;
+  }
+
+  .home-contact > .home-container {
+    padding-top: 34px;
   }
 
   .home-contact-grid {

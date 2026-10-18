@@ -1,7 +1,7 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261017c";
+import { loadLocalizedData } from "./localized-data.js?v=20261018c";
 import { formatProjectPeriod, resolveUrl, toTagKey } from "./utils/content.js?v=20260728a";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
-import { renderOutputCard } from "./renderOutputs.js?v=20261017c";
+import { renderOutputCard } from "./renderOutputs.js?v=20261018a";
 import { renderAwardCard } from "./renderAwards.js?v=20261017a";
 
 const root = document.querySelector("[data-project-detail-root]");
@@ -56,6 +56,7 @@ function buildProjectOutputs(project, projectDetail, outputs) {
       visuals: detail.visuals || [],
       myContributions: detail.myContributions || [],
       lessonsLearned: detail.lessonsLearned || [],
+      placeholderContent: detail.placeholderContent || false,
       techStack: detail.techStack || [],
     };
   });
@@ -115,9 +116,9 @@ function renderHero(detail) {
     ["video", "Video"],
   ]
     .filter(([key]) => detail.links?.[key])
-    .map(([key, label]) => ({
+    .map(([key]) => ({
       key,
-      label,
+      label: getLinkActionLabel(key, locale),
       href: detail.links[key],
     }));
 
@@ -131,6 +132,7 @@ function renderHero(detail) {
               ? `<p class="project-detail-hero__period">${escapeHtml(formatProjectPeriod(detail, locale))}</p>`
               : ""
           }
+          <p class="project-detail-hero__summary">${escapeHtml(detail.summary)}</p>
           ${detail.tags?.length ? renderTags(detail.tags) : ""}
           ${detailLinks.length ? renderLinks(detailLinks) : ""}
         </div>
@@ -139,13 +141,13 @@ function renderHero(detail) {
   `;
 }
 
-function renderSection(title, content, intro = "") {
+function renderSection(title, content, intro = "", id = slugify(title)) {
   if (!content) {
     return "";
   }
 
   return `
-    <section class="project-detail-section" id="${slugify(title)}">
+    <section class="project-detail-section" id="${escapeAttribute(id)}">
       <div class="project-detail-section__inner">
         <div class="project-detail-section__heading">
           <h2 class="project-detail-section__title">${escapeHtml(title)}</h2>
@@ -154,6 +156,14 @@ function renderSection(title, content, intro = "") {
         ${content}
       </div>
     </section>
+  `;
+}
+
+function renderProjectContent(detail, content) {
+  return `
+    <div class="project-detail-richtext${detail.placeholderContent ? " project-detail-placeholder" : ""}">
+      ${detail.placeholderContent ? `<p class="project-detail-placeholder__label">${locale === "ja" ? "準備中" : "In preparation"}</p>` : content}
+    </div>
   `;
 }
 
@@ -535,7 +545,7 @@ function renderOutputRecord(output) {
           output.outcome
             ? renderInlineOutputSection(
                 locale === "ja" ? "成果" : "Outcome",
-                `<div class="project-detail-richtext">${renderParagraphs(output.outcome)}</div>`
+                renderProjectContent(output, renderParagraphs(output.outcome))
               )
             : ""
         }
@@ -543,7 +553,7 @@ function renderOutputRecord(output) {
           output.myContributions?.length
             ? renderInlineOutputSection(
                 locale === "ja" ? "担当・貢献" : "My Contributions",
-                renderBullets(output.myContributions)
+                renderProjectContent(output, renderBullets(output.myContributions))
               )
             : ""
         }
@@ -551,7 +561,7 @@ function renderOutputRecord(output) {
           output.lessonsLearned?.length
             ? renderInlineOutputSection(
                 locale === "ja" ? "振り返り" : "Reflection",
-                renderReflection(output.lessonsLearned)
+                renderProjectContent(output, renderReflection(output.lessonsLearned))
               )
             : ""
         }

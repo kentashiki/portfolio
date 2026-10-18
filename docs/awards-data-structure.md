@@ -15,6 +15,7 @@ primary classification fields such as `type` and flexible display labels such as
   region: "domestic",
   type: "competition-award",
   title: "Encouragement Award",
+  date: "2025-09-12",
   year: 2025,
   issuer: "SICHI2025",
   recipients: ["Kenta Shiki"],
@@ -38,7 +39,8 @@ primary classification fields such as `type` and flexible display labels such as
 | `region` | Recommended | Geographic scope used for grouping/filtering. | Current values: `international`, `domestic`, `not-region-specific`. Use `domestic` for Japan-specific awards. |
 | `type` | Yes | Primary award category used for the Type grouping. | Keep this broad and structural. Do not use event-specific labels such as `student-contest` here. |
 | `title` | Yes | Actual award name shown on the card. | Example: `Encouragement Award`, `Best Paper Award`, `Poster Award`. |
-| `year` | Yes | Award year used for sorting and grouping. | Use a number, not a string. If the exact date matters, mention it in related news rather than here. |
+| `date` | Recommended | Date the award was received, stored as metadata. | Use `YYYY-MM-DD` and verify against the certificate or official announcement. Omit when the exact date is unknown. The current card layout does not display the full date; related News can give the event details. |
+| `year` | Yes | Award year used for sorting and grouping. | Use a number matching the year in `date`, when present. |
 | `issuer` | Yes | Organization, conference, event, or program that issued the award. | Keep it concise. Example: `SICHI2025`. |
 | `recipients` | Recommended | People who received the award. | Keep ordering consistent with the official listing or related output. |
 | `equalContributionCount` | No | Marks the first N recipients as equal contribution. | Use only when the award record needs the marker. Omit or use `0` otherwise. |
@@ -160,6 +162,7 @@ When adding an award for an output:
   region: "domestic",
   type: "competition-award",
   title: "Encouragement Award",
+  date: "2025-09-12",
   year: 2025,
   issuer: "SICHI2025",
   recipients: [

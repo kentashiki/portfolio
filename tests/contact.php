@@ -20,6 +20,12 @@ check(!contact_config_ready($config), 'Missing credentials must keep the form di
 $config['smtp_password'] = 'test-only-not-a-real-password';
 $config['recipient_email'] = 'owner@example.com';
 check(contact_config_ready($config), 'Complete test settings should be accepted.');
+$quotedEnabled = $config;
+$quotedEnabled['enabled'] = 'true';
+check(contact_config_issues($quotedEnabled) === ['enabled'], 'Diagnostics should identify a quoted boolean without exposing any values.');
+$badTransport = $config;
+$badTransport['smtp_port'] = '465';
+check(contact_config_issues($badTransport) === ['smtp_transport'], 'Diagnostics should identify a quoted port.');
 
 $input = ['name' => 'テスト 太郎', 'email' => 'visitor@example.net', 'subject' => '', 'message' => "共同研究について\nご相談です。", 'website' => ''];
 check(contact_validate($input) === null, 'Japanese text and an optional empty subject should be valid.');

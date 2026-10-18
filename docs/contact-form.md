@@ -80,6 +80,7 @@ PHPの単一引用符で囲んだ値では、パスワード中の `\` は `\\`�
 1. <https://kentashiki.com/api/contact.php> を開きます。
    正常に準備できていれば `"ok":true` とランダムなトークンが表示されます。
    `"code":"unavailable"` の場合は、配置と `config.php` の3項目を確認します。
+   一緒に表示される `setup` は下表の原因を示します。`fields` があれば該当する項目名だけが表示されます。
    この確認ではSMTPへ接続しないため、パスワードの正しさは次の送信テストで確認します。
 2. <https://kentashiki.com/ja/contact/> を再読み込みします。
    準備中の案内が通常の案内に変わり、送信ボタンが使えることを確認します。
@@ -93,6 +94,23 @@ PHPの単一引用符で囲んだ値では、パスワード中の `\` は `\\`�
 送信中は二重操作を防ぎ、失敗時は入力内容を残します。
 
 ## 送信できないとき
+
+確認用APIは、準備不足の場合もHTTP 200で `"ok":false` と原因コードを返します。
+XServerの汎用503ページに応答を置き換えられずに状況を確認するための仕様です。
+実際の設定値・パスワード・サーバー内の絶対パスは返しません。
+
+| `setup` | 確認すること |
+| --- | --- |
+| `application_missing` | `private/contact/app.php` が `public_html` と同じ階層にあるか・PHPから読み取れるか |
+| `config_missing` | 同じ場所に `config.php` があるか・読み取れるか（`config.example.php` のままでは不可） |
+| `config_fields` | `fields` に表示された項目。`enabled` は引用符なしの `true`、ポートは引用符なしの `465` |
+| `config_format` | `config.php` の先頭の `<?php` と `return [ … ];` を残しているか |
+| `php_syntax` | 編集したPHPの引用符・カンマ・パスワード中の記号のエスケープ |
+| `mailer_missing` | `private/contact/phpmailer/` の3つのPHPファイルが揃っていて読めるか |
+| `storage` | `private/contact/` へのPHPの書き込み権限と `runtime/` の作成可否 |
+| `php_version` | 実際に動いている対象ドメインのPHPが8.3以上か |
+
+APIがJSONではなく汎用エラーページを返す場合は、サーバーパネルのエラーログも確認します。
 
 | 状況 | 確認すること |
 | --- | --- |

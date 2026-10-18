@@ -8,22 +8,40 @@ function contact_reply(int $status, array $body): void {
   echo json_encode($body, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
-function contact_config_ready(array $config): bool {
+function contact_config_issues(array $config): array {
+  $issues = [];
   if (($config['enabled'] ?? false) !== true) {
-    return false;
+    $issues[] = 'enabled';
   }
   foreach (['smtp_host', 'smtp_username', 'smtp_password', 'sender_name'] as $key) {
     if (!is_string($config[$key] ?? null) || trim($config[$key]) === '') {
-      return false;
+      $issues[] = $key;
     }
   }
   foreach (['sender_email', 'recipient_email'] as $key) {
     if (!is_string($config[$key] ?? null) || !filter_var($config[$key], FILTER_VALIDATE_EMAIL)) {
-      return false;
+      $issues[] = $key;
     }
   }
-  return in_array([$config['smtp_port'] ?? null, $config['smtp_encryption'] ?? null], [[465, 'ssl'], [587, 'tls']], true)
-    && is_array($config['allowed_origins'] ?? null) && count($config['allowed_origins']) > 0;
+  if (!in_array([$config['smtp_port'] ?? null, $config['smtp_encryption'] ?? null], [[465, 'ssl'], [587, 'tls']], true)) {
+    $issues[] = 'smtp_transport';
+  }
+  if (!is_array($config['allowed_origins'] ?? null) || count($config['allowed_origins']) === 0) {
+    $issues[] = 'allowed_origins';
+  }
+  return $issues;
+}
+
+function contact_config_ready(array $config): bool {
+  return contact_config_issues($config) === [];
+}
+
+function contact_setup_unavailable(string $problem, array $fields = []): void {
+  // Field names only: never expose configuration values or exception messages.
+  error_log('[portfolio-contact] Setup incomplete: ' . $problem . ($fields ? ' (' . implode(', ', $fields) . ')' : ''));
+  contact_reply(($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' ? 200 : 503, [
+    'ok' => false, 'code' => 'unavailable', 'setup' => $problem, 'fields' => $fields,
+  ]);
 }
 
 function contact_validate(array $input): ?string {
@@ -146,14 +164,30 @@ function contact_handle(string $directory): void {
     return;
   }
   $configPath = $directory . '/config.php';
-  $config = is_file($configPath) ? require $configPath : [];
-  if (!is_array($config) || !contact_config_ready($config)) {
-    contact_reply(503, ['ok' => false, 'code' => 'unavailable']);
+  if (!is_readable($configPath)) {
+    contact_setup_unavailable('config_missing');
+    return;
+  }
+  // A config file accidentally saved without a PHP opening tag must never
+  // print its text (which could contain the SMTP password) into the response.
+  ob_start();
+  try {
+    $config = require $configPath;
+  } finally {
+    ob_end_clean();
+  }
+  if (!is_array($config)) {
+    contact_setup_unavailable('config_format');
+    return;
+  }
+  $issues = contact_config_issues($config);
+  if ($issues) {
+    contact_setup_unavailable('config_fields', $issues);
     return;
   }
   foreach (['Exception.php', 'PHPMailer.php', 'SMTP.php'] as $library) {
-    if (!is_file($directory . '/phpmailer/' . $library)) {
-      contact_reply(503, ['ok' => false, 'code' => 'unavailable']);
+    if (!is_readable($directory . '/phpmailer/' . $library)) {
+      contact_setup_unavailable('mailer_missing');
       return;
     }
   }

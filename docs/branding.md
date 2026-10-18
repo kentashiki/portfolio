@@ -1,42 +1,42 @@
-# Kenta Shiki — 名前の表示とKSアイコン
+# Kenta Shiki — 名前の表示とポートレートアイコン
 
 2026年10月18日更新。
 
 ## 方針
 
-- ヘッダーの `Kenta Shiki` は以前と同じ普通のテキスト表示です。
-- フッターも普通のテキスト表示に揃えています。
-- ファビコンやSNS向けのアイコンには、KとSを組み合わせたモノグラムを使います。
+- ヘッダーとフッターの `Kenta Shiki` は普通のテキスト表示です。
+- アイコンは比較案H「線と面のポートレート」を採用しています。
+- ご本人の顔写真を基に、濃紺の背景と明るい色で顔・髪・襟を描いた画像です。
 
-角のあるKと曲線のあるSを寄せて、ひとまとまりにしています。
-Sの上下の曲線と開口部を残し、数字の6のような閉じた形になることを避けています。
-色はサイトと共通の濃紺 `#192f3a`。アイコンは濃紺の背景に白いKSです。
+## 使用ファイル
 
-## ファイル
-
-すべて `public/assets/images/` 以下です。
+すべて `public/assets/images/brand/` 以下です。
 
 | ファイル | 用途 |
 | --- | --- |
-| `brand/ks-monogram.svg` | 透明背景の濃紺KS。単独で使用するロゴ原本 |
-| `brand/ks-icon.png` | SNSなどに使う512×512pxのアイコン |
-| `brand/apple-touch-icon.png` | ホーム画面用アイコン、180×180px |
-| `favicon.svg` | ブラウザー用SVGアイコン |
-| `favicon.ico` | 16・32・48pxを含む互換用アイコン |
+| `portrait-icon.png` | SNSなどに使う512×512pxの画像 |
+| `apple-touch-icon.png` | ホーム画面用アイコン、180×180px |
+| `favicon-32.png` | ブラウザー用アイコン、32×32px |
 
-SVGはパスのみで構成し、フォントや外部画像には依存しません。
-画像生成で作った構成案を基に、SVGの輪郭と余白を整えたものです。
-PNGとICOは最終SVGから書き出しています。
-使用しなくなったC案の文字ロゴ、K単体の画像、白抜き版は公開フォルダから削除しました。
+採用したH案を、絵柄と縦横比を保って各サイズで書き出しています。
+小さいアイコンに元の大きな画像を読み込む必要はありません。
+画像生成方法は組み込みの `image_gen.imagegen` です。
+参照写真は `public/assets/images/kentashiki-960.webp`。
+元の比較案と最終生成プロンプトは `design-proposals/2026-10-18/icon-variations/` に保存しています。
 
-## 使用と公開
+## 公開
 
-縦横比を保ち、周囲に余白を確保してください。
-ヘッダーにアイコンを追加する必要はありません。
-ヘッダー・フッターの表示は `public/assets/js/site-shell.js` で管理します。
-
+各ページのheadのPNGアイコン・ホーム画面用アイコンの参照を更新しています。
 GitHub Pagesは `main` へのpushで更新されます。
 XServerには別途、`public/` の中身を `kentashiki.com/public_html/` に上書きします。
 アイコンの参照を更新した各ページのHTMLもアップロードしてください。
 
-旧PHPフォーム用ファイルの削除については [contact-form.md](contact-form.md) を参照してください。
+旧KSアイコンは公開フォルダから削除しました。XServerでも、次の旧ファイルを配置していた場合は削除できます。
+
+- `assets/images/favicon.ico`
+- `assets/images/favicon.svg`
+- `assets/images/brand/ks-icon.png`
+- `assets/images/brand/ks-monogram.svg`
+
+`assets/images/brand/apple-touch-icon.png` はH案で更新するため、上書きしてください。
+既存ページ、元の顔写真、メモ、過去の検討用データは削除しません。

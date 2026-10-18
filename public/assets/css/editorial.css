@@ -226,7 +226,7 @@ html {
   stroke-width: 1.5;
 }
 
-/* About: portrait and avatar, followed by open editorial sections. */
+/* About: portrait and introduction, followed by open editorial sections. */
 .editorial-page :is(.profile-detail-section, .mission-section, .vision-section, .principles-section, .interest-section, .eduexpqual-section) {
   width: min(88%, 1240px);
   margin: 0 auto;
@@ -244,35 +244,25 @@ html {
 }
 .editorial-page .profile-detail-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
   gap: 64px;
   max-width: none;
 }
 .editorial-page .profile-detail-media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
-  gap: 16px;
-  width: auto;
+  width: 100%;
   min-width: 0;
 }
 .editorial-page .profile-detail-image {
   width: 100%;
-  height: 380px;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 4;
   border-radius: 0;
   box-shadow: none;
 }
 .editorial-page .profile-detail-image img {
   display: block;
   object-position: center 22%;
-}
-.editorial-page .profile-avatar {
-  margin: 0;
-  min-width: 0;
-  background: #e9eff1;
-}
-.editorial-page .profile-avatar-viewer-shell {
-  height: 380px;
 }
 .editorial-page .profile-detail-text {
   min-width: 0;
@@ -819,11 +809,8 @@ html {
     font-weight: 400;
   }
   .editorial-page .profile-detail-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
     gap: 36px;
-  }
-  .editorial-page :is(.profile-detail-image, .profile-avatar-viewer-shell) {
-    height: 400px;
   }
   .editorial-page .eduexpqual-container {
     grid-template-columns: 1fr;
@@ -880,14 +867,8 @@ html {
     gap: 30px;
   }
   .editorial-page .profile-detail-media {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .editorial-page .profile-avatar {
-    display: block;
-  }
-  .editorial-page :is(.profile-detail-image, .profile-avatar-viewer-shell) {
-    height: 280px;
+    max-width: 280px;
+    margin: 0 auto;
   }
   .editorial-page .profile-detail-text h2 {
     font-size: 28px;

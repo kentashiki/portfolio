@@ -35,7 +35,8 @@ JavaScriptを無効にした場合も同様です。未設定のまま同じペ�
 
 ## 3. XServerのファイルを更新する
 
-リポジトリのルートで実行すると、`../portfolio-deploy/xserver-formspree-contact.zip` を作成します。
+リポジトリのルートで実行すると、一時フォルダ内に `portfolio-deploy/xserver-formspree-contact.zip` を作成します。
+実際の出力先は実行後に表示します。`--output /保存先/ファイル名.zip` で変更できます。
 
 ```sh
 python3 scripts/package-xserver.py

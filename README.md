@@ -17,12 +17,12 @@ portfolio/
 │   ├── awards/            Awards
 │   ├── contact/           Contact
 │   ├── projects/          旧URLからWorkへの転送
-│   ├── assets/            CSS・JavaScript・画像・PDF・3Dモデル
+│   ├── assets/            CSS・JavaScript・画像・PDF
 │   └── data/              ページに表示するデータ
 ├── docs/                  データ構造・公開手順
-├── scripts/               フォーム更新用ZIPの作成
+├── scripts/               XServer更新用ZIPの作成
 ├── notes/                 個人のメモ（Git管理対象外）
-├── archive/               過去のサイト・元画像（公開対象外）
+├── archive/               過去のサイト・元画像・3Dモデル（公開対象外）
 ├── design-proposals/      デザイン案・検討用素材（公開対象外）
 └── .github/workflows/     GitHub Pagesへの自動公開設定
 ```
@@ -85,7 +85,9 @@ python3 -m http.server 8001 --bind 127.0.0.1 --directory .
 例: <http://127.0.0.1:8001/design-proposals/2026-10-17/about-photo-ideas/>
 この配信方法は、手元で資料を確認するときにだけ使用します。
 
-スクリーンショットやブラウザーの確認ログは、サイトと区別するため、
-リポジトリ外の `../portfolio-checks/` などへ保存します。
-2026年10月18日までの旧 `output/` は `../portfolio-checks/2026-10-18/` へ移動しました。
-これらの記録はサイトの動作にもアップロードにも不要です。
+スクリーンショットやブラウザーの確認ログは、一時フォルダ（例: `/tmp/portfolio-checks/`）へ保存します。
+XServer更新用ZIPも一時フォルダに作成し、出力先は実行後に表示します。
+これらの記録やZIPは、アップロード後に削除して構いません。
+
+公開ファイルの整理結果と、既存サーバーから削除するファイルは
+[docs/asset-cleanup.md](docs/asset-cleanup.md) にまとめています。

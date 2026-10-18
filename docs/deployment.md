@@ -64,12 +64,21 @@ GitHub Pages用の `/portfolio/` フォルダを作る必要はありません�
 `docs/`、`notes/`、`archive/`、`design-proposals/`、`.git/`、`.github/`、
 `.codex/`、`.DS_Store`、認証情報はアップロードしません。
 
-初回アップロード後は、日英ページ、画像、PDF、3Dモデル、言語切り替え、
+初回アップロード後は、日英ページ、画像、PDF、言語切り替え、
 スマートフォンのメニュー、HTTPSの表示と転送を確認します。
 ドメインが決まったら、`public/data/outputs.js` にあるPortfolio WebsiteのデモURLも更新します。
 
 GitHubへのpushだけではXServerには反映されません。
 最初は手動でアップロードし、必要になったら自動転送を追加します。
+
+サイト全体の更新用ZIPは、次のコマンドで一時フォルダに作成できます。
+
+```sh
+python3 scripts/package-xserver.py --full-site
+```
+
+出力されたZIP内の `public_html/` の中身を、サーバーの同名フォルダへ上書きします。
+上書きでは古いファイルが残るため、[公開ファイルの整理記録](asset-cleanup.md) の削除対象も確認してください。
 
 [XServer公式: 公開ファイルのアップロード先](https://www.xserver.ne.jp/support/faq/service_ftp_setting_upload.php)
 

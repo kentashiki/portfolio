@@ -54,6 +54,22 @@
   text-underline-offset: 4px;
 }
 
+.contact-form-notice[data-state="error"] {
+  color: #a32f36;
+}
+
+.contact-form-notice[data-state="success"] {
+  color: #23614c;
+}
+
+.contact-form-trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
 .contact-form {
   display: grid;
   gap: 24px;
@@ -125,6 +141,23 @@
 
 .contact-form-submit:disabled {
   cursor: not-allowed;
+}
+
+.contact-form-submit:not(:disabled) {
+  border-color: var(--color-heading);
+  background: var(--color-heading);
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact-form-submit:not(:disabled):hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.contact-form-submit:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .contact-profiles a:hover {

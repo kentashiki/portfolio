@@ -3,6 +3,9 @@
 
 # env
 .env
+.env.*
+/private/contact/config.php
+/private/contact/runtime/
 
 # dependencies
 node_modules/

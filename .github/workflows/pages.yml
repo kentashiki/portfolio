@@ -32,10 +32,14 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Prepare static site
+        run: |
+          mkdir -p "$RUNNER_TEMP/portfolio-pages"
+          rsync -a --exclude='*.php' public/ "$RUNNER_TEMP/portfolio-pages/"
       - name: Upload public site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: public
+          path: ${{ runner.temp }}/portfolio-pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

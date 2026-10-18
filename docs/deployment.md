@@ -30,7 +30,7 @@ HTML・CSS・JavaScriptをそのまま使用するため、ビルドは不要で
 **Run workflow → Branch: main → Run workflow** を選びます。
 設定変更前の実行が失敗している場合も、設定変更後にこの方法で実行できます。
 
-ワークフローは `public/` だけを公開用データとしてアップロードするため、
+ワークフローは `public/` からPHPを除いたファイルだけを公開用データとしてアップロードするため、
 `docs/`、個人メモ、アーカイブ、デザイン案はPagesには含まれません。
 ただし、公開リポジトリにコミットしたファイルはGitHub上では閲覧できます。
 
@@ -51,6 +51,7 @@ HTML・CSS・JavaScriptをそのまま使用するため、ビルドは不要で
 ├── assets/
 ├── awards/
 ├── contact/
+├── api/contact.php       XServer用フォームの送信先
 ├── data/
 ├── ja/
 ├── news/
@@ -73,15 +74,11 @@ GitHubへのpushだけではXServerには反映されません。
 
 [XServer公式: 公開ファイルのアップロード先](https://www.xserver.ne.jp/support/faq/service_ftp_setting_upload.php)
 
-## PHPフォームを追加するとき
+## PHPフォームの有効化
 
-現在のContactフォームは、送信ボタンが無効な「準備中」の状態です。
+PHPの送信処理は実装済みです。XServerへの配置と設定が必要です。
+[お問い合わせフォームの設定手順](contact-form.md) に沿って、
+`private/contact/` をドメインの `public_html/` と同じ階層に配置し、パスワードと受信先を設定してください。
+フォーム更新用のアップロードZIPは `python3 scripts/package-xserver.py` で作成できます。
 
-- XServerにPHPの送信処理を追加し、日英フォームを同じ送信先に接続します。
-- PHPMailerとSMTP認証を使い、送信元は独自ドメインのメールアカウントに固定します。
-- SMTPのパスワードなどはGit管理対象・`public_html/` の外に保存します。
-- 入力検証、連投対策、成功・失敗の画面表示を実装して、メール到着まで確認します。
-- PHPはGitHub Pagesでは動作しません。PHP追加時に公開ワークフローとフォームの有効化条件を調整し、
-  Pages側は送信できない状態を維持します。PHPソースをそのままPagesで公開しないようにします。
-
-このリポジトリの整理では、PHP処理の実装やフォームの有効化は行っていません。
+GitHub PagesではPHPを公開せず、フォームも準備中のまま維持します。

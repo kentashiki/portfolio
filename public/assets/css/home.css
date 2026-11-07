@@ -343,44 +343,63 @@ a:hover .link-arrow {
   border-top: 1px solid var(--home-rule);
 }
 
-.home-contact-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 80px;
-}
-
-.contact-lead {
+.home-contact-list {
   margin: 0;
-  font-size: clamp(44px, 4.9vw, 68px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  font-size: 15px;
 }
 
-.home-contact-copy > p {
-  max-width: 300px;
-  margin: 0 0 25px;
-  color: var(--home-muted);
-  font-size: 14px;
-  line-height: 1.5;
+.home-contact-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+}
+
+.home-contact-item + .home-contact-item {
+  margin-top: 12px;
+}
+
+.home-contact-item dt {
+  flex-shrink: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.home-contact-item dd {
+  flex: 1 1 11.5rem;
+  min-width: 0;
+  margin: 0;
+}
+
+.contact-email {
+  color: var(--home-ink);
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-email:hover,
+.home-social-links a:hover {
+  color: var(--color-accent);
 }
 
 .home-social-links {
-  display: grid;
-  grid-template-columns: repeat(3, max-content);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  column-gap: 22px;
-  row-gap: 14px;
-  margin-top: 24px;
+  gap: 4px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .home-social-links a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 26px;
+  min-height: 44px;
   color: #4f6c7b;
-  font-size: 12px;
+  font-size: 14px;
   text-underline-offset: 3px;
 }
 
@@ -466,11 +485,6 @@ a:hover .link-arrow {
   .home-news-link {
     grid-template-columns: 130px minmax(0, 1fr) 25px;
     gap: 20px;
-  }
-
-  .home-contact-grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 40px;
   }
 }
 
@@ -603,23 +617,6 @@ a:hover .link-arrow {
 
   .home-contact > .home-container {
     padding-top: 34px;
-  }
-
-  .home-contact-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 35px;
-  }
-
-  .contact-lead {
-    font-size: clamp(46px, 11.5vw, 64px);
-  }
-
-  .home-contact-copy > p {
-    max-width: 285px;
-  }
-
-  .home-social-links {
-    column-gap: 21px;
   }
 
   .home-page .home-footer {

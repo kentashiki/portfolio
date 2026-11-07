@@ -1,4 +1,4 @@
-"""Package the static site or Formspree contact pages for XServer."""
+"""Package the static site or the Contact update for XServer."""
 
 import argparse
 from pathlib import Path
@@ -13,13 +13,20 @@ def main():
   parser.add_argument("--output", type=Path, help="ZIP destination (defaults to a temporary folder)")
   args = parser.parse_args()
   if args.output is None:
-    filename = "xserver-portfolio.zip" if args.full_site else "xserver-formspree-contact.zip"
+    filename = "xserver-portfolio.zip" if args.full_site else "xserver-contact-email.zip"
     args.output = Path(gettempdir()) / "portfolio-deploy" / filename
   public = root / "public"
   if args.output.resolve().is_relative_to(public.resolve()):
     parser.error("Place the ZIP outside public/ so it is not published or packaged into itself")
   args.output.parent.mkdir(parents=True, exist_ok=True)
-  contact_files = ["contact/index.html", "contact/contact.css", "contact/contact.js", "contact/config.js", "ja/contact/index.html"]
+  contact_files = [
+    "index.html",
+    "ja/index.html",
+    "assets/css/home.css",
+    "assets/js/site-shell.js",
+    "contact/index.html",
+    "ja/contact/index.html",
+  ]
   if args.full_site:
     sources = sorted(path for path in public.rglob("*") if not any(part.startswith(".") for part in path.relative_to(public).parts))
   else:
@@ -32,7 +39,7 @@ def main():
       if source.is_file():
         archive.write(source, Path("public_html") / source.relative_to(public))
     if not args.full_site:
-      archive.write(root / "docs/contact-form.md", "SETUP.md")
+      archive.write(root / "docs/contact.md", "SETUP.md")
   print(args.output.resolve())
 
 

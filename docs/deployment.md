@@ -82,13 +82,6 @@ python3 scripts/package-xserver.py --full-site
 
 [XServer公式: 公開ファイルのアップロード先](https://www.xserver.ne.jp/support/faq/service_ftp_setting_upload.php)
 
-## Formspreeフォームの有効化
+## Contact欄の更新
 
-[お問い合わせフォームの設定手順](contact-form.md) に沿って、Formspreeのアカウントとフォームを作成し、
-`public/contact/config.js` に公開用の送信先URLを設定します。
-PHPファイル、メールのSMTPパスワード、サーバー側の設定ファイルは不要です。
-GitHub PagesとXServerの両方で利用できます。
-
-フォーム更新用ZIPは `python3 scripts/package-xserver.py` で作成できます。
-ZIP内の `public_html/` の中身を、サーバーの `kentashiki.com/public_html/` に上書きします。
-以前のPHP処理は上書きだけでは消えないので、設定手順にある削除対象も確認してください。
+[Contact欄の更新](contact.md) に、日英トップページへの統合を反映する手順と、旧Contactページのファイル整理をまとめています。

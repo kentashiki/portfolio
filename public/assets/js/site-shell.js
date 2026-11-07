@@ -4,7 +4,7 @@ const PRIMARY_NAV_ITEMS = [
   { key: "work", label: "Work", href: "work/" },
   { key: "outputs", label: "Outputs", href: "outputs/" },
   { key: "awards", label: "Awards", href: "awards/" },
-  { key: "contact", label: "Contact", href: "contact/" },
+  { key: "contact", label: "Contact", href: "#contact" },
 ];
 
 function buildSectionPath(root, href) {
@@ -73,9 +73,13 @@ function renderLanguageSwitch(locale, variant = "desktop") {
   `;
 }
 
-function resolveNavHref(root, href, locale) {
+function resolveNavHref(root, href, locale, pageKey) {
   if (!href) {
     return buildHomePath(root, locale);
+  }
+
+  if (href.startsWith("#")) {
+    return pageKey === "home" ? href : `${buildHomePath(root, locale)}${href}`;
   }
 
   return buildSectionPath(root, locale === "ja" ? `ja/${href}` : href);
@@ -108,10 +112,6 @@ function getActiveNavKeys(currentSection, pageKey) {
     activeKeys.add("awards");
   }
 
-  if (currentSection === "contact") {
-    activeKeys.add("contact");
-  }
-
   return activeKeys;
 }
 
@@ -123,7 +123,7 @@ function renderHeader(root, currentSection, locale, pageKey) {
     .map((item) => {
       const currentAttr = activeKeys.has(item.key) ? ' aria-current="page"' : "";
 
-      return `<li class="nav-item"><a href="${resolveNavHref(root, item.href, locale)}"${currentAttr}>${item.label}</a></li>`;
+      return `<li class="nav-item"><a href="${resolveNavHref(root, item.href, locale, pageKey)}"${currentAttr}>${item.label}</a></li>`;
     })
     .join("");
 

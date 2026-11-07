@@ -15,7 +15,7 @@ portfolio/
 │   ├── news/              News
 │   ├── outputs/           Outputs
 │   ├── awards/            Awards
-│   ├── contact/           Contact
+│   ├── contact/           旧Contact URLからの転送
 │   ├── projects/          旧URLからWorkへの転送
 │   ├── assets/            CSS・JavaScript・画像・PDF
 │   └── data/              ページに表示するデータ
@@ -68,11 +68,8 @@ URLの文字列へ `public/` を付け足す必要はありません。
 公開フォルダの外に置くことと、GitHubのリポジトリ内で非公開になることは別です。
 個人用メモ、パスワード、秘密のAPIキーはGitに追加しません。
 
-ContactフォームはFormspreeを使用します。PHPやSMTP認証情報は不要です。
-`public/contact/config.js` に公開用の送信先URLを設定すると、日英両ページでフォームが表示されます。
-未設定の間はフォームを非表示にし、SNSをご案内します。
-GitHub Pages・XServerのどちらでも同じ構成で動作します。
-設定と旧PHPファイルの削除は [お問い合わせフォームの設定手順](docs/contact-form.md) を参照してください。
+日英トップページのContact欄に公開用メールアドレスを掲載しています。
+旧Contact URLの転送と公開手順は [Contact欄の更新](docs/contact.md) を参照してください。
 
 ## デザイン案・確認記録
 

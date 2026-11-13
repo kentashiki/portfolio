@@ -1,5 +1,33 @@
 export const news = [
   {
+    id: "news-uist-2026-sic-participation",
+    date: "2026-11-03",
+    title: "Participated in the UIST 2026 Student Innovation Contest",
+    images: [
+      {
+        src: "assets/images/news/2026/uist-2026-sic-bio-sword-booth.jpg",
+        alt: "Bio-Sword poster and demo booth at the UIST 2026 Student Innovation Contest",
+        width: 2048,
+        height: 1536,
+      },
+      {
+        src: "assets/images/news/2026/uist-2026-sic-bio-sword-demo.jpg",
+        alt: "A visitor trying Bio-Sword with a VR headset",
+        width: 2048,
+        height: 1536,
+      },
+    ],
+    summary: [
+      "I participated in the UIST 2026 Student Innovation Contest in Detroit with Juichun Yen, where we presented ",
+      {
+        text: "Bio-Sword: Bio-Responsive Feedback for Virtual Sword Training",
+        href: "outputs/#output-bio-sword-uist2026",
+      },
+      ".",
+    ],
+    tags: ["Student Contest"],
+  },
+  {
     id: "news-sfn-2026-late-breaking-abstract",
     date: "2026-09-30",
     title: "Research Accepted to SfN 2026 Late-Breaking Abstract",

@@ -69,7 +69,11 @@ GitHub Pages用の `/portfolio/` フォルダを作る必要はありません�
 ドメインが決まったら、`public/data/outputs.js` にあるPortfolio WebsiteのデモURLも更新します。
 
 GitHubへのpushだけではXServerには反映されません。
-最初は手動でアップロードし、必要になったら自動転送を追加します。
+更新時は `public/` の中身を `public_html/` に上書きします。
+
+CSSやJavaScriptを変更した場合は、アップロード前に読み込み元のURLの `?v=` を新しい値に更新します。
+ニュース更新時は日英の `news.js` を参照する `import` からたどり、変更したモジュールを読み込む `import` とHTMLの `src` も順に更新します。
+変更したファイルと読み込み元を同じ更新でアップロードします。
 
 サイト全体の更新用ZIPは、次のコマンドで一時フォルダに作成できます。
 
@@ -81,6 +85,17 @@ python3 scripts/package-xserver.py --full-site
 上書きでは古いファイルが残るため、[公開ファイルの整理記録](asset-cleanup.md) の削除対象も確認してください。
 
 [XServer公式: 公開ファイルのアップロード先](https://www.xserver.ne.jp/support/faq/service_ftp_setting_upload.php)
+
+## Google Analyticsの無効化
+
+更新後のページはGoogle Analyticsを読み込まず、同意バナーとフッターの設定ボタンも表示しません。
+反映するには、更新した `public/` の中身を通常の手順で再公開してください。Google Analyticsの管理画面やサーバー設定の変更は不要です。
+
+XServerで上書きした場合、以前にアップロードした次のファイルは任意で整理できます。更新後のページからは参照されません。
+
+- `public_html/assets/css/analytics.css`
+- `public_html/assets/js/analytics-config.js`
+- `public_html/assets/js/analytics.js`
 
 ## Contact欄の更新
 

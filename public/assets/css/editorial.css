@@ -14,7 +14,6 @@
   --color-accent-strong: #192f3a;
   --color-accent-soft: #9bafb9;
   --color-accent-muted: #657b88;
-  --section-heading-gradient: linear-gradient(110deg, #192f3a, #426778);
   --shadow-soft: none;
   --shadow-lift: none;
 }
@@ -966,33 +965,6 @@ html {
     font-size: 25px;
     line-height: 1.5;
     letter-spacing: 0;
-  }
-}
-
-/* Fit the gradient to section titles instead of the full content column. */
-@supports ((background-clip: text) or (-webkit-background-clip: text)) {
-  .editorial-page main h2:not(.profile-detail-text h2) {
-    width: fit-content;
-    max-width: 100%;
-    background-image: var(--section-heading-gradient);
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
-@media print, (forced-colors: active) {
-  .editorial-page main h2:not(.profile-detail-text h2) {
-    background-image: none;
-    -webkit-text-fill-color: currentColor;
-  }
-}
-
-@media (forced-colors: active) {
-  .editorial-page main h2:not(.profile-detail-text h2) {
-    color: CanvasText;
-    -webkit-text-fill-color: CanvasText;
   }
 }
 

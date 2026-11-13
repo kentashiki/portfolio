@@ -1,4 +1,4 @@
-import projects from "../projects.js?v=20261018c";
+import projects from "../projects.js?v=20261113b";
 
 const translations = {
   "virtual-softness-eeg": {

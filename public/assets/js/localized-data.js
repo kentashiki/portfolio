@@ -1,12 +1,12 @@
-import projects from "../../data/projects.js?v=20261018c";
+import projects from "../../data/projects.js?v=20261113b";
 import workThemes from "../../data/workThemes.js?v=20261017b";
-import news from "../../data/news.js?v=20261017a";
-import outputs from "../../data/outputs.js?v=20261018c";
+import news from "../../data/news.js?v=20261107e";
+import outputs from "../../data/outputs.js?v=20261107e";
 import awards from "../../data/awards.js?v=20261018a";
-import jaProjects from "../../data/ja/projects.js?v=20261018c";
+import jaProjects from "../../data/ja/projects.js?v=20261113b";
 import jaWorkThemes from "../../data/ja/workThemes.js?v=20261017b";
-import jaNews from "../../data/ja/news.js?v=20261017a";
-import jaOutputs from "../../data/ja/outputs.js?v=20261018c";
+import jaNews from "../../data/ja/news.js?v=20261107e";
+import jaOutputs from "../../data/ja/outputs.js?v=20261107e";
 import jaAwards from "../../data/ja/awards.js?v=20261018a";
 
 function localizeLinks(links = {}) {

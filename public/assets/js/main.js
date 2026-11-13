@@ -1,4 +1,4 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261018c";
+import { loadLocalizedData } from "./localized-data.js?v=20261107e";
 import { renderProjects } from "./renderProjects.js?v=20261017c";
 import { renderNews } from "./renderNews.js?v=20260730f";
 import { renderOutputs } from "./renderOutputs.js?v=20261018a";

@@ -244,7 +244,7 @@ export const projects = [
     },
     status: "active",
     tags: ["VR", "Kendo", "EDA", "PPG", "IMU"],
-    featured: false,
+    featured: true,
     links: {
       page: "work/#project-biosword",
     },

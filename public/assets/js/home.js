@@ -1,4 +1,4 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261018c";
+import { loadLocalizedData } from "./localized-data.js?v=20261113b";
 import { escapeHtml, resolveUrl } from "./utils/content.js";
 
 const locale = document.body.dataset.locale || "en";
@@ -18,7 +18,7 @@ const featuredProjects = [...projects]
     };
     return themeIndex(a) - themeIndex(b);
   })
-  .slice(0, 3);
+  .slice(0, 4);
 
 if (selectedWork) {
   selectedWork.innerHTML = featuredProjects.map((project) => {
@@ -29,10 +29,7 @@ if (selectedWork) {
         <div class="selected-work-image">
           <img src="${escapeHtml(resolveUrl(root, project.thumbnail))}" alt="${escapeHtml(project.detail?.heroImage?.alt || `${project.title} — ${locale === "ja" ? "研究概要" : "research overview"}`)}" loading="lazy" decoding="async" />
         </div>
-        <div class="selected-work-heading">
-          <h3>${escapeHtml(project.title)}</h3>
-          <span class="link-arrow" aria-hidden="true">⟶</span>
-        </div>
+        <h3 class="selected-work-heading">${escapeHtml(project.title)}</h3>
         <p>${escapeHtml(project.summary)}</p>
       </a>
     `;
@@ -54,8 +51,7 @@ if (newsList) {
       <li>
         <a class="home-news-link" href="${root}${locale === "ja" ? "ja/" : ""}news/#${escapeHtml(item.id)}">
           <time datetime="${escapeHtml(item.date)}">${escapeHtml(dateFormatter.format(new Date(`${item.date}T00:00:00Z`)))}</time>
-          <span class="home-news-title">${escapeHtml(item.title)}</span>
-          <span class="link-arrow" aria-hidden="true">⟶</span>
+          <span>${escapeHtml(item.title)}</span>
         </a>
       </li>
     `).join("");

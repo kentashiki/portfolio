@@ -1,4 +1,4 @@
-import { loadLocalizedData } from "./localized-data.js?v=20261018c";
+import { loadLocalizedData } from "./localized-data.js?v=20261107e";
 import { formatProjectPeriod, resolveUrl, toTagKey } from "./utils/content.js?v=20260728a";
 import { getLinkActionLabel, renderLinkAction } from "./utils/link-actions.js?v=20260728b";
 import { renderOutputCard } from "./renderOutputs.js?v=20261018a";

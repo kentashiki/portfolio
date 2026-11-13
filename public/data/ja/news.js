@@ -1,7 +1,29 @@
-import news from "../news.js?v=20261017a";
+import news from "../news.js?v=20261107e";
 import { localizeNewsTags } from "./tags.js?v=20260728g";
 
 const translations = {
+  "news-uist-2026-sic-participation": {
+    title: "UIST 2026 Student Innovation Contestに参加",
+    images: [
+      {
+        src: "assets/images/news/2026/uist-2026-sic-bio-sword-booth.jpg",
+        alt: "UIST 2026 Student Innovation ContestのBio-Swordのポスターとデモブース",
+        width: 2048,
+        height: 1536,
+      },
+      {
+        src: "assets/images/news/2026/uist-2026-sic-bio-sword-demo.jpg",
+        alt: "VRヘッドセットを着けてBio-Swordを体験する来場者",
+        width: 2048,
+        height: 1536,
+      },
+    ],
+    summary: [
+      "デトロイトで開催されたUIST 2026 Student Innovation ContestにYen Juichunさんと参加し、「",
+      { text: "Bio-Sword: Bio-Responsive Feedback for Virtual Sword Training", href: "outputs/#output-bio-sword-uist2026" },
+      "」を発表しました。",
+    ],
+  },
   "news-sfn-2026-late-breaking-abstract": {
     title: "SfN 2026 Late-Breaking Abstractに採択",
     summary: [

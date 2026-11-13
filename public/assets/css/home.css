@@ -178,8 +178,8 @@ a:hover .link-arrow {
 
 .selected-work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 22px;
 }
 
 .selected-work-card {
@@ -210,15 +210,7 @@ a:hover .link-arrow {
 }
 
 .selected-work-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 19px;
-}
-
-.selected-work-heading h3 {
-  margin: 0;
+  margin: 19px 0 0;
   color: inherit;
   font-size: clamp(18px, 1.5vw, 21px);
   line-height: 1.35;
@@ -227,7 +219,7 @@ a:hover .link-arrow {
 }
 
 .selected-work-card p {
-  margin: 13px 18px 0 0;
+  margin: 13px 0 0;
   color: var(--home-muted);
   font-size: 14px;
   line-height: 1.5;
@@ -310,7 +302,7 @@ a:hover .link-arrow {
 
 .home-news-link {
   display: grid;
-  grid-template-columns: 165px minmax(0, 1fr) 28px;
+  grid-template-columns: 165px minmax(0, 1fr);
   gap: 30px;
   align-items: baseline;
   padding: 19px 0;
@@ -324,11 +316,6 @@ a:hover .link-arrow {
 .home-news-link time {
   white-space: nowrap;
   font-size: 13px;
-}
-
-.home-news-link .link-arrow {
-  justify-self: end;
-  font-size: 23px;
 }
 
 .home-contact {
@@ -483,7 +470,7 @@ a:hover .link-arrow {
   }
 
   .home-news-link {
-    grid-template-columns: 130px minmax(0, 1fr) 25px;
+    grid-template-columns: 130px minmax(0, 1fr);
     gap: 20px;
   }
 }
@@ -544,10 +531,6 @@ a:hover .link-arrow {
 
   .selected-work-heading {
     margin-top: 16px;
-  }
-
-  .selected-work-heading h3 {
-    max-width: 90%;
     font-size: 21px;
   }
 
@@ -590,24 +573,13 @@ a:hover .link-arrow {
   }
 
   .home-news-link {
-    grid-template-columns: minmax(0, 1fr) 24px;
-    gap: 6px 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
     padding: 18px 0;
   }
 
   .home-news-link time {
-    grid-column: 1;
     font-size: 12px;
-  }
-
-  .home-news-title {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .home-news-link .link-arrow {
-    grid-column: 2;
-    grid-row: 2;
   }
 
   .home-contact {

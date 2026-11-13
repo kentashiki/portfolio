@@ -71,6 +71,8 @@ URLの文字列へ `public/` を付け足す必要はありません。
 日英トップページのContact欄に公開用メールアドレスを掲載しています。
 旧Contact URLの転送と公開手順は [Contact欄の更新](docs/contact.md) を参照してください。
 
+Google Analyticsは無効です。既存の公開サイトに反映する手順は [公開手順](docs/deployment.md#google-analyticsの無効化) を参照してください。
+
 ## デザイン案・確認記録
 
 デザイン案と過去ページも見る場合は、開発用にリポジトリ全体をローカル配信します。

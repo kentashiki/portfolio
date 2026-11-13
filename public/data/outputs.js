@@ -6,7 +6,6 @@ export const outputs = [
     region: "international",
     title: "Bio-Sword: Bio-Responsive Feedback for Virtual Sword Training",
     type: "publication",
-    status: "upcoming",
     date: "2026-11-03",
     year: 2026,
     authors: ["Juichun Yen", "Kenta Shiki"],
@@ -14,6 +13,8 @@ export const outputs = [
     tags: ["Poster", "Demo", "International"],
     links: {
       conference: "https://uist.acm.org/2026/",
+      paper: "https://dl.acm.org/doi/10.1145/3830397.3841319",
+      poster: "assets/documents/outputs/bio-sword-uist2026-poster.pdf",
       page: "outputs/#output-bio-sword-uist2026",
     },
   },
